@@ -6,7 +6,7 @@
 .watch, .lock, .island {
   --bg: #0D0D0E; --raised2: #222226; --ink: #F1F0EC; --ink2: #8D8D93; --ink3: #55555B;
   --line: rgba(255,255,255,.08); --heat-text: #FF2D24;
-  --pl-face: #1C1C1F; --pl-empty: #323238; --pl-ring: #111113; --pl-core: #2A2A2E; --pl-chalk: #F1F0EC;
+  --pl-empty: #323238;
   color: var(--ink);
 }
 .landing main { overflow-x: clip; }

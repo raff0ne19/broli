@@ -5,15 +5,18 @@
 :root, [data-theme="dark"] {
   --bg: #0D0D0E; --raised: #17171A; --raised2: #222226; --ink: #F1F0EC; --ink2: #8D8D93; --ink3: #55555B;
   --line: rgba(255,255,255,.08); --heat: #E2231A; --heat-text: #FF2D24; --shade: rgba(0,0,0,.6);
-  /* Il disco della seduta (PlatePalette): in scuro sale a gradini dalla gomma. */
-  --pl-face: #1C1C1F; --pl-empty: #323238; --pl-ring: #111113; --pl-core: #2A2A2E; --pl-chalk: #F1F0EC;
+  /* Il disco della seduta (PlatePalette): i pezzi vuoti, un gradino sopra la gomma. */
+  --pl-empty: #323238;
+  /* Il marchio: il pezzo in corso è il rosso al 32% sul fondo del tema, già mescolato. */
+  --mark-arr-a: #561B19; --mark-arr-b: #46110F;
   color-scheme: dark;
 }
 /* Il tema lo sceglie prefs.js (scelta salvata, altrimenti il sistema) prima che la pagina si disegni. */
 [data-theme="light"] {
   --bg: #EEEDE8; --raised: #F9F8F5; --raised2: #E2E1DB; --ink: #15171A; --ink2: #55595F; --ink3: #9C9DA2;
   --line: rgba(21,23,26,.08); --heat-text: #C41E16; --shade: rgba(21,23,26,.22);
-  --pl-face: #DCDBD5; --pl-empty: #C6C5BF; --pl-ring: #F6F5F1; --pl-core: #D6D5CF; --pl-chalk: #15171A;
+  --pl-empty: #C6C5BF;
+  --mark-arr-a: #EFB4AD; --mark-arr-b: #DFA9A4;
   color-scheme: light;
 }
 
@@ -41,8 +44,12 @@ html[data-lang="it"] .en, html[data-lang="en"] .it { display: none; }
 @media (max-width: 400px) { .site-header nav { gap: 12px; } }
 
 .wordmark { font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; line-height: 1; }
-.wordmark .l { display: inline-block; color: var(--heat); transform: scaleY(1.14); transform-origin: 50% 80%; }
-.site-header .wordmark { font-size: 28px; }
+/* Il disco al posto della "o": le misure della o di Bricolage ExtraBold (da 0,014 em sotto la base a
+   0,542 em sopra, larga 0,593 em), uguali a BroliLogotype nell'app. Il bordo rosso del disco
+   (93 unità su 112 del disegno) è il contorno della o. */
+.wordmark .o { display: inline-block; position: relative; width: .593em; height: .556em; vertical-align: -.014em; }
+.wordmark .o svg { position: absolute; width: .6696em; height: .6696em; left: -.0383em; top: -.0568em; }
+.site-header .wordmark { font-size: 32px; }
 
 h1, h2 { font-family: "Barlow SC", sans-serif; font-weight: 700; line-height: 1.15; }
 h1 { font-size: 40px; margin: 48px 0 8px; }
