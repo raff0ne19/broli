@@ -14,17 +14,10 @@
 <link rel="preload" href="assets/BarlowSemiCondensed-Bold.ttf" as="font" crossorigin>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="landing.css">
-<script src="lang.js"></script>
+<script src="prefs.js"></script>
 </head>
 <body>
-<header>
-  <a class="wordmark" href="./" aria-label="Broli">bro<span class="l">l</span>i</a>
-  <nav>
-    <a href="privacy">Privacy</a>
-    <a href="support"><span class="it">Supporto</span><span class="en">Support</span></a>
-    <a class="en" href="?lang=it">Italiano</a><a class="it" href="?lang=en">English</a>
-  </nav>
-</header>
+<script src="header.js"></script>
 
 <main>
   <section class="cover">
@@ -34,8 +27,8 @@
     <p class="lede it">Il diario d'allenamento per iPhone e Apple Watch. Segui la scheda, segna ogni serie con un tocco e guarda il disco che si costruisce.</p>
     <p class="lede en">The workout log for iPhone and Apple Watch. Follow your routine, log every set with one tap and watch the plate build up.</p>
     <span class="cta"><span class="it">Presto sull'App Store</span><span class="en">Coming soon to the App Store</span></span>
-    <p class="fine it">Gratis. Niente account, niente pubblicità.</p>
-    <p class="fine en">Free. No account, no ads.</p>
+    <p class="fine it">Gratis, senza account e senza pubblicità.</p>
+    <p class="fine en">Free, with no account and no ads.</p>
   </section>
 
   <section id="lift" class="story">
@@ -59,8 +52,8 @@
   <section id="grow" class="story">
     <div class="copy">
       <h2 class="verb">Grow.</h2>
-      <p class="it"><strong>Batti l'ultima volta.</strong> Broli ti dice di quanto l'hai superata e segna i record. Chiudi gli esercizi e chiudi il disco dell'allenamento; allenati le volte che ti sei dato e chiudi quello della settimana.</p>
-      <p class="en"><strong>Beat last time.</strong> Broli tells you by how much you beat it and marks your records. Close every exercise to close the workout's plate; train as often as you planned and close the week's.</p>
+      <p class="it"><strong>Batti l'ultima volta.</strong> Broli ti dice di quanto l'hai superata e segna i record. Finiti gli esercizi si chiude il disco dell'allenamento; fatti gli allenamenti che ti eri dato si chiude quello della settimana.</p>
+      <p class="en"><strong>Beat last time.</strong> Broli tells you by how much you beat it and marks your records. Finish every exercise and the workout's plate closes; do the workouts you planned and the week's closes too.</p>
     </div>
     <div class="phone" data-screen="fine" role="img" aria-label="Disco chiuso"></div>
   </section>
@@ -69,8 +62,8 @@
     <div class="intro">
       <h3 class="say it">Il riposo lo conta lui, ovunque.</h3>
       <h3 class="say en">Rest counts itself, everywhere.</h3>
-      <p class="it">Parte da solo dopo ogni serie e lo vedi nella Dynamic Island, sulla schermata di blocco e al polso, sempre allineato. A fine riposo suona una campana. Con Apple Watch segni le serie senza tirare fuori il telefono, e l'allenamento finisce in Salute con frequenza cardiaca e calorie.</p>
-      <p class="en">It starts on its own after every set and you see it on the Dynamic Island, on the Lock Screen and on your wrist, always in step. When it's over a bell rings. With Apple Watch you log sets without reaching for your phone, and the workout goes to Health with heart rate and calories.</p>
+      <p class="it">Parte da solo dopo ogni serie e lo vedi nella Dynamic Island, sulla schermata di blocco e al polso, con lo stesso conto alla rovescia. A fine riposo suona una campana. Con Apple Watch segni le serie senza tirare fuori il telefono, e l'allenamento finisce in Salute con frequenza cardiaca e calorie.</p>
+      <p class="en">It starts on its own after every set and you see it on the Dynamic Island, on the Lock Screen and on your wrist, with the same countdown. When it's over a bell rings. With Apple Watch you log sets without reaching for your phone, and the workout goes to Health with heart rate and calories.</p>
     </div>
     <div class="trio">
       <div class="watch" data-screen="watchSerie" role="img" aria-label="Apple Watch, serie"></div>
@@ -93,8 +86,8 @@
         <p class="en">A link or a QR code and your coach's routine, or a whole program, is in your list.</p></div>
       <div class="tile"><div class="art" data-art="storico"></div>
         <b class="it">Lo storico, settimana per settimana</b><b class="en">Your history, week by week</b>
-        <p class="it">Un disco per ogni settimana, i record di ogni esercizio, filtri per giorno, mese o anno.</p>
-        <p class="en">A plate for every week, the records of every exercise, filters by day, month or year.</p></div>
+        <p class="it">Un disco per ogni settimana, i record di ogni esercizio, filtri per giorno, settimana, mese o anno.</p>
+        <p class="en">A plate for every week, the records of every exercise, filters by day, week, month or year.</p></div>
     </div>
   </section>
 
@@ -104,10 +97,10 @@
     <div class="cols">
       <div class="it"><b>Sul tuo telefono</b><p>Niente account e niente server: schede e storico restano sul tuo iPhone.</p></div>
       <div class="it"><b>Li porti dove vuoi</b><p>Un backup con tutto quando vuoi, o lo storico in CSV per un foglio di calcolo.</p></div>
-      <div class="it"><b>Niente pubblicità</b><p>Mai. Broli si regge su Broli Pro, per chi vuole qualcosa in più. <a href="privacy">Leggi la privacy</a>.</p></div>
+      <div class="it"><b>Niente pubblicità</b><p>Broli si mantiene con Broli Pro, che è facoltativo. <a href="privacy">Leggi la privacy</a>.</p></div>
       <div class="en"><b>On your phone</b><p>No account and no servers: your routines and history stay on your iPhone.</p></div>
       <div class="en"><b>Take them anywhere</b><p>A backup of everything whenever you like, or your history as CSV for a spreadsheet.</p></div>
-      <div class="en"><b>No ads</b><p>Ever. Broli is funded by Broli Pro, for those who want a little more. <a href="privacy">Read the privacy policy</a>.</p></div>
+      <div class="en"><b>No ads</b><p>Broli is funded by Broli Pro, which is optional. <a href="privacy">Read the privacy policy</a>.</p></div>
     </div>
   </section>
 

@@ -8,8 +8,10 @@
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const C = {
-    red: "#E2231A", face: "#1C1C1F", empty: "#323238", hubRing: "#111113", hubCore: "#2A2A2E",
-    steel: "#B9BCC2", steelDark: "#6E7177", chalk: "#F1F0EC",
+    // Faccia, pezzi vuoti e mozzo seguono il tema (variabili in style.css); per questo vanno in style:
+    // gli attributi fill e stroke non leggono le variabili CSS.
+    red: "#E2231A", face: "var(--pl-face)", empty: "var(--pl-empty)", hubRing: "var(--pl-ring)", hubCore: "var(--pl-core)",
+    steel: "#B9BCC2", steelDark: "#6E7177", chalk: "var(--pl-chalk)",
     markFace: "#26262A", markRed: ["#F23A2F", "#C01A12"], markChalk: ["#FBFAF7", "#D4D1C9"],
     markSteel: ["#D3D5DA", "#7C7F86"], markCore: "#0D0D0E",
   };
@@ -32,19 +34,19 @@
   function hub(text) {
     const id = "st" + uid++;
     return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.steel}"/><stop offset="1" stop-color="${C.steelDark}"/></linearGradient></defs>` +
-      `<circle cx="50" cy="50" r="19" fill="${C.hubRing}"/><circle cx="50" cy="50" r="14.5" fill="url(#${id})"/>` +
-      `<circle cx="50" cy="50" r="8.5" fill="${C.hubCore}"/>` +
-      (text ? `<text x="50" y="50" dy=".36em" text-anchor="middle" font-family="Barlow SC" font-weight="700" font-size="15" fill="${C.chalk}">${text}</text>` : "");
+      `<circle cx="50" cy="50" r="19" style="fill:${C.hubRing}"/><circle cx="50" cy="50" r="14.5" fill="url(#${id})"/>` +
+      `<circle cx="50" cy="50" r="8.5" style="fill:${C.hubCore}"/>` +
+      (text ? `<text x="50" y="50" dy=".36em" text-anchor="middle" font-family="Barlow SC" font-weight="700" font-size="15" style="fill:${C.chalk}">${text}</text>` : "");
   }
 
   // SessionPlate .parts: `done` pezzi rossi, il successivo rosso tenue (in corso). Pieno = ClosedPlate.
   function plate(total, done, hubText) {
     if (done >= total) return closed(total);
     const gap = total > 1 ? 0.012 + 0.02 / total : 0;
-    let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="${C.face}"/>`;
+    let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" style="fill:${C.face}"/>`;
     for (let i = 0; i < total; i++) {
       const fill = i < done ? C.red : i === done ? "rgba(226,35,26,.32)" : C.empty;
-      s += `<path fill="${fill}" d="${arc(50, 45.5, i / total + gap / 2, (i + 1) / total - gap / 2, 0.66, gap, gap)}"/>`;
+      s += `<path style="fill:${fill}" d="${arc(50, 45.5, i / total + gap / 2, (i + 1) / total - gap / 2, 0.66, gap, gap)}"/>`;
     }
     return s + hub(hubText) + "</svg>";
   }
@@ -53,20 +55,20 @@
   function superset(rounds, exercises, done, hubText) {
     const n = rounds * exercises, roundGap = 0.03, pieceGap = 0.008, span = 1 / rounds;
     const piece = (span - roundGap - (exercises - 1) * pieceGap) / exercises;
-    let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="${C.face}"/>`;
+    let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" style="fill:${C.face}"/>`;
     for (let i = 0; i < n; i++) {
       const r = Math.floor(i / exercises), e = i % exercises, from = r * span + roundGap / 2 + e * (piece + pieceGap);
       const base = e % 2 ? "163,21,15" : "226,35,26";
       const fill = i < done ? `rgb(${base})` : i === done ? `rgba(${base},.32)` : C.empty;
-      s += `<path fill="${fill}" d="${arc(50, 45.5, from, from + piece, 0.66, e === 0 ? roundGap : pieceGap, e === exercises - 1 ? roundGap : pieceGap)}"/>`;
+      s += `<path style="fill:${fill}" d="${arc(50, 45.5, from, from + piece, 0.66, e === 0 ? roundGap : pieceGap, e === exercises - 1 ? roundGap : pieceGap)}"/>`;
     }
     return s + hub(hubText) + "</svg>";
   }
 
   // .timed (AMRAP): niente pezzi, il disco si riempie col tempo.
   function timed(progress, hubText) {
-    return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="${C.face}"/>` +
-      `<circle cx="50" cy="50" r="37.77" fill="none" stroke="${C.empty}" stroke-width="15.47"/>` +
+    return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" style="fill:${C.face}"/>` +
+      `<circle cx="50" cy="50" r="37.77" fill="none" style="stroke:${C.empty}" stroke-width="15.47"/>` +
       `<path fill="${C.red}" d="${arc(50, 45.5, 0, progress)}"/>` + hub(hubText) + "</svg>";
   }
 
@@ -74,9 +76,9 @@
     const id = "hl" + uid++;
     let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="${id}" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>` +
       `<circle cx="50" cy="50" r="50" fill="${C.red}"/><circle cx="50" cy="50" r="50" fill="url(#${id})"/>`;
-    for (let i = 0; i < pieces; i++) s += `<rect x="47.25" y="0" width="5.5" height="17" fill="${C.face}" transform="rotate(${(i * 360) / pieces} 50 50)"/>`;
+    for (let i = 0; i < pieces; i++) s += `<rect x="47.25" y="0" width="5.5" height="17" style="fill:${C.face}" transform="rotate(${(i * 360) / pieces} 50 50)"/>`;
     return s + `<circle cx="50" cy="50" r="33" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="1.4"/>` +
-      `<circle cx="50" cy="50" r="49" fill="none" stroke="${C.face}" stroke-width="2"/>` + hub() + "</svg>";
+      `<circle cx="50" cy="50" r="49" fill="none" style="stroke:${C.face}" stroke-width="2"/>` + hub() + "</svg>";
   }
 
   // BroliPlate, il marchio: quattro pezzi rossi e il quinto, di gesso, che arriva. `fill` e `push`
@@ -230,6 +232,7 @@
       const r = d.parentElement.getBoundingClientRect();
       const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - mid) / (innerHeight * 0.8)));
       d.style.setProperty("--p", p.toFixed(3));
+      d.style.setProperty("--tilt", Math.abs(p).toFixed(3));
       d.style.setProperty("--lift", (1 - Math.abs(p)).toFixed(3));
     });
   };

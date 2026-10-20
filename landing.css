@@ -1,11 +1,14 @@
-/* La landing è gomma come l'app; privacy e supporto seguono il tema del sistema. */
+/* La landing segue il tema scelto, schermate comprese; watch, Live Activity e Dynamic Island
+   restano scuri come nell'app. */
 @font-face { font-family: "Barlow SC"; src: url("assets/BarlowSemiCondensed-SemiBold.ttf"); font-weight: 600; font-display: swap; }
 
-html.landing {
-  --bg: #0D0D0E; --raised: #17171A; --raised2: #222226; --ink: #F1F0EC; --ink2: #8D8D93; --ink3: #55555B;
-  --line: rgba(255,255,255,.08); --heat: #E2231A; --heat-text: #FF2D24; color-scheme: dark;
+.landing main, .landing footer { max-width: 1080px; }
+.watch, .lock, .island {
+  --bg: #0D0D0E; --raised2: #222226; --ink: #F1F0EC; --ink2: #8D8D93; --ink3: #55555B;
+  --line: rgba(255,255,255,.08); --heat-text: #FF2D24;
+  --pl-face: #1C1C1F; --pl-empty: #323238; --pl-ring: #111113; --pl-core: #2A2A2E; --pl-chalk: #F1F0EC;
+  color: var(--ink);
 }
-.landing header, .landing main, .landing footer { max-width: 1080px; }
 .landing main { overflow-x: clip; }
 
 /* Copertina: come il benvenuto dell'app. */
@@ -72,7 +75,7 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .sect { margin: 26px 0 6px; font-size: 16px; }
 .li { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
 .li .sub { font-size: 14px; margin-top: 2px; }
-.tabs { position: absolute; left: 24px; right: 24px; bottom: 30px; height: 66px; border-radius: 33px; background: #1A1A1D; box-shadow: inset 0 0 0 1px var(--line); display: flex; padding: 5px; }
+.tabs { position: absolute; left: 24px; right: 24px; bottom: 30px; height: 66px; border-radius: 33px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); display: flex; padding: 5px; }
 .tabs span { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--ink2); border-radius: 28px; }
 .tabs span svg { width: 26px; height: 20px; fill: currentColor; }
 .tabs .on { background: var(--raised2); color: var(--heat-text); }
@@ -172,14 +175,15 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
   .phone { zoom: .7; }
 }
 
-/* 3D: i dispositivi si inclinano in prospettiva e si raddrizzano al centro della pagina (--p da -1
-   a 1, messo dallo scroll in landing.js); i pezzi con .pop escono dallo schermo (--lift, 1 al
-   centro). Niente overflow: hidden sui dispositivi: appiattirebbe il 3D. */
+/* 3D: i dispositivi entrano inclinati, al centro dello schermo si raddrizzano (restano girati di 6°
+   verso il testo) e uscendo si inclinano di nuovo. --p va da 1 (in basso) a -1 (in alto), --tilt è
+   la sua distanza dal centro, --lift il contrario: quanto escono i pezzi con .pop. Tutti e tre li
+   mette landing.js mentre si scorre. Niente overflow: hidden sui dispositivi: appiattirebbe il 3D. */
 .story, .trio, .cover { perspective: 1400px; }
 .phone, .watch {
-  --p: 0; --lift: 1; --side: -1; --amp: 1;
+  --p: 0; --tilt: 0; --lift: 1; --side: -1; --amp: 1;
   transform-style: preserve-3d;
-  transform: rotateY(calc((var(--side) * 16 + var(--p) * 18) * var(--amp) * 1deg)) rotateX(calc(var(--p) * 10 * var(--amp) * 1deg));
+  transform: rotateY(calc(var(--side) * (6 + var(--tilt) * 26) * var(--amp) * 1deg)) rotateX(calc(var(--p) * 10 * var(--amp) * 1deg));
 }
 .flip .phone { --side: 1; }
 .trio .watch:first-child { --side: 1; } .trio .phone { --side: 0; }
@@ -189,7 +193,7 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .phone::after { transform: translateZ(-14px); background: #111113; }
 .watch::before, .watch::after { inset: -9px; border-radius: 60px; }
 .watch::after { transform: translateZ(-14px); background: #111113; }
-.pop { transform: translateZ(calc(var(--lift) * var(--z, 60) * 1px)); filter: drop-shadow(0 calc(var(--lift) * 22px) calc(var(--lift) * 24px) rgba(0,0,0,.6)); }
+.pop { transform: translateZ(calc(var(--lift) * var(--z, 60) * 1px)); filter: drop-shadow(0 calc(var(--lift) * 22px) calc(var(--lift) * 24px) var(--shade)); }
 .cover .mark { transition: transform .25s ease-out; transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)); }
 @media (max-width: 860px) { .phone, .watch { --amp: .55; } }
 @media (prefers-reduced-motion: reduce) { .phone, .watch { --amp: .6; } }
