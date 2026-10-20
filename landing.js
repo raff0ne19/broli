@@ -49,6 +49,27 @@
     return s + hub(hubText) + "</svg>";
   }
 
+  // .superset: giri di esercizi, i pezzi di un giro vicini, il secondo esercizio in un rosso più profondo.
+  function superset(rounds, exercises, done, hubText) {
+    const n = rounds * exercises, roundGap = 0.03, pieceGap = 0.008, span = 1 / rounds;
+    const piece = (span - roundGap - (exercises - 1) * pieceGap) / exercises;
+    let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="${C.face}"/>`;
+    for (let i = 0; i < n; i++) {
+      const r = Math.floor(i / exercises), e = i % exercises, from = r * span + roundGap / 2 + e * (piece + pieceGap);
+      const base = e % 2 ? "163,21,15" : "226,35,26";
+      const fill = i < done ? `rgb(${base})` : i === done ? `rgba(${base},.32)` : C.empty;
+      s += `<path fill="${fill}" d="${arc(50, 45.5, from, from + piece, 0.66, e === 0 ? roundGap : pieceGap, e === exercises - 1 ? roundGap : pieceGap)}"/>`;
+    }
+    return s + hub(hubText) + "</svg>";
+  }
+
+  // .timed (AMRAP): niente pezzi, il disco si riempie col tempo.
+  function timed(progress, hubText) {
+    return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="${C.face}"/>` +
+      `<circle cx="50" cy="50" r="37.77" fill="none" stroke="${C.empty}" stroke-width="15.47"/>` +
+      `<path fill="${C.red}" d="${arc(50, 45.5, 0, progress)}"/>` + hub(hubText) + "</svg>";
+  }
+
   function closed(pieces = 5) {
     const id = "hl" + uid++;
     let s = `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="${id}" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>` +
@@ -113,7 +134,7 @@
     schede: () => `${status()}<div class="pad">
       <div class="row between"><h4 class="t34">${L("Schede", "Routines")}</h4><span class="round">${I.plus}</span></div>
       <div class="row week"><span class="pl" style="width:54px">${plate(4, 2)}</span><div><div class="sub">${L("Questa settimana", "This week")}</div><div class="d22">${L("2 allenamenti di 4", "2 of 4 workouts")}</div></div></div>
-      <div class="card next"><div class="sub">${L("Tocca a", "Up next")}</div><div class="d40">${L("Gambe A", "Legs A")}</div>
+      <div class="card next pop" style="--z:70"><div class="sub">${L("Tocca a", "Up next")}</div><div class="d40">${L("Gambe A", "Legs A")}</div>
         <div class="sub">${L("5 esercizi, circa 60 minuti. L'ultima volta 4 giorni fa.", "5 exercises, about 60 minutes. Last time 4 days ago.")}</div>
         <div class="btn in">${I.play}${L("Inizia", "Start")}</div></div>
       <div class="row between sect"><b>${L("Le tue schede", "Your routines")}</b><span class="sub">${L("Archivio", "Archive")}</span></div>
@@ -124,22 +145,22 @@
     serie: () => `${status()}<div class="pad">
       <div class="row between top"><span class="ink2">${I.down}</span><span class="sub">${L("Gambe A", "Legs A")}&nbsp;&nbsp;24:10</span><b>${L("Fine", "End")}</b></div>
       <h4 class="t34">Squat</h4><div class="sub">${L("Esercizio 1 di 5", "Exercise 1 of 5")}</div>
-      <div class="pl big" data-plate></div>
+      <div class="pl big pop" style="--z:120" data-plate></div>
       <div class="hero-num"><span class="d64">${kg(102.5)}</span><span class="u">kg</span><span class="u x">×</span><span class="d64">5</span><span class="u">reps</span></div>
       <div class="delta"><b>+${kg(2.5)} kg</b> ${L("rispetto all'ultima volta", "more than last time")}</div>
       <div class="sets" data-sets></div></div>
-      <div class="btn foot" data-press>${I.check}${L("Serie fatta", "Set done")}</div>`,
+      <div class="btn foot pop" style="--z:40" data-press>${I.check}${L("Serie fatta", "Set done")}</div>`,
 
     blocco: () => `<div class="lock"><div class="sb"><span>9:41</span><span class="island wide"><span class="pl" style="width:22px">${plate(5, 3)}</span><b class="red" data-count="74" data-from="120"></b></span>${I.battery}</div>
       <div class="date">${L("venerdì 17 ottobre", "Friday, October 17")}</div><div class="clock">18:42</div>
-      <div class="la"><div class="row between"><div class="row"><span class="pl" style="width:58px">${plate(5, 3, "4")}</span>
+      <div class="la pop" style="--z:100"><div class="row between"><div class="row"><span class="pl" style="width:58px">${plate(5, 3, "4")}</span>
         <div><div class="sub">${L("Squat, poi serie 4", "Squat, then set 4")}</div><div class="d26">${x(5, 102.5)}</div></div></div>
         <div class="r"><div class="sub">${L("Riposo", "Rest")}</div><div class="d34" data-count="74" data-from="120"></div></div></div>
         <div class="row two"><span>+30 s</span><span>${L("Salta", "Skip")}</span></div></div></div>`,
 
     fine: () => `${status()}<div class="pad center">
-      <span class="pl" style="width:150px;margin:24px auto 0">${closed()}</span>
-      <h4 class="d40">${L("Disco chiuso.", "Plate closed.")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div>
+      <span class="pl pop" style="width:150px;margin:24px auto 0;--z:130">${closed()}</span>
+      <h4 class="d40 pop" style="--z:60">${L("Disco chiuso.", "Plate closed.")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div>
       <div class="stats"><div><span class="d26">${L("8.420", "8,420")}</span><span class="sub">${L("kg sollevati", "kg lifted")}</span></div><div><span class="d26">19</span><span class="sub">${L("serie", "sets")}</span></div><div><span class="d26 red">2</span><span class="sub">record</span></div></div>
       <div class="card left"><b>${L("Record di oggi", "Today's records")}</b>
         <div class="row between rec"><span class="ink2">Squat</span><span><span class="d22">${x(5, 102.5)}</span> <small class="sub">${L("prima", "was")} ${x(5, 100)}</small></span></div>
@@ -148,7 +169,7 @@
       </div><div class="btn foot">${I.check}${L("Salva allenamento", "Save workout")}</div>`,
 
     watchSerie: () => `<div class="w-time">18:42</div><div class="w-pad"><b>Squat</b>
-      <div class="row"><span class="pl" style="width:74px">${plate(5, 2, "3")}</span><div class="d30">${kg(102.5)}<br>× 5</div></div>
+      <div class="row"><span class="pl pop" style="width:74px;--z:50">${plate(5, 2, "3")}</span><div class="d30">${kg(102.5)}<br>× 5</div></div>
       <div class="btn w">${I.check}${L("Fatta", "Done")}</div></div>`,
 
     watchRiposo: () => `<div class="w-time">18:42</div><div class="w-pad"><span class="sub">${L("Riposo", "Rest")}</span>
@@ -156,6 +177,21 @@
       <div class="row small"><span class="pl" style="width:22px">${plate(5, 3)}</span><span class="sub">${L("Poi", "Next")} ${x(5, 102.5)}</span></div>
       <div class="row between"><span class="round w">30</span><span class="round w">${I.skip}</span></div></div>`,
   };
+
+  // Le illustrazioni dei punti forti, fatte coi pezzi dell'app.
+  const arts = {
+    superset: () => `<div class="duo"><figure><span class="pl" style="width:120px">${superset(3, 2, 3, "B")}</span><figcaption>Superset</figcaption></figure>
+      <figure><span class="pl" style="width:120px">${timed(0.42, "3")}</span><figcaption>AMRAP 10′</figcaption></figure></div>`,
+    import: () => `<div class="mini"><div class="ok">${I.check}${L("Scheda riconosciuta", "Routine recognized")}</div>
+      <div class="d26">${L("Gambe A", "Legs A")}</div><div class="sub">${L("5 esercizi, 19 serie, circa 60 minuti", "5 exercises, 19 sets, about 60 minutes")}</div>
+      <div class="row between"><span>Squat</span><span class="d20">5 × 5 <small>${kg(102.5)} kg</small></span></div>
+      <div class="row between"><span>${L("Stacco rumeno", "Romanian deadlift")}</span><span class="d20">4 × 8 <small>80 kg</small></span></div>
+      <div class="sub">${L("e altri 3", "and 3 more")}</div></div>`,
+    storico: () => `<div class="weeks">${[[4, 4, L("29 set", "Sep 29")], [4, 4, L("6 ott", "Oct 6")], [3, 4, L("13 ott", "Oct 13")], [1, 4, L("20 ott", "Oct 20")]]
+      .map(([d, t, w]) => `<figure><span class="pl" style="width:64px">${d >= t ? closed(t) : plate(t, d, null)}</span><figcaption>${w}</figcaption></figure>`).join("")}</div>
+      <div class="stats"><div><span class="d26">12</span><span class="sub">${L("allenamenti", "workouts")}</span></div><div><span class="d26">${L("96.400", "96,400")}</span><span class="sub">kg</span></div><div><span class="d26 red">7</span><span class="sub">record</span></div></div>`,
+  };
+  document.querySelectorAll("[data-art]").forEach((el) => (el.innerHTML = arts[el.dataset.art]()));
 
   document.querySelectorAll("[data-screen]").forEach((el) => (el.innerHTML = screens[el.dataset.screen]()));
   document.querySelectorAll("[data-mark]").forEach((el) => {
@@ -183,6 +219,34 @@
     document.querySelectorAll("[data-bar]").forEach((b) => (b.style.width = `${(left / 120) * 100}%`));
   };
   showCount();
+
+  // 3D: ogni dispositivo sa dov'è rispetto al centro dello schermo (--p) e quanto escono i suoi pezzi (--lift).
+  const devices = [...document.querySelectorAll(".phone, .watch")];
+  let queued = false;
+  const place = () => {
+    queued = false;
+    const mid = innerHeight / 2;
+    devices.forEach((d) => {
+      const r = d.parentElement.getBoundingClientRect();
+      const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - mid) / (innerHeight * 0.8)));
+      d.style.setProperty("--p", p.toFixed(3));
+      d.style.setProperty("--lift", (1 - Math.abs(p)).toFixed(3));
+    });
+  };
+  if (!still) {
+    const ask = () => { if (!queued) { queued = true; requestAnimationFrame(place); } };
+    addEventListener("scroll", ask, { passive: true });
+    addEventListener("resize", ask);
+    place();
+    // Il marchio in copertina segue il puntatore.
+    const cover = document.querySelector(".cover"), m = cover.querySelector(".mark");
+    cover.addEventListener("pointermove", (e) => {
+      const b = m.getBoundingClientRect();
+      m.style.setProperty("--rx", `${((e.clientX - b.left - b.width / 2) / innerWidth) * 50}deg`);
+      m.style.setProperty("--ry", `${((b.top + b.height / 2 - e.clientY) / innerHeight) * 50}deg`);
+    });
+    cover.addEventListener("pointerleave", () => { m.style.removeProperty("--rx"); m.style.removeProperty("--ry"); });
+  }
 
   if (still) return;
   const seen = new Set();
