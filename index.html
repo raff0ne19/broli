@@ -1,57 +1,120 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" class="landing">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Broli: Lift. Log. Grow.</title>
-<meta name="description" content="Broli è il diario d'allenamento per iPhone e Apple Watch: segui la scheda, registra ogni serie con un tocco, batti l'ultima volta.">
+<meta name="description" content="Broli è il diario d'allenamento per iPhone e Apple Watch: segui la scheda, segna ogni serie con un tocco, batti l'ultima volta.">
+<meta name="theme-color" content="#0D0D0E">
+<meta property="og:title" content="Broli: Lift. Log. Grow.">
+<meta property="og:description" content="Il diario d'allenamento per iPhone e Apple Watch.">
+<meta property="og:image" content="https://raff0ne19.github.io/broli/assets/icon.png">
 <link rel="icon" href="assets/favicon.png">
+<link rel="preload" href="assets/BricolageGrotesque-ExtraBold.ttf" as="font" crossorigin>
+<link rel="preload" href="assets/BarlowSemiCondensed-Bold.ttf" as="font" crossorigin>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="landing.css">
 <script src="lang.js"></script>
 </head>
 <body>
 <header>
-  <a class="wordmark" href="./">bro<span class="l">l</span>i</a>
+  <a class="wordmark" href="./" aria-label="Broli">bro<span class="l">l</span>i</a>
   <nav>
+    <a href="privacy">Privacy</a>
     <a href="support"><span class="it">Supporto</span><span class="en">Support</span></a>
     <a class="en" href="?lang=it">Italiano</a><a class="it" href="?lang=en">English</a>
   </nav>
 </header>
 
 <main>
-  <section class="hero">
-    <img src="assets/icon.png" alt="">
-    <span class="wordmark" aria-label="Broli">bro<span class="l">l</span>i</span>
+  <section class="cover">
+    <div class="mark" data-mark></div>
+    <h1 class="wordmark" aria-label="Broli">bro<span class="l">l</span>i</h1>
     <p class="motto">Lift. Log. Grow.</p>
-    <span class="soon it">Presto sull'App Store</span>
-    <span class="soon en">Coming soon to the App Store</span>
+    <p class="lede it">Il diario d'allenamento per iPhone e Apple Watch. Segui la scheda, segna ogni serie con un tocco e guarda il disco che si costruisce.</p>
+    <p class="lede en">The workout log for iPhone and Apple Watch. Follow your routine, log every set with one tap and watch the plate build up.</p>
+    <span class="cta"><span class="it">Presto sull'App Store</span><span class="en">Coming soon to the App Store</span></span>
+    <p class="fine it">Gratis. Niente account, niente pubblicità.</p>
+    <p class="fine en">Free. No account, no ads.</p>
   </section>
 
-  <div class="it">
-    <p class="lead">Il diario d'allenamento per iPhone e Apple Watch. Segui la scheda, registra ogni serie con un tocco e guarda se hai battuto l'ultima volta.</p>
-    <div class="card"><dl>
-      <dt>La scheda, pronta</dt><dd>Crea le tue schede o importale da un amico con un link o un QR. Anche programmi interi, divisi in sessioni.</dd>
-      <dt>Una serie, un tocco</dt><dd>Peso e ripetizioni dell'ultima volta già scritti. Il timer di riposo parte da solo, anche sulla Dynamic Island e sul polso.</dd>
-      <dt>Al polso</dt><dd>Allenati dall'Apple Watch con frequenza cardiaca e calorie, senza tirare fuori il telefono.</dd>
-      <dt>I tuoi dati sono tuoi</dt><dd>Niente account, niente pubblicità. Tutto resta sul tuo telefono ed esporti quando vuoi, in un backup o in CSV.</dd>
-    </dl></div>
-  </div>
+  <section class="story">
+    <div class="copy">
+      <h2 class="verb">Lift.</h2>
+      <p class="it"><strong>La scheda di oggi è già pronta.</strong> Broli sa quale tocca: apri l'app e premi Inizia. Le schede le crei in due passi, oppure le importi dal tuo allenatore o da un amico con un link o un QR, anche programmi interi.</p>
+      <p class="en"><strong>Today's routine is ready.</strong> Broli knows what's up next: open the app and tap Start. Build routines in two steps, or import them from your coach or a friend with a link or a QR code, whole programs included.</p>
+    </div>
+    <div class="phone" data-screen="schede" role="img" aria-label="Schede"></div>
+  </section>
 
-  <div class="en">
-    <p class="lead">The workout log for iPhone and Apple Watch. Follow your routine, log every set with one tap and see whether you beat last time.</p>
-    <div class="card"><dl>
-      <dt>Your routine, ready</dt><dd>Build your own routines or import a friend's with a link or a QR code. Whole programs too, split into sessions.</dd>
-      <dt>One set, one tap</dt><dd>Last time's weight and reps are already filled in. The rest timer starts on its own, on the Dynamic Island and on your wrist too.</dd>
-      <dt>On your wrist</dt><dd>Train from Apple Watch with heart rate and calories, without reaching for your phone.</dd>
-      <dt>Your data is yours</dt><dd>No account, no ads. Everything stays on your phone and you can export it anytime, as a backup or as CSV.</dd>
-    </dl></div>
-  </div>
+  <section class="story flip">
+    <div class="copy">
+      <h2 class="verb">Log.</h2>
+      <p class="it"><strong>Una serie, un tocco.</strong> Peso e ripetizioni dell'ultima volta sono già scritti. Fai la serie e tocca Serie fatta: un pezzo del disco diventa rosso. Quando le hai fatte tutte, il disco è chiuso.</p>
+      <p class="en"><strong>One set, one tap.</strong> Last time's weight and reps are already filled in. Do the set and tap Set done: one piece of the plate turns red. Finish them all and the plate is closed.</p>
+    </div>
+    <div class="phone" data-screen="serie" role="img" aria-label="Squat, serie 3 di 5"></div>
+  </section>
+
+  <section class="story">
+    <div class="copy">
+      <h3 class="say it">Il riposo lo conta lui.</h3>
+      <h3 class="say en">Rest counts itself.</h3>
+      <p class="it">Parte da solo dopo ogni serie e lo vedi ovunque: nella Dynamic Island, sulla schermata di blocco, sul polso. Quando finisce suona una campana e sai già cosa ti aspetta.</p>
+      <p class="en">It starts on its own after every set and you see it everywhere: on the Dynamic Island, on the Lock Screen, on your wrist. When it's over a bell rings and you already know what's next.</p>
+    </div>
+    <div class="phone" data-screen="blocco" role="img" aria-label="Riposo sulla schermata di blocco"></div>
+  </section>
+
+  <section class="story flip">
+    <div class="copy">
+      <h2 class="verb">Grow.</h2>
+      <p class="it"><strong>Batti l'ultima volta.</strong> Broli ti dice di quanto l'hai superata e segna i record. Chiudi gli esercizi e chiudi il disco dell'allenamento; allenati le volte che ti sei dato e chiudi quello della settimana.</p>
+      <p class="en"><strong>Beat last time.</strong> Broli tells you by how much you beat it and marks your records. Close every exercise to close the workout's plate; train as often as you planned and close the week's.</p>
+    </div>
+    <div class="phone" data-screen="fine" role="img" aria-label="Disco chiuso"></div>
+  </section>
+
+  <section class="story wrist">
+    <div class="copy">
+      <h3 class="say it">Il telefono resta nella borsa.</h3>
+      <h3 class="say en">Leave your phone in the bag.</h3>
+      <p class="it">Con Apple Watch segni le serie dal polso e vedi riposo, frequenza cardiaca e calorie. L'allenamento finisce in Salute, e iPhone e watch restano allineati.</p>
+      <p class="en">With Apple Watch you log sets from your wrist and see rest, heart rate and calories. The workout goes to Health, and iPhone and watch stay in step.</p>
+    </div>
+    <div class="watches">
+      <div class="watch" data-screen="watchSerie" role="img" aria-label="Apple Watch, serie"></div>
+      <div class="watch" data-screen="watchRiposo" role="img" aria-label="Apple Watch, riposo"></div>
+    </div>
+  </section>
+
+  <section class="yours">
+    <h3 class="say it">I tuoi allenamenti sono tuoi.</h3>
+    <h3 class="say en">Your workouts are yours.</h3>
+    <div class="cols">
+      <div class="it"><b>Sul tuo telefono</b><p>Niente account e niente server: schede e storico restano sul tuo iPhone.</p></div>
+      <div class="it"><b>Li porti dove vuoi</b><p>Un backup con tutto quando vuoi, o lo storico in CSV per un foglio di calcolo.</p></div>
+      <div class="it"><b>Niente pubblicità</b><p>Mai. Broli si regge su Broli Pro, per chi vuole qualcosa in più. <a href="privacy">Leggi la privacy</a>.</p></div>
+      <div class="en"><b>On your phone</b><p>No account and no servers: your routines and history stay on your iPhone.</p></div>
+      <div class="en"><b>Take them anywhere</b><p>A backup of everything whenever you like, or your history as CSV for a spreadsheet.</p></div>
+      <div class="en"><b>No ads</b><p>Ever. Broli is funded by Broli Pro, for those who want a little more. <a href="privacy">Read the privacy policy</a>.</p></div>
+    </div>
+  </section>
+
+  <section class="cover end">
+    <div class="mark" data-mark></div>
+    <h3 class="say it">Il primo disco lo chiudi oggi.</h3>
+    <h3 class="say en">Close your first plate today.</h3>
+    <span class="cta"><span class="it">Presto sull'App Store</span><span class="en">Coming soon to the App Store</span></span>
+  </section>
 </main>
 
 <footer>
   <span>© 2026 Raffaele Esposito</span>
   <a href="privacy">Privacy</a>
   <a href="support"><span class="it">Supporto</span><span class="en">Support</span></a>
+  <span class="it">Le schermate sono illustrazioni dell'app.</span><span class="en">Screens are illustrations of the app.</span>
 </footer>
+<script src="landing.js"></script>
 </body>
 </html>

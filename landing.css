@@ -1,0 +1,148 @@
+/* La landing è gomma come l'app; privacy e supporto seguono il tema del sistema. */
+@font-face { font-family: "Barlow SC"; src: url("assets/BarlowSemiCondensed-SemiBold.ttf"); font-weight: 600; font-display: swap; }
+
+html.landing {
+  --bg: #0D0D0E; --raised: #17171A; --raised2: #222226; --ink: #F1F0EC; --ink2: #8D8D93; --ink3: #55555B;
+  --line: rgba(255,255,255,.08); --heat: #E2231A; --heat-text: #FF2D24; color-scheme: dark;
+}
+.landing header, .landing main, .landing footer { max-width: 1080px; }
+.landing main { overflow-x: clip; }
+
+/* Copertina: come il benvenuto dell'app. */
+.cover { text-align: center; padding: 72px 0 40px; }
+.cover .mark { width: 220px; margin: 0 auto; }
+.cover h1.wordmark { font-size: clamp(88px, 16vw, 152px); margin: 18px 0 0; }
+.motto { font-family: "Bricolage", sans-serif; font-weight: 800; font-size: clamp(26px, 4vw, 36px); letter-spacing: -.01em; margin: 6px 0 0; }
+.lede { max-width: 30em; margin: 28px auto 0; font-size: 20px; color: var(--ink2); }
+.cta { display: inline-flex; align-items: center; height: 58px; padding: 0 30px; margin-top: 32px; border-radius: 18px; background: var(--heat); color: #fff; font-weight: 600; font-size: 17px; }
+.fine { margin: 14px 0 0; font-size: 15px; color: var(--ink2); }
+
+/* Racconto: testo da una parte, telefono dall'altra. */
+.story { display: grid; grid-template-columns: 1fr auto; gap: 72px; align-items: center; padding: 72px 0; border-top: 1px solid var(--line); }
+.story.flip .copy { order: 2; }
+.copy { max-width: 30em; }
+.copy p, .yours p { font-size: 19px; color: var(--ink2); }
+.copy strong { color: var(--ink); font-weight: 600; }
+.verb { font-family: "Bricolage", sans-serif; font-weight: 800; font-size: clamp(64px, 9vw, 112px); letter-spacing: -.03em; line-height: 1; margin: 0 0 20px; }
+.say { font-family: "Barlow SC", sans-serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 48px); line-height: 1.05; margin: 0 0 16px; }
+
+.yours { padding: 72px 0; border-top: 1px solid var(--line); }
+.yours .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 12px; }
+.yours b { font-size: 19px; }
+.yours p { font-size: 17px; margin: 6px 0 0; }
+html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; }
+
+.cover.end { border-top: 1px solid var(--line); padding: 80px 0 24px; }
+.cover.end .mark { width: 140px; margin-bottom: 28px; }
+
+/* Il telefono: disegnato a 390 × 844 come un iPhone, rimpicciolito con zoom. */
+.phone, .watch { position: relative; overflow: hidden; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.3; }
+.phone { zoom: .8; width: 390px; height: 844px; border-radius: 58px; box-shadow: 0 0 0 11px #222226, 0 0 0 12px #3A3A40; margin: 12px; }
+.phone .pad { padding: 0 24px; }
+.sb { display: flex; justify-content: space-between; align-items: center; height: 54px; padding: 0 32px 0 46px; font-weight: 600; font-size: 17px; position: relative; }
+.sb svg { color: var(--ink); }
+.island { position: absolute; left: 50%; top: 11px; transform: translateX(-50%); width: 124px; height: 36px; border-radius: 20px; background: #000; display: flex; align-items: center; justify-content: space-between; padding: 0 14px 0 8px; }
+.island.wide { width: 210px; }
+.island b { font-family: "Barlow SC"; font-size: 18px; font-variant-numeric: tabular-nums; }
+
+.row { display: flex; align-items: center; gap: 14px; }
+.between { justify-content: space-between; }
+.sub { color: var(--ink2); font-size: 15px; }
+.ink2 { color: var(--ink2); }
+.red { color: var(--heat-text); }
+.pl { display: block; flex: none; }
+.pl svg { display: block; width: 100%; height: auto; }
+.i { width: 1.15em; height: 1.15em; flex: none; }
+.t34, .d40, .d22, .d26, .d30, .d34, .d54, .d64, .d20 { font-family: "Barlow SC", sans-serif; font-weight: 700; margin: 0; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.t34 { font-size: 34px; }
+.d20 { font-size: 21px; font-weight: 600; } .d22 { font-size: 22px; } .d26 { font-size: 27px; } .d30 { font-size: 26px; } .d34 { font-size: 36px; }
+.d40 { font-size: 40px; } .d54 { font-size: 54px; } .d64 { font-size: 64px; }
+.round { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--raised2); }
+.round.sm { width: 36px; height: 36px; font-size: 12px; }
+.card { background: var(--raised); border-radius: 20px; padding: 18px; margin-top: 16px; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--heat); color: #fff; font-weight: 600; font-size: 17px; border-radius: 18px; height: 58px; transition: transform .15s, filter .15s; }
+.btn.in { height: 52px; border-radius: 14px; margin-top: 16px; }
+.btn.foot { position: absolute; left: 20px; right: 20px; bottom: 36px; }
+.btn.pressed { transform: scale(.97); filter: brightness(.85); }
+
+/* Schede */
+.phone .t34 + .round, .row.between > .t34 { margin-top: 14px; }
+.week { margin-top: 18px; }
+.next .d40 { margin: 6px 0 10px; }
+.sect { margin: 26px 0 6px; font-size: 16px; }
+.li { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
+.li .sub { font-size: 14px; margin-top: 2px; }
+.tabs { position: absolute; left: 24px; right: 24px; bottom: 30px; height: 66px; border-radius: 33px; background: #1A1A1D; box-shadow: inset 0 0 0 1px var(--line); display: flex; padding: 5px; }
+.tabs span { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--ink2); border-radius: 28px; }
+.tabs span svg { width: 26px; height: 20px; fill: currentColor; }
+.tabs .on { background: var(--raised2); color: var(--heat-text); }
+
+/* Serie in corso */
+.top { height: 44px; font-size: 17px; }
+.top .i { width: 22px; height: 22px; }
+.phone .top + .t34 { margin-top: 14px; }
+.pl.big { width: 196px; margin: 22px auto 18px; }
+.hero-num { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.hero-num .u { font-family: "Barlow SC"; font-weight: 600; font-size: 21px; color: var(--ink2); }
+.hero-num .x { margin: 0 6px; }
+.delta { text-align: center; color: var(--ink2); margin-top: 8px; }
+.delta b { color: var(--heat-text); font-weight: 600; }
+.sets { margin-top: 18px; }
+.set { display: flex; align-items: center; gap: 18px; height: 41px; border-bottom: 1px solid var(--line); }
+.set .n { width: 10px; color: var(--ink3); font-size: 15px; }
+.set .tag { color: var(--heat-text); font-size: 14px; font-weight: 600; margin-left: -6px; }
+.set .i { margin-left: auto; width: 20px; height: 20px; }
+.set.now .n { color: var(--heat-text); font-weight: 600; }
+.set.next .d20 { color: var(--ink3); }
+.set .d20 { transition: color .3s; }
+
+/* Schermata di blocco */
+.lock { position: absolute; inset: 0; background: linear-gradient(180deg, #2B2F36, #15171B 70%); }
+.lock .date { text-align: center; font-size: 21px; font-weight: 600; color: rgba(255,255,255,.75); margin-top: 26px; }
+.lock .clock { text-align: center; font-size: 104px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: rgba(255,255,255,.92); }
+.la { position: absolute; left: 14px; right: 14px; bottom: 34px; background: rgba(0,0,0,.88); border-radius: 26px; padding: 18px; }
+.la .r { text-align: right; }
+.la .d26 { margin-top: 3px; }
+.la .two { margin-top: 14px; gap: 10px; }
+.la .two span { flex: 1; height: 40px; border-radius: 20px; background: var(--raised2); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; }
+
+/* Fine allenamento */
+.center { text-align: center; }
+.center .d40 { margin: 18px 0 8px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: left; margin: 26px 0 0 10px; }
+.stats .sub { display: block; font-size: 14px; }
+.card.left { text-align: left; }
+.rec { margin-top: 12px; font-size: 16px; }
+.rec small { font-size: 13px; }
+.card.row b + .sub { font-size: 14px; margin-top: 2px; }
+
+/* Apple Watch: 198 × 242 come un 45 mm. */
+.watches { display: flex; gap: 36px; padding-right: 24px; }
+.watch { zoom: 1.08; width: 198px; height: 242px; border-radius: 52px; box-shadow: 0 0 0 9px #222226, 0 0 0 10px #3A3A40; margin: 10px; background: #000; }
+.watch:nth-child(2) { margin-top: 64px; }
+.w-time { text-align: right; padding: 14px 26px 0 0; font-weight: 600; font-size: 16px; }
+.w-pad { padding: 0 16px; }
+.w-pad > b { font-size: 16px; }
+.w-pad .row { gap: 10px; margin-top: 6px; }
+.w-pad .d30 { font-size: 30px; line-height: 1.05; }
+.btn.w { height: 42px; border-radius: 21px; margin-top: 14px; font-size: 17px; }
+.w-pad .d54 { font-size: 58px; line-height: 1; margin-top: 2px; }
+.bar { height: 5px; border-radius: 3px; background: #2A2A2E; margin: 8px 0 10px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--heat); transition: width 1s linear; }
+.w-pad .small .sub { font-size: 13px; }
+.round.w { width: 40px; height: 40px; background: #222226; font-size: 12px; font-weight: 700; margin-top: 12px; }
+
+@media (max-width: 860px) {
+  .story { grid-template-columns: 1fr; gap: 40px; padding: 56px 0; justify-items: center; }
+  .story.flip .copy { order: 0; }
+  .copy { justify-self: stretch; }
+  .phone { zoom: .74; }
+  .watches { gap: 18px; padding: 0; }
+  .watch { zoom: .82; }
+  .yours .cols { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 480px) {
+  .lede, .copy p { font-size: 18px; }
+  .cover .mark { width: 168px; }
+  .phone { zoom: .7; }
+}

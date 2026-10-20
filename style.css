@@ -39,11 +39,6 @@ h2 { font-size: 24px; margin: 40px 0 8px; }
 .muted { color: var(--ink2); }
 .lead { font-size: 19px; }
 
-.hero { text-align: center; padding: 56px 0 24px; }
-.hero img { width: 128px; height: 128px; border-radius: 28px; }
-.hero .wordmark { display: block; font-size: 72px; margin: 20px 0 6px; }
-.hero .motto { font-family: "Barlow SC", sans-serif; font-weight: 700; font-size: 24px; margin: 0; }
-.hero .soon { display: inline-block; margin-top: 28px; padding: 12px 22px; border-radius: 999px; background: var(--heat); color: #fff; font-weight: 600; }
 
 .card { background: var(--raised); border-radius: 16px; padding: 4px 20px; margin: 16px 0; }
 .card dl { margin: 0; }
