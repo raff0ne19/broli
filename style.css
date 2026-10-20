@@ -1,0 +1,57 @@
+/* Broli: gomma (scuro) e gesso (chiaro), gli stessi valori di Theme.swift. */
+@font-face { font-family: "Bricolage"; src: url("assets/BricolageGrotesque-ExtraBold.ttf"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Barlow SC"; src: url("assets/BarlowSemiCondensed-Bold.ttf"); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #0D0D0E; --raised: #17171A; --ink: #F1F0EC; --ink2: #8D8D93;
+  --line: rgba(255,255,255,.08); --heat: #E2231A; --heat-text: #FF2D24;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root { --bg: #EEEDE8; --raised: #F9F8F5; --ink: #15171A; --ink2: #55595F;
+          --line: rgba(21,23,26,.08); --heat-text: #C41E16; color-scheme: light; }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+main, header, footer { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--heat-text); }
+
+/* Una lingua alla volta; senza JS si vedono entrambe. */
+html[data-lang="it"] .en, html[data-lang="en"] .it { display: none; }
+
+header { display: flex; align-items: center; justify-content: space-between; padding-top: 20px; }
+header nav { display: flex; gap: 18px; font-size: 15px; }
+header nav a { color: var(--ink2); text-decoration: none; }
+header nav a:hover { color: var(--ink); }
+
+.wordmark { font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; line-height: 1; }
+.wordmark .l { display: inline-block; color: var(--heat); transform: scaleY(1.14); transform-origin: 50% 80%; }
+header .wordmark { font-size: 28px; }
+
+h1, h2 { font-family: "Barlow SC", sans-serif; font-weight: 700; line-height: 1.15; }
+h1 { font-size: 40px; margin: 48px 0 8px; }
+h2 { font-size: 24px; margin: 40px 0 8px; }
+.muted { color: var(--ink2); }
+.lead { font-size: 19px; }
+
+.hero { text-align: center; padding: 56px 0 24px; }
+.hero img { width: 128px; height: 128px; border-radius: 28px; }
+.hero .wordmark { display: block; font-size: 72px; margin: 20px 0 6px; }
+.hero .motto { font-family: "Barlow SC", sans-serif; font-weight: 700; font-size: 24px; margin: 0; }
+.hero .soon { display: inline-block; margin-top: 28px; padding: 12px 22px; border-radius: 999px; background: var(--heat); color: #fff; font-weight: 600; }
+
+.card { background: var(--raised); border-radius: 16px; padding: 4px 20px; margin: 16px 0; }
+.card dl { margin: 0; }
+.card dt { font-weight: 600; padding-top: 16px; }
+.card dd { margin: 4px 0 0; padding-bottom: 16px; border-bottom: 1px solid var(--line); color: var(--ink2); }
+.card dd:last-child { border-bottom: 0; }
+
+footer { padding-top: 48px; padding-bottom: 40px; font-size: 14px; color: var(--ink2); display: flex; flex-wrap: wrap; gap: 18px; }
+footer a { color: var(--ink2); }
+
+@media (max-width: 480px) { h1 { font-size: 32px; } .hero .wordmark { font-size: 56px; } }
