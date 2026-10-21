@@ -135,7 +135,10 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .art figure { margin: 0; text-align: center; }
 .art figcaption { color: var(--ink2); font-size: 14px; margin-top: 10px; }
 .duo { display: flex; gap: 28px; }
-.mini { width: 100%; max-width: 280px; background: var(--raised2); border-radius: 16px; padding: 16px; font-size: 15px; }
+/* La scheda importata occupa tutta la card, allineata a sinistra come il testo sotto; il contenitore
+   prende la sua altezza (con i 220 px fissi la scheda sbordava sul titolo). */
+.art:has(.mini) { height: auto; align-items: stretch; }
+.mini { width: 100%; text-align: left; background: var(--raised2); border-radius: 16px; padding: 16px; font-size: 15px; }
 .mini .ok { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; }
 .mini .d26 { margin-top: 10px; }
 .mini .row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
