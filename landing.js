@@ -68,7 +68,7 @@
 
     fine: () => `${status()}<div class="pad center">
       <span class="pl pop" style="width:150px;margin:24px auto 0;--z:130">${closed()}</span>
-      <h4 class="d40 pop" style="--z:60">${L("Disco chiuso.", "Plate closed.")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div>
+      <h4 class="d40 pop" style="--z:60">${L("Disco chiuso", "Plate closed")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div>
       <div class="stats"><div><span class="d26">${L("8.420", "8,420")}</span><span class="sub">${L("kg sollevati", "kg lifted")}</span></div><div><span class="d26">19</span><span class="sub">${L("serie", "sets")}</span></div><div><span class="d26 red">2</span><span class="sub">record</span></div></div>
       <div class="card left"><b>${L("Record di oggi", "Today's records")}</b>
         <div class="row between rec"><span class="ink2">Squat</span><span><span class="d22">${x(5, 102.5)}</span> <small class="sub">${L("prima", "was")} ${x(5, 100)}</small></span></div>
@@ -127,35 +127,6 @@
     document.querySelectorAll("[data-bar]").forEach((b) => (b.style.width = `${(left / 120) * 100}%`));
   };
   showCount();
-
-  // 3D: ogni dispositivo sa dov'è rispetto al centro dello schermo (--p) e quanto escono i suoi pezzi (--lift).
-  const devices = [...document.querySelectorAll(".phone, .watch")];
-  let queued = false;
-  const place = () => {
-    queued = false;
-    const mid = innerHeight / 2;
-    devices.forEach((d) => {
-      const r = d.parentElement.getBoundingClientRect();
-      const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - mid) / (innerHeight * 0.8)));
-      d.style.setProperty("--p", p.toFixed(3));
-      d.style.setProperty("--tilt", Math.abs(p).toFixed(3));
-      d.style.setProperty("--lift", (1 - Math.abs(p)).toFixed(3));
-    });
-  };
-  if (!still) {
-    const ask = () => { if (!queued) { queued = true; requestAnimationFrame(place); } };
-    addEventListener("scroll", ask, { passive: true });
-    addEventListener("resize", ask);
-    place();
-    // Il marchio in copertina segue il puntatore.
-    const cover = document.querySelector(".cover"), m = cover.querySelector(".mark");
-    cover.addEventListener("pointermove", (e) => {
-      const b = m.getBoundingClientRect();
-      m.style.setProperty("--rx", `${((e.clientX - b.left - b.width / 2) / innerWidth) * 50}deg`);
-      m.style.setProperty("--ry", `${((b.top + b.height / 2 - e.clientY) / innerHeight) * 50}deg`);
-    });
-    cover.addEventListener("pointerleave", () => { m.style.removeProperty("--rx"); m.style.removeProperty("--ry"); });
-  }
 
   if (still) return;
   const seen = new Set();
