@@ -1,0 +1,10 @@
+# Intestazioni di sicurezza servite da Cloudflare Pages (il file non è una pagina: Pages lo legge e
+# non lo pubblica). Il sito non carica niente da fuori: script, stili, font e immagini sono suoi.
+# Gli stili inline restano permessi: il disco (plate.js) e le schermate (landing.js) li generano.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
