@@ -41,7 +41,7 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 
 /* Il telefono: disegnato a 390 × 844 come un iPhone, rimpicciolito con zoom. */
 .phone, .watch { position: relative; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.3; }
-.phone { zoom: .8; width: 390px; height: 844px; border-radius: 58px; box-shadow: 0 0 0 11px #222226, 0 0 0 12px #3A3A40; margin: 12px; }
+.phone { zoom: .8; width: 390px; height: 844px; border-radius: 58px; overflow: hidden; box-shadow: 0 0 0 11px #222226, 0 0 0 12px #3A3A40; margin: 12px; }
 .phone .pad { padding: 0 24px; }
 .sb { display: flex; justify-content: space-between; align-items: center; height: 54px; padding: 0 32px 0 46px; font-weight: 600; font-size: 17px; position: relative; }
 .sb svg { color: var(--ink); }
@@ -57,10 +57,15 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .pl { display: block; flex: none; }
 .pl svg { display: block; width: 100%; height: auto; }
 .i { width: 1.15em; height: 1.15em; flex: none; }
-.t34, .d40, .d22, .d26, .d30, .d34, .d54, .d64, .d20 { font-family: "Barlow SC", sans-serif; font-weight: 700; margin: 0; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.t34, .d40, .d22, .d26, .d30, .d34, .d54, .d20 { font-family: "Barlow SC", sans-serif; font-weight: 700; margin: 0; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .t34 { font-size: 34px; }
-.d20 { font-size: 21px; font-weight: 600; } .d22 { font-size: 22px; } .d26 { font-size: 27px; } .d30 { font-size: 26px; } .d34 { font-size: 36px; }
-.d40 { font-size: 40px; } .d54 { font-size: 54px; } .d64 { font-size: 64px; }
+.d20 { font-size: 19px; } .d22 { font-size: 22px; } .d26 { font-size: 26px; } .d30 { font-size: 30px; } .d34 { font-size: 36px; }
+.d40 { font-size: 40px; } .d54 { font-size: 54px; }
+.grow { flex: 1; min-width: 0; }
+.nm { font-size: 17px; font-weight: 600; }
+/* Le etichette di sezione dell'app (forgeSectionLabel): sopra le card o dentro. */
+.lbl { color: var(--ink2); font-size: 15px; font-weight: 600; margin: 22px 0 -6px; }
+.lbl.in { margin: 0 0 10px; }
 .round { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--raised2); }
 .round.sm { width: 36px; height: 36px; font-size: 12px; }
 .card { background: var(--raised); border-radius: 20px; padding: 18px; margin-top: 16px; }
@@ -71,54 +76,86 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 
 /* Schede */
 .phone .t34 + .round, .row.between > .t34 { margin-top: 14px; }
-.week { margin-top: 18px; }
+.search { display: flex; align-items: center; gap: 10px; height: 48px; margin-top: 16px; padding: 0 16px; border-radius: 14px; background: var(--raised); color: var(--ink2); font-size: 17px; }
+.search .i { width: 20px; height: 20px; }
 .next .d40 { margin: 6px 0 10px; }
-.sect { margin: 26px 0 6px; font-size: 16px; }
-.li { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
+.card.list { padding: 0 0 0 18px; }
+.li { padding: 11px 18px 11px 0; border-bottom: 1px solid var(--line); }
+.li:last-child { border-bottom: 0; }
 .li .sub { font-size: 14px; margin-top: 2px; }
-.tabs { position: absolute; left: 24px; right: 24px; bottom: 30px; height: 66px; border-radius: 33px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); display: flex; padding: 5px; }
-.tabs span { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--ink2); border-radius: 28px; }
-.tabs span svg { width: 26px; height: 20px; fill: currentColor; }
+.tabs { position: absolute; left: 20px; right: 20px; bottom: 26px; height: 64px; border-radius: 32px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); display: flex; padding: 5px; }
+.tabs span { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--ink); border-radius: 27px; }
+.tabs span svg { width: 26px; height: 22px; fill: currentColor; }
 .tabs .on { background: var(--raised2); color: var(--heat-text); }
 
-/* Serie in corso */
-.top { height: 44px; font-size: 17px; }
-.top .i { width: 22px; height: 22px; }
-.phone .top + .t34 { margin-top: 14px; }
-.pl.big { width: 196px; margin: 22px auto 18px; }
-.hero-num { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
-.hero-num .u { font-family: "Barlow SC"; font-weight: 600; font-size: 21px; color: var(--ink2); }
-.hero-num .x { margin: 0 6px; }
-.delta { text-align: center; color: var(--ink2); margin-top: 8px; }
-.delta b { color: var(--heat-text); font-weight: 600; }
-.sets { margin-top: 18px; }
-.set { display: flex; align-items: center; gap: 18px; height: 41px; border-bottom: 1px solid var(--line); }
-.set .n { width: 10px; color: var(--ink3); font-size: 15px; }
-.set .tag { color: var(--heat-text); font-size: 14px; font-weight: 600; margin-left: -6px; }
-.set .i { margin-left: auto; width: 20px; height: 20px; }
+/* Allenamento, vista Lista: l'esercizio in corso aperto, gli altri in riga, la serie che tocca nel
+   foglio in basso con la spunta. */
+.wk { height: 60px; gap: 10px; margin-top: 4px; }
+.wk .sub { font-size: 14px; }
+.pill { height: 44px; padding: 0 18px; border-radius: 22px; background: var(--raised2); display: flex; align-items: center; font-size: 17px; font-weight: 500; }
+.seg { display: flex; gap: 6px; margin: 10px 0 16px; font-size: 16px; color: var(--ink2); }
+.seg span { padding: 8px 14px; border-radius: 18px; }
+.seg .on { background: var(--raised2); color: var(--ink); font-weight: 600; }
+.card.ex { margin-top: 0; }
+.ex .d30 { font-size: 28px; }
+.ex .more { color: var(--ink); margin-left: 4px; }
+.ex > .sub { margin-top: 2px; }
+.goal { background: var(--raised2); border-radius: 12px; padding: 12px; margin-top: 12px; }
+.goal .red { font-size: 14px; font-weight: 600; }
+.goal > .sub { font-size: 13px; }
+.gbar { height: 6px; border-radius: 3px; background: var(--heat); margin: 8px 0; }
+.sets { margin-top: 4px; }
+.set { display: flex; align-items: center; gap: 14px; height: 46px; border-bottom: 1px solid var(--line); }
+.set:last-child { border-bottom: 0; }
+.set .n { width: 18px; color: var(--ink2); font-size: 17px; }
+.set .d26 small { font-family: -apple-system, sans-serif; font-weight: 400; font-size: 14px; color: var(--ink2); margin-left: 3px; }
+.set .u { font-size: 16px; color: var(--ink2); margin: 0 8px 0 10px; }
+.set .i, .set .ring { margin-left: auto; width: 22px; height: 22px; flex: none; }
+.ring { border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink2); }
 .set.now .n { color: var(--heat-text); font-weight: 600; }
-.set.next .d20 { color: var(--ink3); }
-.set .d20 { transition: color .3s; }
+.set .d26 { transition: color .3s; }
+.pad > .li { padding-right: 0; font-size: 17px; }
+.pad > .li .nm { font-weight: 400; }
+.dock { position: absolute; left: 14px; right: 14px; bottom: 22px; height: 92px; border-radius: 40px; background: var(--raised); box-shadow: 0 -1px 0 var(--line), 0 8px 30px var(--shade); display: flex; align-items: center; gap: 14px; padding: 0 16px 0 22px; }
+.dock .d30 { font-size: 34px; }
+.dock .sub { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tick { width: 62px; height: 62px; border-radius: 50%; background: var(--heat); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; transition: scale .15s, filter .15s; }
+.tick .i { width: 28px; height: 28px; }
+.tick.pressed { scale: .94; filter: brightness(.85); }
 
 /* Schermata di blocco */
 .lock { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, #2B2F36, #15171B 70%); }
 .lock .date { text-align: center; font-size: 21px; font-weight: 600; color: rgba(255,255,255,.75); margin-top: 26px; }
 .lock .clock { text-align: center; font-size: 104px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: rgba(255,255,255,.92); }
-.la { position: absolute; left: 14px; right: 14px; bottom: 34px; background: rgba(0,0,0,.88); border-radius: 26px; padding: 18px; }
+.la { position: absolute; left: 14px; right: 14px; bottom: 34px; background: rgba(0,0,0,.88); border-radius: 26px; padding: 16px; }
+.la > .row { gap: 12px; }
+.la .sub { font-size: 13px; }
 .la .r { text-align: right; }
-.la .d26 { margin-top: 3px; }
-.la .two { margin-top: 14px; gap: 10px; }
-.la .two span { flex: 1; height: 40px; border-radius: 20px; background: var(--raised2); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; }
+.la .d26 { font-size: 24px; margin-top: 2px; }
+.la .two { margin-top: 12px; gap: 8px; }
+.la .two span { flex: 1; height: 36px; border-radius: 18px; background: var(--raised2); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; }
 
-/* Fine allenamento */
-.center { text-align: center; }
-.center .d40 { margin: 18px 0 8px; }
-.stats { display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: left; margin: 26px 0 0 10px; }
-.stats .sub { display: block; font-size: 14px; }
-.card.left { text-align: left; }
-.rec { margin-top: 12px; font-size: 16px; }
-.rec small { font-size: 13px; }
-.card.row b + .sub { font-size: 14px; margin-top: 2px; }
+/* Fine allenamento: il disco accanto al titolo, poi le card del riepilogo; i comandi fissi sotto. */
+.hero { gap: 14px; margin: 24px 0 16px; }
+.hero .sub { font-size: 15px; margin-top: 4px; }
+.pad > .card + .card { margin-top: 12px; }
+.hero + .card { margin-top: 0; }
+.stats { display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: left; }
+.stats .sub { display: block; font-size: 13px; }
+.head { gap: 10px; align-items: baseline; margin-top: 6px; }
+.head .sub { font-size: 13px; }
+.chart { display: block; width: 100%; margin-top: 10px; }
+.chart text { font-size: 12px; fill: var(--ink2); }
+.legend { display: flex; gap: 18px; font-size: 14px; margin-top: 6px; }
+.legend span { display: flex; align-items: center; gap: 7px; }
+.legend i { width: 16px; height: 4px; border-radius: 2px; background: var(--ink3); }
+.legend i.now { background: var(--heat); }
+.rec { gap: 10px; margin-top: 8px; font-size: 15px; align-items: baseline; }
+.rec small { min-width: 64px; font-size: 12px; }
+.card .foot { font-size: 13px; margin-top: 10px; }
+.acts { position: absolute; left: 20px; right: 20px; bottom: 30px; display: flex; gap: 10px; }
+.acts .btn { flex: 1; }
+.btn.sec { background: var(--raised2); color: var(--ink); }
 
 /* Vetrina: il riposo su telefono e watch insieme, centrata. */
 .showcase, .strengths { padding: 80px 0; border-top: 1px solid var(--line); }
@@ -154,11 +191,20 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 
 /* Apple Watch: 198 × 242 come un 45 mm. */
 .watch { zoom: 1.08; width: 198px; height: 242px; border-radius: 52px; box-shadow: 0 0 0 9px #222226, 0 0 0 10px #3A3A40; margin: 10px; background: #000; }
-.w-time { text-align: right; padding: 14px 26px 0 0; font-weight: 600; font-size: 16px; }
+.w-time { text-align: right; padding: 12px 26px 0 0; font-weight: 600; font-size: 16px; }
 .w-pad { padding: 0 16px; }
 .w-pad > b { font-size: 16px; }
-.w-pad .row { gap: 10px; margin-top: 6px; }
-.w-pad .d30 { font-size: 30px; line-height: 1.05; }
+.w-pad .row { gap: 8px; margin-top: 6px; }
+.w-top b { font-family: "Barlow SC"; font-size: 17px; }
+.w-top .sub { font-size: 13px; }
+.w-more { width: 34px; height: 34px; background: var(--raised2); }
+.w-pad .d30 { font-size: 30px; line-height: 1; }
+/* Peso e ripetizioni su una riga, come quando ci stanno sul watch (ViewThatFits, scala 0,85). */
+.set-w { padding: 0 12px; }
+.w-num { white-space: nowrap; display: flex; align-items: baseline; gap: 4px; }
+.w-num .d40 { font-size: 34px; }
+.w-num .d30 { font-size: 26px; }
+.w-num .u { font-family: "Barlow SC"; font-weight: 600; font-size: 19px; color: var(--ink2); }
 .btn.w { height: 42px; border-radius: 21px; margin-top: 14px; font-size: 17px; }
 .w-pad .d54 { font-size: 58px; line-height: 1; margin-top: 2px; }
 .bar { height: 5px; border-radius: 3px; background: #2A2A2E; margin: 8px 0 10px; overflow: hidden; }
