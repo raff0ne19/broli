@@ -39,9 +39,13 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .cover.end { border-top: 1px solid var(--line); padding: 80px 0 24px; }
 .cover.end .mark { width: 140px; margin-bottom: 28px; }
 
-/* Il telefono: disegnato a 390 × 844 come un iPhone, rimpicciolito con zoom. */
-.phone, .watch { position: relative; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.3; }
-.phone { zoom: .8; width: 390px; height: 844px; border-radius: 58px; overflow: hidden; box-shadow: 0 0 0 11px #222226, 0 0 0 12px #3A3A40; margin: 12px; }
+/* Il telefono: disegnato a 390 × 844 come un iPhone (`.dev`), rimpicciolito di --z. Il riquadro esterno
+   occupa la misura rimpicciolita. Era `zoom`: il Safari di un iPhone 14 (2026-10-28) rimpiccioliva la
+   cornice ma non il testo, che andava a capo e copriva i pulsanti; `transform` lo fa ovunque uguale. */
+.phone, .watch { position: relative; flex: none; width: calc(var(--w) * var(--z)); height: calc(var(--h) * var(--z)); margin: calc(var(--m) * var(--z)); }
+.dev { position: absolute; top: 0; left: 0; width: var(--w); height: var(--h); transform: scale(var(--z)); transform-origin: 0 0; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.3; border-radius: var(--r); box-shadow: var(--ring); }
+.phone { --z: .8; --w: 390px; --h: 844px; --m: 12px; --r: 58px; --ring: 0 0 0 11px #222226, 0 0 0 12px #3A3A40; }
+.phone .dev { overflow: hidden; }
 .phone .pad { padding: 0 24px; }
 .sb { display: flex; justify-content: space-between; align-items: center; height: 54px; padding: 0 32px 0 46px; font-weight: 600; font-size: 17px; position: relative; }
 .sb svg { color: var(--ink); }
@@ -162,7 +166,7 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .intro { max-width: 36em; }
 .intro p { font-size: 19px; color: var(--ink2); }
 .trio { display: flex; justify-content: center; align-items: center; gap: 56px; margin-top: 48px; }
-.trio .watch { margin-top: 120px; }
+.trio .watch { margin-top: calc(120px * var(--z)); }
 
 /* Punti forti: tre riquadri coi pezzi dell'app. */
 /* Una riga per punto, disegno e testo affiancati, una sotto l'altra (prima tre tessere in griglia). */
@@ -190,7 +194,8 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .art .stats { width: 100%; max-width: 300px; margin: 22px 0 0; }
 
 /* Apple Watch: 198 × 242 come un 45 mm. */
-.watch { zoom: 1.08; width: 198px; height: 242px; border-radius: 52px; box-shadow: 0 0 0 9px #222226, 0 0 0 10px #3A3A40; margin: 10px; background: #000; }
+.watch { --z: 1.08; --w: 198px; --h: 242px; --m: 10px; --r: 52px; --ring: 0 0 0 9px #222226, 0 0 0 10px #3A3A40; }
+.watch .dev { background: #000; }
 .w-time { text-align: right; padding: 12px 26px 0 0; font-weight: 600; font-size: 16px; }
 .w-pad { padding: 0 16px; }
 .w-pad > b { font-size: 16px; }
@@ -216,18 +221,18 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
   .story { grid-template-columns: 1fr; gap: 40px; padding: 56px 0; justify-items: center; }
   .story.flip .copy { order: 0; }
   .copy { justify-self: stretch; }
-  .phone { zoom: .74; }
+  .phone { --z: .74; }
   .yours .cols { grid-template-columns: 1fr; gap: 20px; }
   .trio { display: grid; grid-template-columns: 1fr 1fr; justify-items: center; gap: 24px 0; }
   .trio .phone { grid-column: 1 / -1; grid-row: 1; }
-  .trio .watch { margin-top: 0; zoom: .82; }
+  .trio .watch { margin-top: 0; --z: .82; }
   .tile { grid-template-columns: 1fr; }
   .tile .art { grid-row: auto; margin-bottom: 20px; }
 }
 @media (max-width: 480px) {
   .lede, .copy p { font-size: 18px; }
   .cover .mark { width: 168px; }
-  .phone { zoom: .7; }
+  .phone { --z: .7; }
 }
 
 /* I dispositivi stanno dritti (2026-10-21): l'inclinazione 3D legata allo scroll, lo spessore e i pezzi

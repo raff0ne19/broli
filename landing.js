@@ -126,7 +126,8 @@
   };
   document.querySelectorAll("[data-art]").forEach((el) => (el.innerHTML = arts[el.dataset.art]()));
 
-  document.querySelectorAll("[data-screen]").forEach((el) => (el.innerHTML = screens[el.dataset.screen]()));
+  // Lo schermo sta in `.dev`, a misura vera, rimpicciolito dal CSS (vedi .phone in landing.css).
+  document.querySelectorAll("[data-screen]").forEach((el) => (el.innerHTML = `<div class="dev">${screens[el.dataset.screen]()}</div>`));
   document.querySelectorAll("[data-mark]").forEach((el) => {
     el.innerHTML = markSVG();
     drawMark(el, still ? 1 : 0, still ? 0.12 : 0);
