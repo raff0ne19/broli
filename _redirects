@@ -1,0 +1,5 @@
+# Redirect serviti da Cloudflare Pages (il file non è una pagina: Pages lo legge e non lo pubblica).
+# /beta è il link da condividere (Instagram, sito, plugin di ChatGPT): corto, tutto minuscolo, e
+# all'uscita sullo store si cambia qui sotto per far puntare all'App Store i link già condivisi.
+# 302 e non 301: un redirect permanente i browser lo ricordano e non vedrebbero il cambio.
+/beta  https://testflight.apple.com/join/TQ2yYNd8  302
