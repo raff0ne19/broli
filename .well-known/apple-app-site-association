@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["8PGF4Q6T5A.com.raffaeleesposito.broli"],
+        "components": [{ "/": "/i", "comment": "Scheda da importare (RoutineLink.webPrefix)" }]
+      }
+    ]
+  }
+}
