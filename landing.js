@@ -86,7 +86,7 @@
     blocco: () => `<div class="lock"><div class="sb"><span>9:41</span><span class="island wide"><span class="pl" style="width:22px">${plate(5, 0)}</span><b class="red" data-count="74" data-from="120"></b></span>${I.battery}</div>
       <div class="date">${L("venerdì 17 ottobre", "Friday, October 17")}</div><div class="clock">18:42</div>
       <div class="la pop" style="--z:100"><div class="row"><span class="pl" style="width:40px">${plate(5, 0)}</span>
-        <div class="grow"><div class="sub">${L("Squat, poi serie 4", "Squat, then set 4")}</div><div class="d26">${x(5, 102.5)}</div></div>
+        <div class="grow"><div class="sub">${L("Squat, poi serie 4", "Squat, then set 4")}</div><div class="d26">${x(5, 92.5)}</div></div>
         <div class="r"><div class="sub">${L("Riposo", "Rest")}</div><div class="d40" data-count="74" data-from="120"></div></div></div>
         <div class="row two"><span>+30 s</span><span>${L("Salta", "Skip")}</span></div></div></div>`,
 
@@ -97,17 +97,17 @@
       <div class="card"><div class="nm">${L("Com'è andato l'allenamento", "How the workout went")}</div>
         <div class="row head"><span class="d30">+420 kg</span><span class="sub">${L("sulla volta scorsa", "vs last time")}</span></div>${volumeChart()}</div>
       <div class="card"><div class="lbl in">${L("Record di oggi", "Today's PRs")}</div>
-        ${[["Squat", x(5, 102.5)], [L("Stacco rumeno", "Romanian deadlift"), x(8, 85)]].map(([n, v]) => `<div class="row rec"><span class="grow">${n}</span><span class="d20">${v}</span><small class="sub">${L("di peso", "weight")}</small></div>`).join("")}
+        ${[["Squat", x(5, 92.5)], [L("Stacco rumeno", "Romanian deadlift"), x(8, 85)]].map(([n, v]) => `<div class="row rec"><span class="grow">${n}</span><span class="d20">${v}</span><small class="sub">${L("di peso", "weight")}</small></div>`).join("")}
         <div class="sub foot">${L("Volta scorsa battuta in 4 esercizi su 5.", "Last time beaten on 4 of 5 exercises.")}</div></div>
       </div><div class="acts"><span class="btn sec">${I.share}${L("Condividi", "Share")}</span><span class="btn">${I.check}${L("Fatto", "Done")}</span></div>`,
 
     watchSerie: () => `<div class="w-time">18:42</div><div class="w-pad set-w"><div class="row between w-top"><div><b>Squat</b><div class="sub">${L("Serie 3 di 5", "Set 3 of 5")}</div></div><span class="round w-more">${I.more}</span></div>
-      <div class="row"><span class="pl pop" style="width:62px;--z:50">${plate(5, 2)}</span><div class="w-num"><span class="d40">${kg(102.5)}</span><span class="u">×</span><span class="d30">5</span></div></div>
+      <div class="row"><span class="pl pop" style="width:62px;--z:50">${plate(5, 2)}</span><div class="w-num"><span class="d40">${kg(92.5)}</span><span class="u">×</span><span class="d30">5</span></div></div>
       <div class="btn w">${I.check}${L("Fatta", "Done")}</div></div>`,
 
     watchRiposo: () => `<div class="w-time">18:42</div><div class="w-pad"><span class="sub">${L("Riposo", "Rest")}</span>
       <div class="d54" data-count="74" data-from="120"></div><div class="bar"><i data-bar></i></div>
-      <div class="row small"><span class="pl" style="width:22px">${plate(5, 3)}</span><span class="sub">${L("Poi", "Next")} ${x(5, 102.5)}</span></div>
+      <div class="row small"><span class="pl" style="width:22px">${plate(5, 3)}</span><span class="sub">${L("Poi", "Next")} ${x(5, 92.5)}</span></div>
       <div class="row between"><span class="round w">30</span><span class="round w">${I.skip}</span></div></div>`,
   };
 
@@ -117,7 +117,7 @@
       <figure><span class="pl" style="width:120px">${timed(0.42, "3")}</span><figcaption>AMRAP 10′</figcaption></figure></div>`,
     import: () => `<div class="mini"><div class="ok">${I.check}${L("Scheda riconosciuta", "Routine recognized")}</div>
       <div class="d26">${L("Gambe A", "Legs A")}</div><div class="sub">${L("5 esercizi, 19 serie, circa 60 minuti", "5 exercises, 19 sets, about 60 minutes")}</div>
-      <div class="row between"><span>Squat</span><span class="d20">5 × 5 <small>${kg(102.5)} kg</small></span></div>
+      <div class="row between"><span>Squat</span><span class="d20">5 × 5 <small>${kg(92.5)} kg</small></span></div>
       <div class="row between"><span>${L("Stacco rumeno", "Romanian deadlift")}</span><span class="d20">4 × 8 <small>80 kg</small></span></div>
       <div class="sub">${L("e altri 3", "and 3 more")}</div></div>`,
     storico: () => `<div class="weeks">${[[4, 4, L("29 set", "Sep 29")], [4, 4, L("6 ott", "Oct 6")], [3, 4, L("13 ott", "Oct 13")], [1, 4, L("20 ott", "Oct 20")]]
@@ -140,10 +140,10 @@
     serie.querySelector("[data-plate]").innerHTML = plate(5, d);
     serie.querySelector("[data-sets]").innerHTML = [0, 1, 2, 3, 4].map((i) =>
       `<div class="set ${i < d ? "done" : i === d ? "now" : "next"}"><span class="n">${i + 1}</span>` +
-      `<span class="d26">${kg(102.5)}<small>kg</small><span class="u">×</span>5</span>${i < d ? I.check : `<span class="ring"></span>`}</div>`).join("");
+      `<span class="d26">${kg(92.5)}<small>kg</small><span class="u">×</span>5</span>${i < d ? I.check : `<span class="ring"></span>`}</div>`).join("");
     const end = d >= 5;
     serie.querySelector("[data-dock-plate]").innerHTML = end ? plate(4, 0) : plate(5, d);
-    serie.querySelector("[data-dock-val]").textContent = end ? `80 kg × 8` : `${kg(102.5)} kg × 5`;
+    serie.querySelector("[data-dock-val]").textContent = end ? `80 kg × 8` : `${kg(92.5)} kg × 5`;
     serie.querySelector("[data-dock-sub]").textContent = end ? L("Stacco rumeno, serie 1 di 4", "Romanian deadlift, set 1 of 4")
       : L(`Squat, serie ${d + 1} di 5`, `Squat, set ${d + 1} of 5`);
   }
