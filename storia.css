@@ -1,0 +1,13 @@
+/* La storia: una linea del tempo in cui ogni tappa è un pezzo del disco. L'ultima, lo store, è il
+   pezzo in corso (il rosso al 32%), come nel marchio. */
+.timeline { list-style: none; margin: 24px 0 0; padding: 0; }
+.timeline li { position: relative; display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; padding-bottom: 28px; }
+/* Il filo che lega i dischi, dal centro di uno al successivo. */
+.timeline li:not(:last-child)::before { content: ""; position: absolute; left: 27px; top: 60px; bottom: 4px; width: 2px; border-radius: 1px; background: var(--line); }
+.timeline .disc { grid-row: span 3; width: 56px; height: 56px; }
+.timeline .disc svg { display: block; width: 100%; height: 100%; }
+.timeline time { font-family: "Barlow SC", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--heat-text); padding-top: 4px; }
+.timeline b { font-size: 18px; }
+.timeline p { margin: 2px 0 0; color: var(--ink2); }
+.timeline .next time { color: var(--ink2); }
+.sign { font-family: "Bricolage", sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.01em; margin-top: 28px; }

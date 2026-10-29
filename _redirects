@@ -3,3 +3,5 @@
 # all'uscita sullo store si cambia qui sotto per far puntare all'App Store i link già condivisi.
 # 302 e non 301: un redirect permanente i browser lo ricordano e non vedrebbero il cambio.
 /beta  https://testflight.apple.com/join/TQ2yYNd8  302
+# /story: il nome inglese porta alla stessa pagina, che sceglie la lingua da sé.
+/story  /storia  301

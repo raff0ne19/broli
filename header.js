@@ -10,6 +10,7 @@
   var moon = '<svg class="moon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>';
   document.currentScript.insertAdjacentHTML("beforebegin",
     '<header class="site-header"><a class="wordmark" href="./" aria-label="Broli">' + window.Plate.logotype() + "</a><nav>" +
+    link("storia", "storia", it ? "Storia" : "Story") +
     link("privacy", "privacy", "Privacy") +
     link("support", "support", it ? "Supporto" : "Support") +
     '<a href="?lang=' + (it ? "en" : "it") + '">' + (it ? "English" : "Italiano") + "</a>" +

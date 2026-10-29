@@ -42,6 +42,12 @@ html[data-lang="it"] .en, html[data-lang="en"] .it { display: none; }
 .theme svg { width: 18px; height: 18px; }
 [data-theme="dark"] .theme .sun, [data-theme="light"] .theme .moon { display: none; }
 @media (max-width: 400px) { .site-header nav { gap: 12px; } }
+/* Il nome non va mai a capo. Sotto i 400 punti Privacy esce dall'intestazione per far posto a Storia:
+   resta nel piè di pagina di ogni pagina. */
+.site-header { column-gap: 12px; }
+.site-header .wordmark { flex-shrink: 0; white-space: nowrap; }
+@media (max-width: 400px) { .site-header nav a[href="privacy"] { display: none; } }
+@media (max-width: 340px) { .site-header nav { gap: 10px; font-size: 14px; } }
 
 .wordmark { font-family: "Bricolage", sans-serif; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; line-height: 1; }
 /* Il disco al posto della "o": le misure della o di Bricolage ExtraBold (da 0,014 em sotto la base a
