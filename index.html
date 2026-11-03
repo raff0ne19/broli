@@ -12,13 +12,15 @@
 <link rel="icon" href="assets/favicon.png">
 <link rel="preload" href="assets/BricolageGrotesque-ExtraBold.ttf" as="font" crossorigin>
 <link rel="preload" href="assets/BarlowSemiCondensed-Bold.ttf" as="font" crossorigin>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="landing.css">
-<script src="prefs.js"></script>
-<script src="plate.js"></script>
+<!-- ?v= cambia a ogni pubblicazione che tocca CSS o JS: Cloudflare li fa tenere ai browser 4 ore, e
+     senza la versione una pagina nuova poteva prendere lo script vecchio (intestazione sballata, 2026-11-03). -->
+<link rel="stylesheet" href="style.css?v=20261103">
+<link rel="stylesheet" href="landing.css?v=20261103">
+<script src="prefs.js?v=20261103"></script>
+<script src="plate.js?v=20261103"></script>
 </head>
 <body>
-<script src="header.js"></script>
+<script src="header.js?v=20261103"></script>
 
 <main>
   <section class="cover">
@@ -27,53 +29,47 @@
     <p class="motto">Lift. Log. Grow.</p>
     <p class="lede it">Il diario d'allenamento per iPhone e Apple Watch. Segui la scheda, segna ogni serie con un tocco e guarda il disco che si costruisce.</p>
     <p class="lede en">The workout log for iPhone and Apple Watch. Follow your routine, log every set with one tap and watch the plate build up.</p>
-    <span class="cta"><span class="it">Presto sull'App Store</span><span class="en">Coming soon to the App Store</span></span>
-    <p class="fine it">Gratis, senza account e senza pubblicità.</p>
-    <p class="fine en">Free, with no account and no ads.</p>
+    <a class="cta" href="beta"><span class="it">Provala su TestFlight</span><span class="en">Try it on TestFlight</span></a>
+    <p class="fine it">Gratis, senza account e senza pubblicità. Sull'App Store a gennaio 2027.</p>
+    <p class="fine en">Free, with no account and no ads. On the App Store in January 2027.</p>
   </section>
 
-  <section id="lift" class="story">
-    <div class="copy">
-      <h2 class="verb">Lift.</h2>
-      <p class="it"><strong>La scheda di oggi è già pronta.</strong> Broli sa quale tocca: apri l'app e premi Inizia. Le schede le crei in due passi, oppure arrivano già fatte dal tuo allenatore.</p>
-      <p class="en"><strong>Today's routine is ready.</strong> Broli knows what's up next: open the app and tap Start. Build routines in two steps, or get them ready-made from your coach.</p>
-    </div>
-    <div class="phone" data-screen="schede" role="img" aria-label="Schede"></div>
-  </section>
+  <!-- Lift, Log, Grow: un telefono solo resta fermo mentre scorri e cambia schermata (landing.js, "racconto").
+     Le ancore stanno dove comincia ogni passo; senza JavaScript restano i tre testi uno sotto l'altro. -->
+<section class="scrolly" data-scrolly>
+<span class="anchor" id="lift"></span><span class="anchor" id="log"></span><span class="anchor" id="grow"></span>
+<div class="stage">
+<div class="steps">
+<nav class="filo-nav" aria-label="Lift, Log, Grow"><a href="#lift" data-go="0"><i></i><span>Lift</span></a><a href="#log" data-go="1"><i></i><span>Log</span></a><a href="#grow" data-go="2"><i></i><span>Grow</span></a></nav>
+<div class="step on" data-step="0">
+<h2 class="verb">Lift.</h2>
+<p class="it"><strong>La scheda di oggi è già pronta.</strong> Broli sa quale tocca: apri l'app e premi Inizia. Le schede le crei in due passi, oppure arrivano già fatte dal tuo allenatore.</p>
+<p class="en"><strong>Today's routine is ready.</strong> Broli knows what's up next: open the app and tap Start. Build routines in two steps, or get them ready-made from your coach.</p>
+</div>
+<div class="step" data-step="1">
+<h2 class="verb">Log.</h2>
+<div class="swap">
+<div class="log-p">
+<p class="it"><strong>Una serie, un tocco.</strong> Peso e ripetizioni dell'ultima volta sono già scritti. Fai la serie e tocca la spunta: un pezzo del disco diventa rosso. Quando le hai fatte tutte, il disco è chiuso.</p>
+<p class="en"><strong>One set, one tap.</strong> Last time's weight and reps are already filled in. Do the set and tap the check: one piece of the plate turns red. Finish them all and the plate is closed.</p>
+</div>
+<div class="rest-p">
+<p class="it"><strong>Il riposo parte da solo.</strong> Lo vedi nella Dynamic Island, sulla schermata di blocco e al polso, con lo stesso conto alla rovescia. A fine riposo suona una campana, e la serie dopo la segni anche dal watch.</p>
+<p class="en"><strong>Rest starts on its own.</strong> You see it on the Dynamic Island, on the Lock Screen and on your wrist, with the same countdown. A bell rings when it's over, and you can log the next set from your watch.</p>
+</div>
+</div>
+</div>
+<div class="step" data-step="2">
+<h2 class="verb">Grow.</h2>
+<p class="it"><strong>Batti l'ultima volta.</strong> Broli ti dice di quanto l'hai superata e segna i record. Finiti gli esercizi il disco dell'allenamento si chiude, e con Apple Watch l'allenamento finisce in Salute con frequenza cardiaca e calorie.</p>
+<p class="en"><strong>Beat last time.</strong> Broli tells you by how much you beat it and marks your records. Finish every exercise and the workout's plate closes; with Apple Watch the workout lands in Health with heart rate and calories.</p>
+</div>
+</div>
+<div class="devices"><div class="phone" data-story role="img" aria-label="Schede, la serie che si spunta, il riposo sul watch, il disco chiuso"></div><div class="watch story-watch" data-story-watch aria-hidden="true"></div></div>
+</div>
+</section>
 
-  <section id="log" class="story flip">
-    <div class="copy">
-      <h2 class="verb">Log.</h2>
-      <p class="it"><strong>Una serie, un tocco.</strong> Peso e ripetizioni dell'ultima volta sono già scritti. Fai la serie e tocca la spunta: un pezzo del disco diventa rosso. Quando le hai fatte tutte, il disco è chiuso.</p>
-      <p class="en"><strong>One set, one tap.</strong> Last time's weight and reps are already filled in. Do the set and tap the check: one piece of the plate turns red. Finish them all and the plate is closed.</p>
-    </div>
-    <div class="phone" data-screen="serie" role="img" aria-label="Squat, serie 2 di 4"></div>
-  </section>
-
-  <section id="grow" class="story">
-    <div class="copy">
-      <h2 class="verb">Grow.</h2>
-      <p class="it"><strong>Batti l'ultima volta.</strong> Broli ti dice di quanto l'hai superata e segna i record. Finiti gli esercizi si chiude il disco dell'allenamento; fatti gli allenamenti che ti eri dato si chiude quello della settimana.</p>
-      <p class="en"><strong>Beat last time.</strong> Broli tells you by how much you beat it and marks your records. Finish every exercise and the workout's plate closes; do the workouts you planned and the week's closes too.</p>
-    </div>
-    <div class="phone" data-screen="fine" role="img" aria-label="Disco chiuso"></div>
-  </section>
-
-  <section id="ovunque" class="showcase">
-    <div class="intro">
-      <h3 class="say it">Il riposo, sull'iPhone e al polso</h3>
-      <h3 class="say en">Rest, on your iPhone and on your wrist</h3>
-      <p class="it">Parte da solo dopo ogni serie e lo vedi nella Dynamic Island, sulla schermata di blocco e al polso, con lo stesso conto alla rovescia. A fine riposo suona una campana. Con Apple Watch segni le serie senza tirare fuori il telefono, e l'allenamento finisce in Salute con frequenza cardiaca e calorie.</p>
-      <p class="en">It starts on its own after every set and you see it on the Dynamic Island, on the Lock Screen and on your wrist, with the same countdown. When it's over a bell rings. With Apple Watch you log sets without reaching for your phone, and the workout goes to Health with heart rate and calories.</p>
-    </div>
-    <div class="trio">
-      <div class="watch" data-screen="watchSerie" role="img" aria-label="Apple Watch, serie"></div>
-      <div class="phone" data-screen="blocco" role="img" aria-label="Riposo sulla schermata di blocco"></div>
-      <div class="watch" data-screen="watchRiposo" role="img" aria-label="Apple Watch, riposo"></div>
-    </div>
-  </section>
-
-  <section id="palestra" class="strengths">
+<section id="palestra" class="strengths">
     <h3 class="say it">Superset, schede condivise, storico</h3>
     <h3 class="say en">Supersets, shared routines, history</h3>
     <div class="tiles">
@@ -92,35 +88,43 @@
     </div>
   </section>
 
-  <section class="yours">
+  <section id="dati" class="yours">
     <h3 class="say it">Dove restano i tuoi dati</h3>
     <h3 class="say en">Where your data lives</h3>
     <div class="cols">
-      <div class="it"><b>Sul tuo telefono</b><p>Niente account e niente server: schede e storico restano sul tuo iPhone.</p></div>
+      <div class="it"><b>Sui tuoi dispositivi</b><p>Niente account: schede e storico restano sul tuo iPhone e, se usi iCloud, nel tuo iCloud, dove noi non arriviamo. <a href="privacy">Leggi la privacy</a>.</p></div>
       <div class="it"><b>Li porti dove vuoi</b><p>Un backup con tutto quando vuoi, o lo storico in CSV per un foglio di calcolo.</p></div>
-      <div class="it"><b>Niente pubblicità</b><p>Broli si mantiene con Broli Pro, che è facoltativo. <a href="privacy">Leggi la privacy</a>.</p></div>
-      <div class="en"><b>On your phone</b><p>No account and no servers: your routines and history stay on your iPhone.</p></div>
+      <div class="it"><b>Niente pubblicità</b><p>Broli si mantiene con Broli Pro, che è facoltativo.</p></div>
+      <div class="en"><b>On your devices</b><p>No account: your routines and history stay on your iPhone and, if you use iCloud, in your iCloud, where we can't reach them. <a href="privacy">Read the privacy policy</a>.</p></div>
       <div class="en"><b>Take them anywhere</b><p>A backup of everything whenever you like, or your history as CSV for a spreadsheet.</p></div>
-      <div class="en"><b>No ads</b><p>Broli is funded by Broli Pro, which is optional. <a href="privacy">Read the privacy policy</a>.</p></div>
+      <div class="en"><b>No ads</b><p>Broli is funded by Broli Pro, which is optional.</p></div>
     </div>
   </section>
 
-  <section class="cover end">
-    <div class="mark" data-mark></div>
-    <h3 class="say it">Broli per iPhone e Apple Watch</h3>
-    <h3 class="say en">Broli for iPhone and Apple Watch</h3>
-    <span class="cta"><span class="it">Presto sull'App Store</span><span class="en">Coming soon to the App Store</span></span>
+  <!-- Le domande di chi arriva per la prima volta, prima di installare. Un elenco che si apre a tocchi
+       (<details>): niente JavaScript, si usa anche da tastiera e con VoiceOver. -->
+  <section id="domande" class="faq">
+    <h2 class="say it">Domande</h2>
+    <h2 class="say en">Questions</h2>
+    <div class="it">
+      <details><summary>Quando esce?</summary><p>È in beta su TestFlight, l'app di Apple per le beta: la installi <a href="beta">da qui</a>. Sull'App Store arriva a gennaio 2027.</p></details>
+      <details><summary>Quanto costa?</summary><p>Broli è gratis. Broli Pro è facoltativo e aggiunge le statistiche per muscolo, il massimale stimato con gli obiettivi, giro contro giro, il mese in breve, gli allenamenti fatti senza l'app, la vista Una serie, il backup automatico su iCloud Drive, e temi, icone e colori dell'app. Il prezzo lo diremo all'uscita.</p></details>
+      <details><summary>Cosa serve?</summary><p>Un iPhone con iOS 26.5 o successivo. Apple Watch è facoltativo, con watchOS 26.5 o successivo.</p></details>
+      <details><summary>C'è anche per Android?</summary><p>No: Broli è fatta per iPhone e Apple Watch.</p></details>
+      <details><summary>Posso portare lo storico da Hevy?</summary><p>Sì, gratis: esporti i dati da Hevy e li apri con Broli, che li aggiunge al tuo storico.</p></details>
+    </div>
+    <div class="en">
+      <details><summary>When is it out?</summary><p>It's in beta on TestFlight, Apple's app for betas: install it <a href="beta">from here</a>. It comes to the App Store in January 2027.</p></details>
+      <details><summary>How much does it cost?</summary><p>Broli is free. Broli Pro is optional and adds stats by muscle, estimated max with goals, cycle against cycle, the month at a glance, workouts logged without the app, the One set view, automatic backup to iCloud Drive, and app themes, icons and colours. We'll share the price at launch.</p></details>
+      <details><summary>What do I need?</summary><p>An iPhone with iOS 26.5 or later. Apple Watch is optional, with watchOS 26.5 or later.</p></details>
+      <details><summary>Is there an Android version?</summary><p>No: Broli is made for iPhone and Apple Watch.</p></details>
+      <details><summary>Can I bring my history from Hevy?</summary><p>Yes, for free: export your data from Hevy and open it with Broli, which adds it to your history.</p></details>
+    </div>
   </section>
 </main>
 
-<footer>
-  <span>© 2026 Raffaele Esposito</span>
-  <a href="storia"><span class="it">Storia</span><span class="en">Story</span></a>
-  <a href="privacy">Privacy</a>
-  <a href="support"><span class="it">Supporto</span><span class="en">Support</span></a>
-  <a href="terms"><span class="it">Termini</span><span class="en">Terms</span></a>
-  <span class="it">Le schermate sono illustrazioni dell'app.</span><span class="en">Screens are illustrations of the app.</span>
-</footer>
-<script src="landing.js"></script>
+<script src="footer.js?v=20261103"></script>
+<noscript><footer class="site-footer plain"><a href="./">Broli</a> <a href="storia">Storia</a> <a href="support">Supporto</a> <a href="privacy">Privacy</a> <a href="terms">Termini</a></footer></noscript>
+<script src="landing.js?v=20261103"></script>
 </body>
 </html>

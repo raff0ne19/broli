@@ -87,7 +87,7 @@
       <div class="search">${I.search}${L("Cerca tra 5 schede", "Search 5 routines")}</div>
       <div class="lbl">${L("Questa settimana", "This week")}</div>
       <div class="card row"><span class="pl" style="width:46px">${settled(plate(4, 2))}</span><span class="d22">${L("2 allenamenti di 4", "2 of 4 workouts")}</span></div>
-      <div class="card next pop" style="--z:70"><div class="sub">${L("Tocca a", "Up next")}</div><div class="d30">${L("Gambe A", "Legs A")}</div>
+      <div class="card next"><div class="sub">${L("Tocca a", "Up next")}</div><div class="d30">${L("Gambe A", "Legs A")}</div>
         <div class="sub sm">${L("5 esercizi, circa 60 minuti. L'ultima volta giovedì.", "5 exercises, about 60 minutes. Last time Thursday.")}</div>
         <div class="btn in">${I.play}${L("Inizia", "Start")}</div></div>
       <div class="lbl">${L("Le tue schede", "Your routines")}</div>
@@ -111,25 +111,25 @@
         <div class="row between"><h4 class="d30">${NEXT_EX[0]}</h4><span class="more">${I.more}</span></div>
         <div class="row meta"><span class="sub row">${I.timer}1:30</span><span class="mark">${I.scope}<b>${x(NEXT_EX[1], NEXT_EX[2])}</b></span></div>
         <div class="thead"><span>${L("Serie", "Set")}</span><span>${L("Scorsa", "Last")}</span><span>kg</span><span>reps</span><span></span></div>
-        ${[1, 2].map((i) => `<div class="set next"><span class="n">${i}</span><span class="prev">${x(NEXT_EX[1], NEXT_EX[2])}</span><span class="v">${kg(NEXT_EX[1])}</span><span class="v">${NEXT_EX[2]}</span><span class="ring"></span></div>`).join("")}</div>
+        ${[1, 2].map((i) => `<div class="set next"><span class="n">${i}</span><span class="prev">${x(NEXT_EX[1], NEXT_EX[2])}</span><span class="v">${kg(NEXT_EX[1])}</span><span class="v">${NEXT_EX[2]}</span><span class="chk"><i class="ring"></i></span></div>`).join("")}</div>
       </div>
-      <div class="dock pop" style="--z:40"><span class="mk" data-dock-n></span><div class="grow"><div class="sub" data-dock-sub></div><div class="d30" data-dock-val></div></div><span class="tick" data-press>${I.check}</span></div>
+      <div class="dock"><span class="mk" data-dock-n></span><div class="grow"><div class="sub" data-dock-sub></div><div class="d30" data-dock-val></div></div><span class="tick" data-press>${I.check}</span></div>
       <div class="rest" data-rest><div class="grab"></div><div class="rt">${L("Riposo", "Rest")}</div>
-        <div class="big" data-count="118" data-from="120"></div><div class="rbar"><i data-bar></i></div><div class="sub">${L("di 2:00", "of 2:00")}</div>
+        <div class="big" data-rc>2:00</div><div class="rbar"><i data-rbar></i></div><div class="sub">${L("di 2:00", "of 2:00")}</div>
         <div class="row nx"><span class="mk" data-rest-n></span><div class="grow"><div class="sub" data-rest-sub></div><div class="d26" data-rest-val></div><div class="sub" data-rest-last></div></div><span class="mark" data-rest-goal></span></div>
         <div class="row three"><span>−30 s</span><span>+30 s</span><span>${I.skip}${L("Salta", "Skip")}</span></div></div>`,
 
     blocco: () => `<div class="lock"><div class="sb"><span></span>${I.battery}</div>
       <div class="date">${L("Ven 17 ott", "Fri Oct 17")}</div><div class="clock">18:42</div>
-      <div class="la pop" style="--z:100"><div class="row"><span class="pl" style="width:40px">${plate(4, 1)}</span>
-        <div class="grow"><div class="sub">${L(`${SQUAT}, poi serie 2`, `${SQUAT}, then set 2`)}</div><div class="d26">${x(85, 6)}</div></div>
-        <div class="r"><div class="sub">${L("Riposo", "Rest")}</div><div class="d40" data-count="74" data-from="120"></div></div></div>
+      <div class="la"><div class="row"><span class="pl" style="width:40px">${plate(4, 3)}</span>
+        <div class="grow"><div class="sub">${L(`${SQUAT}, poi serie 4`, `${SQUAT}, then set 4`)}</div><div class="d26">${x(90, 5)}</div></div>
+        <div class="r"><div class="sub">${L("Riposo", "Rest")}</div><div class="d40" data-rc>2:00</div></div></div>
         <div class="row two"><span>+30 s</span><span>${L("Salta", "Skip")}</span></div></div></div>`,
 
     // Fine allenamento (2026-11): il disco chiuso, le storie da condividere, il riepilogo coi record e
     // il confronto con la volta scorsa, esercizio per esercizio (la card Confronto).
     fine: () => `${status()}<div class="pad">
-      <div class="row hero"><span class="pl pop" style="width:64px;--z:130">${closed()}</span>
+      <div class="row hero"><span class="pl" style="width:64px">${closed()}</span>
         <div><h4 class="d30">${L("Disco chiuso", "Plate closed")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div></div></div>
       <div class="stories"><div class="story-card"><b class="wm">broli</b><div class="sn">${L("Gambe A", "Legs A")}</div>
           <div class="ss"><span><b>${L("8.420", "8,420")}</b>kg</span><span><b>19</b>${L("serie", "sets")}</span><span><b>2</b>record</span></div>
@@ -143,12 +143,12 @@
           .map(([ic, n, t, up]) => `<div class="row between cmp"><span class="row"><span class="ci${up ? " red" : ""}">${ic}</span><span class="nm">${n}</span></span><span class="sub">${t}</span></div>`).join("")}</div>
       </div><div class="acts"><span class="btn sec">${I.share}${L("Condividi", "Share")}</span><span class="btn">${I.check}${L("Fatto", "Done")}</span></div>`,
 
-    watchSerie: () => `<div class="w-time">${I.run}18:42</div><div class="w-pad set-w"><div class="row between w-top"><div><b>${SQUAT}</b><div class="sub">${L("Serie 3 di 4", "Set 3 of 4")}</div></div><span class="round w-more">${I.more}</span></div>
-      <div class="row"><span class="pl pop" style="width:62px;--z:50">${plate(4, 2, "3")}</span><div class="w-num"><span class="d40">${kg(90)}</span><span class="u">×</span><span class="d30">5</span></div></div>
-      <div class="btn w">${I.check}${L("Fatta", "Done")}</div></div><div class="dots"><i></i><i class="on"></i><i></i></div>`,
+    watchSerie: () => `<div class="w-time">${I.run}18:44</div><div class="w-pad set-w"><div class="row between w-top"><div><b>${SQUAT}</b><div class="sub">${L("Serie 4 di 4", "Set 4 of 4")}</div></div><span class="round w-more">${I.more}</span></div>
+      <div class="row"><span class="pl" style="width:62px">${plate(4, 3, "4")}</span><div class="w-num"><span class="d40">${kg(90)}</span><span class="u">×</span><span class="d30">5</span></div></div>
+      <div class="btn w" data-wpress>${I.check}${L("Fatta", "Done")}</div></div><div class="dots"><i></i><i class="on"></i><i></i></div>`,
 
     watchRiposo: () => `<div class="w-time">${I.run}18:42</div><div class="w-pad"><span class="sub">${L("Riposo", "Rest")}</span>
-      <div class="d54" data-count="74" data-from="120"></div><div class="bar"><i data-bar></i></div>
+      <div class="d54" data-rc>2:00</div><div class="bar"><i data-rbar></i></div>
       <div class="row small"><span class="pl" style="width:22px">${plate(4, 3)}</span><span class="sub">${L("Poi", "Next")}</span><b class="d20">${x(90, 5)}</b></div>
       <div class="row between"><span class="round w">${I.back30}</span><span class="round w">${I.skip}</span></div></div><div class="dots"><i></i><i class="on"></i><i></i></div>`,
   };
@@ -173,28 +173,42 @@
   };
   document.querySelectorAll("[data-art]").forEach((el) => (el.innerHTML = arts[el.dataset.art]()));
 
-  // Lo schermo sta in `.dev`, a misura vera, rimpicciolito dal CSS (vedi .phone in landing.css).
-  document.querySelectorAll("[data-screen]").forEach((el) => (el.innerHTML = `<div class="dev">${screens[el.dataset.screen]()}</div>`));
   document.querySelectorAll("[data-mark]").forEach((el) => {
     el.innerHTML = markSVG();
     drawMark(el, still ? 1 : 0, still ? 0.12 : 0);
   });
 
-  // La serie in corso: ogni tocco sulla spunta segna la serie che tocca, il disco dell'esercizio
-  // prende un pezzo e sale il foglio del riposo con la serie dopo; a quattro arriva l'esercizio dopo.
-  const serie = document.querySelector('[data-screen="serie"]');
+  // Il telefono del racconto, a misura vera dentro `.dev` e rimpicciolito dal CSS: Schede, la serie, la
+  // schermata di blocco, il velo e il disco grande di Grow, il riassunto. Accanto il watch, col riposo e
+  // la serie 4.
+  const story = document.querySelector("[data-story]");
+  story.setAttribute("aria-label", L("Schede, la serie che si spunta, il riposo sul watch, il disco chiuso", "Routines, a set being logged, rest on the watch, the plate closed"));
+  story.innerHTML = `<div class="dev">${["schede", "serie", "blocco"].map((k) => `<div class="layer" data-layer="${k}">${screens[k]()}</div>`).join("")}
+    <div class="veil"></div><div class="layer" data-layer="fine">${screens.fine()}</div><div class="bigplate" data-big></div></div>`;
+  const layer = (k) => story.querySelector(`[data-layer="${k}"]`);
+  const watch = document.querySelector("[data-story-watch]");
+  watch.innerHTML = `<div class="dev"><div class="wl" data-wl="riposo">${screens.watchRiposo()}</div><div class="wl" data-wl="serie">${screens.watchSerie()}</div></div>`;
+
+  // La serie in corso. Le righe si costruiscono una volta e poi cambiano solo le classi: così spunta,
+  // filo, coppa e campi hanno le loro transizioni (ricostruendole a ogni spunta erano tagli netti).
+  const serie = layer("serie");
   const $ = (s) => serie.querySelector(s);
+  $("[data-thread]").innerHTML = SETS.map(() => "<i></i>").join("");
+  $("[data-sets]").innerHTML = SETS.map(([w, r], i) => {
+    // La coppa appesa accanto al numero del record: il numero resta allineato a quelli delle altre righe.
+    const cup = (k) => (RECORD[i] === k ? `<span class="cup">${I.trophy}</span>` : "");
+    return `<div class="set"><span class="n">${i + 1}</span><span class="prev">${x(PREV[i][0], PREV[i][1])}</span>` +
+      `<span class="v"><span class="num">${kg(w)}${cup(0)}</span></span><span class="v"><span class="num">${r}${cup(1)}</span></span>` +
+      `<span class="chk"><i class="ring"></i><span class="ok">${I.check}</span></span></div>`;
+  }).join("");
+  const rows = [...serie.querySelectorAll(".set")], pieces = [...serie.querySelectorAll("[data-thread] i")];
+  const headPlate = serie.querySelector(".wk .pl");
   function setDone(d) {
-    const n = SETS.length;
-    $("[data-thread]").innerHTML = SETS.map((_, i) => `<i class="${i < d ? "done" : i === d ? "now" : ""}"></i>`).join("");
-    $("[data-sets]").innerHTML = SETS.map(([w, r], i) => {
-      const state = i < d ? "done" : i === d ? "now" : "next";
-      const cup = (k) => (i < d && RECORD[i] === k ? `<span class="cup">${I.trophy}</span>` : "");
-      // La coppa appesa accanto al numero: il numero resta allineato a quelli delle altre righe.
-      const vals = `<span class="v"><span class="num">${kg(w)}${cup(0)}</span></span><span class="v"><span class="num">${r}${cup(1)}</span></span>`;
-      return `<div class="set ${state}"><span class="n">${i + 1}</span><span class="prev">${x(PREV[i][0], PREV[i][1])}</span>${vals}${i < d ? `<span class="ok">${I.check}</span>` : `<span class="ring"></span>`}</div>`;
-    }).join("");
-    const end = d >= n;
+    const n = SETS.length, end = d >= n;
+    rows.forEach((row, i) => { row.classList.toggle("done", i < d); row.classList.toggle("now", i === d); row.classList.toggle("next", i > d); });
+    pieces.forEach((p, i) => { p.classList.toggle("done", i < d); p.classList.toggle("now", i === d); });
+    // Il disco della seduta in alto: finito lo Squat, il primo dei cinque esercizi diventa rosso.
+    headPlate.innerHTML = plate(5, end ? 1 : 0);
     // Il segno accanto al nome: il mirino con la serie che serve, a esercizio finito a parole.
     $("[data-goal]").innerHTML = end ? `<b class="red">${L("2,5 kg", "2.5 kg")}</b><span class="sub">${L("più della volta scorsa", "more than last time")}</span>`
       : `${I.scope}<b>${x(SETS[d][0], SETS[d][1])}</b>`;
@@ -210,50 +224,160 @@
     $("[data-rest-last]").textContent = L(`Scorsa ${x(pw, pr)}`, `Last ${x(pw, pr)}`);
     $("[data-rest-goal]").innerHTML = `${I.scope}<b>${x(w, r)}</b>`;
   }
-  // Due serie fatte: la coppa del record di ripetizioni si vede anche da ferma.
-  setDone(2);
 
-  // Conti alla rovescia del riposo: tutti insieme, e ricominciano da 2:00.
-  const counts = document.querySelectorAll("[data-count]");
-  const start = new Map([...counts].map((c) => [c, +c.dataset.count]));
-  let tick = 0;
-  const showCount = () => {
-    counts.forEach((c) => {
-      const left = ((start.get(c) - tick) % 121 + 121) % 121;
-      c.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`;
-      const bar = c.parentElement.querySelector("[data-bar]");
-      if (bar) bar.style.width = `${(left / 120) * 100}%`;
-    });
-  };
-  showCount();
+  // Il racconto Lift, Log, Grow. Lo scorrimento della sezione (0 in cima, 1 in fondo) decide in che
+  // momento si è; ogni passaggio è un'animazione vera di mezzo secondo, non segue il dito: fermandosi a
+  // metà non resta mai una schermata a metà. Solo il conto del riposo segue lo scorrimento (scorrere è il
+  // tempo che passa). I momenti, alle soglie di T:
+  //  0 Schede · 1 Inizia: si apre l'allenamento · 2, 3, 4 le prime tre spunte · 5 sale il riposo (il testo
+  //  passa al riposo) · 6 il telefono si blocca e il watch entra col conto · 7 la campana: il watch mostra la
+  //  serie 4 · 8 "Fatta" dal polso spunta la serie 4 · 9 Grow: il disco grande si chiude e va nel riassunto.
+  // Tornando su si torna indietro; saltando più momenti insieme (o con Riduci movimento) niente animazioni.
+  function racconto() {
+    const sec = document.querySelector("[data-scrolly]");
+    const stage = sec.querySelector(".stage"), steps = [...sec.querySelectorAll(".step")], logStep = steps[1];
+    const go = [...sec.querySelectorAll("[data-go]")], devices = sec.querySelector(".devices");
+    const startBtn = layer("schede").querySelector(".btn.in"), press = $("[data-press]"), restSheet = $("[data-rest]");
+    const fine = layer("fine"), heroPlate = fine.querySelector(".hero .pl"), big = story.querySelector("[data-big]");
+    const wPress = watch.querySelector("[data-wpress]");
+    const rcs = [...devices.querySelectorAll("[data-rc]")], bars = [...devices.querySelectorAll("[data-rbar]")];
+    const T = [0, 0.1, 0.18, 0.25, 0.32, 0.4, 0.47, 0.62, 0.68, 0.78];
+    const REST = [0.4, 0.62];   // il conto da 2:00 a 0:00
+    const GO = [0, T[2] + 0.01, T[9] + 0.01];   // dove porta il filo toccato
+    const NARROW = "(max-width: 860px) and (orientation: portrait)";
+    const clamp = (v) => Math.min(1, Math.max(0, v));
+    sec.classList.add("live");
+    let s = -1, queued = false, top = 0, total = 1, fitW = 0, fitH = 0, shownLeft = -1, timers = [];
 
-  if (still) return;
-  const seen = new Set();
-  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-    if (e.isIntersecting && e.target.matches("[data-mark]") && !seen.has(e.target)) { seen.add(e.target); animateMark(e.target); }
-    e.target.classList.toggle("visible", e.isIntersecting);
-  }), { threshold: 0.35 });
-  document.querySelectorAll("[data-mark], [data-screen]").forEach((el) => io.observe(el));
-
-  setInterval(() => { tick++; showCount(); }, 1000);
-
-  // Il giro della serie: spunta, foglio del riposo su, poi giù con la serie dopo nella barra.
-  let d = 2;
-  const rest = $("[data-rest]");
-  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  (async function loop() {
-    for (;;) {
-      await wait(1700);
-      if (!serie.classList.contains("visible")) continue;
-      const b = $("[data-press]");
-      b.classList.add("pressed");
-      await wait(180);
-      b.classList.remove("pressed");
-      setDone(++d);
-      rest.classList.add("up");
-      await wait(2600);
-      rest.classList.remove("up");
-      if (d >= SETS.length) { await wait(500); d = 0; setDone(d); }
+    // La misura del telefono (alto quanto lo schermo lascia, mai più di 0,8) e la posizione della sezione:
+    // si calcolano qui, non a ogni fotogramma. Solo se cambiano larghezza o altezza del palco: su iPhone la
+    // barra di Safari che si stringe manda `resize` di continuo. Sugli schermi bassi (il browser di
+    // Instagram, il telefono di traverso) il testo si accorcia alle prime righe invece di tagliare il palco.
+    function fit() {
+      const w = innerWidth, h = stage.clientHeight;
+      if (w !== fitW || h !== fitH) {
+        fitW = w; fitH = h;
+        const narrow = matchMedia(NARROW).matches, stepsH = () => sec.querySelector(".steps").offsetHeight;
+        sec.classList.remove("compact");
+        story.style.setProperty("--z", 1);
+        let room = h - (narrow ? stepsH() + 48 : 64);
+        if (narrow && room / 868 < 0.5) { sec.classList.add("compact"); room = h - (stepsH() + 40); }
+        const z = Math.max(0.34, Math.min(0.8, room / 868));
+        story.style.setProperty("--z", z.toFixed(3));
+        watch.style.setProperty("--z", (z * 1.05).toFixed(3));
+        // Lo zoom dell'allenamento parte dal centro del bottone Inizia.
+        const d = story.querySelector(".dev").getBoundingClientRect(), b = startBtn.getBoundingClientRect();
+        serie.style.transformOrigin = `${((b.left + b.width / 2 - d.left) / d.width) * 100}% ${((b.top + b.height / 2 - d.top) / d.height) * 100}%`;
+      }
+      top = sec.getBoundingClientRect().top + scrollY;
+      total = Math.max(1, sec.offsetHeight - stage.offsetHeight);
     }
-  })();
+
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const tap = (el, ms = 180) => { el.classList.add("pressed"); later(() => el.classList.remove("pressed"), ms); };
+    // Per un fotogramma niente transizioni: le classi cambiano tutte insieme e la scena salta lì.
+    const jump = () => { devices.classList.add("jump"); requestAnimationFrame(() => requestAnimationFrame(() => devices.classList.remove("jump"))); };
+    const ticksAt = (k) => (k <= 1 ? 0 : k <= 4 ? k - 1 : k <= 7 ? 3 : 4);
+
+    function apply(next, prev) {
+      const instant = still || prev < 0 || Math.abs(next - prev) > 1;
+      timers.forEach(clearTimeout); timers = [];
+      if (instant) jump();
+      const set = (c, on) => devices.classList.toggle(c, on);
+      // Inizia: prima il tocco sul bottone, poi l'allenamento si apre da lì.
+      if (!instant && next === 1 && prev === 0) { set("s-work", false); tap(startBtn); later(() => set("s-work", true), 160); }
+      else set("s-work", next >= 1);
+      restSheet.classList.toggle("up", next >= 5 && next <= 7);
+      set("s-lock", next === 6 || next === 7);
+      set("s-watch", next >= 6 && next <= 8);
+      set("s-wserie", next >= 7);
+      const before = prev < 0 ? 0 : ticksAt(prev), now = ticksAt(next);
+      setDone(now);
+      if (!instant && now > before && next <= 4) tap(press);
+      // La campana di fine riposo: il watch vibra e un anello rosso si allarga.
+      if (!instant && next === 7 && prev === 6) { set("bell", true); later(() => set("bell", false), 1400); }
+      if (!instant && next === 8 && prev === 7) tap(wPress, 220);
+      // Il testo: Lift, Log (la serie, poi il riposo), Grow.
+      const step = next <= 1 ? 0 : next <= 8 ? 1 : 2;
+      steps.forEach((el, i) => { el.classList.toggle("on", i === step); el.classList.toggle("past", i < step); });
+      go.forEach((g, i) => { g.classList.toggle("done", i < step); g.classList.toggle("now", i === step); });
+      logStep.classList.toggle("resting", next >= 5 && next <= 8);
+      if (next >= 9) grow(instant || prev !== 8); else ungrow();
+    }
+
+    // Grow: il velo, il disco grande che si riempie pezzo per pezzo e si chiude, poi sale il riassunto e il
+    // disco vola al suo posto accanto a "Disco chiuso".
+    function grow(instant) {
+      devices.classList.remove("landed");
+      big.style.transform = ""; big.style.opacity = "";
+      if (instant) { devices.classList.add("s-sheet", "landed"); devices.classList.remove("s-grow"); return; }
+      big.classList.remove("closing");
+      big.innerHTML = plate(5, 1);
+      devices.classList.add("s-grow");
+      let k = 1;
+      const fill = () => {
+        k++;
+        if (k < 5) { big.innerHTML = plate(5, k); later(fill, 110); return; }
+        big.innerHTML = closed();
+        big.classList.add("closing");
+        later(fly, 520);
+      };
+      later(fill, 260);
+      function fly() {
+        let el = heroPlate, hx = 0, hy = 0;
+        while (el && el !== fine && el !== story) { hx += el.offsetLeft; hy += el.offsetTop; el = el.offsetParent; }
+        const bx = big.offsetLeft + big.offsetWidth / 2, by = big.offsetTop + big.offsetHeight / 2;
+        const dx = hx + heroPlate.offsetWidth / 2 - bx, dy = hy + heroPlate.offsetHeight / 2 - by;
+        big.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${(heroPlate.offsetWidth / big.offsetWidth).toFixed(3)})`;
+        devices.classList.add("s-sheet");
+        later(() => { devices.classList.add("landed"); big.style.opacity = "0"; }, 560);
+      }
+    }
+    function ungrow() {
+      devices.classList.remove("s-grow", "s-sheet", "landed");
+      big.classList.remove("closing");
+      big.style.transform = ""; big.style.opacity = "";
+    }
+
+    function render() {
+      queued = false;
+      const p = clamp((scrollY - top) / total);
+      let n = Math.max(s, 0);
+      while (n + 1 < T.length && p >= T[n + 1]) n++;
+      while (n > 0 && p < T[n] - 0.012) n--;   // un poco di margine tornando su: niente avanti e indietro
+      if (n !== s) { const prev = s; s = n; apply(n, prev); }
+      const left = Math.round(120 * (1 - clamp((p - REST[0]) / (REST[1] - REST[0]))));
+      if (left !== shownLeft) {
+        shownLeft = left;
+        const txt = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`;
+        rcs.forEach((e) => (e.textContent = txt));
+        bars.forEach((b) => (b.style.transform = `scaleX(${(left / 120).toFixed(3)})`));
+      }
+    }
+    const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(render); } };
+
+    // Il filo toccato porta all'inizio del passo.
+    go.forEach((g, i) => g.addEventListener("click", (e) => {
+      e.preventDefault();
+      scrollTo({ top: top + total * GO[i], behavior: still ? "auto" : "smooth" });
+    }));
+
+    fit();
+    render();
+    requestAnimationFrame(() => requestAnimationFrame(() => sec.classList.add("ready")));
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", () => { fit(); onScroll(); });
+    document.fonts?.ready.then(() => { fit(); onScroll(); });
+    // Immagini e caratteri caricati possono spostare la sezione: si ricalcola dove comincia.
+    addEventListener("load", () => { fit(); onScroll(); });
+  }
+
+  racconto();
+
+  // Il disco della copertina si disegna quando arriva a vista.
+  if (still) return;
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { io.unobserve(e.target); animateMark(e.target); }
+  }), { threshold: 0.35 });
+  document.querySelectorAll("[data-mark]").forEach((el) => io.observe(el));
 })();
