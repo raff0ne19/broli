@@ -36,6 +36,10 @@
     up: `<svg viewBox="0 0 24 24" class="i"><path d="M5.5 15l6.5-6.5 6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     down: `<svg viewBox="0 0 24 24" class="i"><path d="M5.5 9l6.5 6.5L18.5 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     share: `<svg viewBox="0 0 24 24" class="i"><path d="M12 3v12M7.5 7.5L12 3l4.5 4.5M7 11H5.5v9.5h13V11H17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    trophy: `<svg viewBox="0 0 24 24" class="i"><path d="M7 3h10v5.5a5 5 0 0 1-10 0z" fill="currentColor"/><path d="M7 5.5H4v1A3.5 3.5 0 0 0 7.5 10M17 5.5h3v1A3.5 3.5 0 0 1 16.5 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10.5 13h3v4h-3zM8 18h8v3H8z" fill="currentColor"/></svg>`,
+    scope: `<svg viewBox="0 0 24 24" class="i"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v5M12 16.5v5M2.5 12h5M16.5 12h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+    arrowUp: `<svg viewBox="0 0 24 24" class="i"><path d="M12 19.5V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    equal: `<svg viewBox="0 0 24 24" class="i"><path d="M6 9.5h12M6 14.5h12" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>`,
     timer: `<svg viewBox="0 0 24 24" class="i"><circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 9v4.5l2.5 2M10 2.5h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`,
     trend: `<svg viewBox="0 0 24 24" class="i"><path d="M3 3v18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 15l4-4.5 3 3L20 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     back30: `<svg viewBox="0 0 24 24" class="i"><path d="M5.2 8.5A8 8 0 1 1 4 12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M5.5 3.8v5h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><text x="12.4" y="15.6" text-anchor="middle" font-size="7.6" font-weight="700" fill="currentColor" font-family="-apple-system, sans-serif">30</text></svg>`,
@@ -57,6 +61,10 @@
   // L'esercizio della landing: quattro serie a salire, le stesse della volta scorsa.
   const SQUAT = L("Squat", "Squat");
   const SETS = [[80, 8], [85, 6], [90, 5], [90, 5]];
+  // La volta scorsa, un poco sotto: la serie 2 è un record di ripetizioni (6 con 85 kg, con 85 o più
+  // al massimo 5), la 3 di peso (90 sopra 87,5). La coppa sta sul numero del record (`CompletaSetRow`).
+  const PREV = [[80, 8], [82.5, 6], [87.5, 5], [87.5, 5]];
+  const RECORD = { 1: 1, 2: 0 };   // serie → 0 kg, 1 reps
   const NEXT_EX = [L("Stacco rumeno", "Romanian deadlift"), 70, 10, 3];
 
   // Andamento a fine seduta (CompareChart): la forza accumulata oggi e la volta scorsa, in percentuale.
@@ -87,26 +95,29 @@
         .map(([n, s]) => `<div class="row between li"><div><div class="nm">${n}</div><div class="sub">${s}</div></div><span class="round sm">${I.play}</span></div>`).join("")}</div>
       </div><div class="tabs"><span class="on">${I.lift}</span><span>${I.figure}</span><span>${I.calendar}</span><span>${I.bars}</span><span>${I.person}</span></div>`,
 
-    // Allenamento, vista Lista: l'esercizio aperto con l'obiettivo, la colonna "Prima" e i campi;
-    // la serie che tocca nella barra in basso; dopo la spunta sale il foglio del riposo.
+    // Allenamento, vista Lista (2026-11): gli esercizi aperti, quello in corso sul tappeto col filo (un
+    // pezzo per serie), il riposo e il mirino accanto al nome; la serie che tocca nella pillola in basso,
+    // col suo numero; dopo la spunta sale il foglio del riposo.
     serie: () => `${status()}<div class="pad">
       <div class="row wk"><span class="round">${I.shrink}</span><span class="pl" style="width:34px">${plate(5, 0)}</span>
-        <div class="grow"><div class="nm">${L("Gambe A", "Legs A")}</div><div class="sub">24:10</div></div><span class="pill">${L("Termina", "End")}</span></div>
-      <div class="seg"><span class="on">${L("Lista", "List")}</span><span>${L("Una serie", "One set")}</span></div>
-      <div class="card ex"><div class="row between"><h4 class="d30">${SQUAT}</h4><span class="row tools"><span class="pl" style="width:40px" data-plate></span><span class="more">${I.more}</span><span class="chev">${I.up}</span></span></div>
-        <div class="sub">${L("riposo 2:00", "rest 2:00")}</div>
-        <div class="goal"><div class="row between"><span class="gl">${L("Ti basta", "All you need")}</span><b class="d22" data-goal></b></div>
-          <div class="gbar"><i data-gbar></i></div><div class="sub">${L("Nella prossima serie, poi come previsto. Vale anche un peso sopra 90 kg.", "In the next set, then as planned. A weight above 90 kg counts too.")}</div></div>
-        <div class="thead"><span>${L("Serie", "Set")}</span><span>${L("Prima", "Last")}</span><span>kg</span><span>reps</span><span></span></div>
+        <div class="grow"><div class="nm row nmc">${L("Gambe A", "Legs A")}${I.down}</div><div class="sub">24:10</div></div><span class="pill">${L("Termina", "End")}</span></div>
+      <div class="mat"><div class="thread" data-thread></div>
+        <div class="row between"><h4 class="d30">${SQUAT}</h4><span class="more">${I.more}</span></div>
+        <div class="row meta"><span class="sub row">${I.timer}2:00</span><span class="mark" data-goal></span></div>
+        <div class="thead"><span>${L("Serie", "Set")}</span><span>${L("Scorsa", "Last")}</span><span>kg</span><span>reps</span><span></span></div>
         <div class="sets" data-sets></div>
         <div class="addset">${I.plus}${L("Aggiungi serie", "Add set")}</div></div>
-      ${[[NEXT_EX[0], "3 × 8–10"], ["Leg press", "3 × 10–12"], ["Leg curl", "3 × 10–12"]].map(([n, s]) => `<div class="row between li"><span class="nm">${n}</span><span class="sub row">${s}${I.down}</span></div>`).join("")}
+      <div class="later"><div class="thread">${"<i></i>".repeat(NEXT_EX[3])}</div>
+        <div class="row between"><h4 class="d30">${NEXT_EX[0]}</h4><span class="more">${I.more}</span></div>
+        <div class="row meta"><span class="sub row">${I.timer}1:30</span><span class="mark">${I.scope}<b>${x(NEXT_EX[1], NEXT_EX[2])}</b></span></div>
+        <div class="thead"><span>${L("Serie", "Set")}</span><span>${L("Scorsa", "Last")}</span><span>kg</span><span>reps</span><span></span></div>
+        ${[1, 2].map((i) => `<div class="set next"><span class="n">${i}</span><span class="prev">${x(NEXT_EX[1], NEXT_EX[2])}</span><span class="v">${kg(NEXT_EX[1])}</span><span class="v">${NEXT_EX[2]}</span><span class="ring"></span></div>`).join("")}</div>
       </div>
-      <div class="dock pop" style="--z:40"><span class="pl" style="width:44px" data-dock-plate></span><div class="grow"><div class="d30" data-dock-val></div><div class="sub" data-dock-sub></div></div><span class="tick" data-press>${I.check}</span></div>
+      <div class="dock pop" style="--z:40"><span class="mk" data-dock-n></span><div class="grow"><div class="sub" data-dock-sub></div><div class="d30" data-dock-val></div></div><span class="tick" data-press>${I.check}</span></div>
       <div class="rest" data-rest><div class="grab"></div><div class="rt">${L("Riposo", "Rest")}</div>
         <div class="big" data-count="118" data-from="120"></div><div class="rbar"><i data-bar></i></div><div class="sub">${L("di 2:00", "of 2:00")}</div>
-        <div class="row nx"><span class="pl" style="width:44px" data-rest-plate></span><div><div class="sub" data-rest-sub></div><div class="d26" data-rest-val></div><div class="sub" data-rest-last></div></div></div>
-        <div class="row three"><span>−30 s</span><span>${I.timer}+30 s</span><span>${I.skip}${L("Salta", "Skip")}</span></div></div>`,
+        <div class="row nx"><span class="mk" data-rest-n></span><div class="grow"><div class="sub" data-rest-sub></div><div class="d26" data-rest-val></div><div class="sub" data-rest-last></div></div><span class="mark" data-rest-goal></span></div>
+        <div class="row three"><span>−30 s</span><span>+30 s</span><span>${I.skip}${L("Salta", "Skip")}</span></div></div>`,
 
     blocco: () => `<div class="lock"><div class="sb"><span></span>${I.battery}</div>
       <div class="date">${L("Ven 17 ott", "Fri Oct 17")}</div><div class="clock">18:42</div>
@@ -115,14 +126,21 @@
         <div class="r"><div class="sub">${L("Riposo", "Rest")}</div><div class="d40" data-count="74" data-from="120"></div></div></div>
         <div class="row two"><span>+30 s</span><span>${L("Salta", "Skip")}</span></div></div></div>`,
 
+    // Fine allenamento (2026-11): il disco chiuso, le storie da condividere, il riepilogo coi record e
+    // il confronto con la volta scorsa, esercizio per esercizio (la card Confronto).
     fine: () => `${status()}<div class="pad">
       <div class="row hero"><span class="pl pop" style="width:64px;--z:130">${closed()}</span>
         <div><h4 class="d30">${L("Disco chiuso", "Plate closed")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div></div></div>
+      <div class="stories"><div class="story-card"><b class="wm">broli</b><div class="sn">${L("Gambe A", "Legs A")}</div>
+          <div class="ss"><span><b>${L("8.420", "8,420")}</b>kg</span><span><b>19</b>${L("serie", "sets")}</span><span><b>2</b>record</span></div>
+          <div class="sl">${[[SQUAT, x(90, 5)], [NEXT_EX[0], x(70, 10)], ["Leg press", x(95, 12)]].map(([n, v]) => `<div class="row between"><span>${n}</span><b>${v}</b></div>`).join("")}</div></div>
+        <div class="story-card two"><b class="wm">broli</b><div class="big2">${L("Più di 4", "Over 4")}</div><div class="sn">${L("utilitarie", "small cars")}</div></div></div>
+      <div class="sdots"><i class="on"></i><i></i><i></i></div>
       <div class="card"><div class="lbl in">${L("Riepilogo", "Summary")}</div><div class="stats"><div><span class="d26">19</span><span class="sub">${L("serie", "sets")}</span></div><div><span class="d26">${L("8.420", "8,420")}</span><span class="sub">${L("kg sollevati", "kg lifted")}</span></div><div><span class="d26 red">2</span><span class="sub">${L("record", "PR")}</span></div></div></div>
-      <div class="card"><div class="nm">${L("Andamento", "Trend")}</div>
-        <div class="row head"><span class="d30">+4%</span><span class="sub">${L("più forte della volta scorsa", "stronger than last time")}</span></div>${strengthChart()}</div>
-      <div class="card"><div class="lbl in">${L("Oggi", "Today")}</div><div class="nm">${L("Hai battuto 2 record personali.", "You set 2 new PRs.")}</div>
-        <div class="sub foot">${L("Volta scorsa battuta in 4 esercizi su 5.", "Last time beaten on 4 of 5 exercises.")}</div></div>
+      <div class="card"><div class="nm">${L("Confronto", "Compare")}</div>
+        <div class="row head"><span class="d30">${L("4 su 5", "4 of 5")}</span><span class="sub">${L("esercizi meglio della volta scorsa", "exercises better than last time")}</span></div>
+        ${[[I.arrowUp, SQUAT, L("2,5 kg in più", "2.5 kg more"), true], [I.arrowUp, NEXT_EX[0], L("1 rep in più", "1 rep more"), true], [I.equal, "Leg curl", L("come la volta scorsa", "same as last time"), false]]
+          .map(([ic, n, t, up]) => `<div class="row between cmp"><span class="row"><span class="ci${up ? " red" : ""}">${ic}</span><span class="nm">${n}</span></span><span class="sub">${t}</span></div>`).join("")}</div>
       </div><div class="acts"><span class="btn sec">${I.share}${L("Condividi", "Share")}</span><span class="btn">${I.check}${L("Fatto", "Done")}</span></div>`,
 
     watchSerie: () => `<div class="w-time">${I.run}18:42</div><div class="w-pad set-w"><div class="row between w-top"><div><b>${SQUAT}</b><div class="sub">${L("Serie 3 di 4", "Set 3 of 4")}</div></div><span class="round w-more">${I.more}</span></div>
@@ -168,28 +186,32 @@
   const $ = (s) => serie.querySelector(s);
   function setDone(d) {
     const n = SETS.length;
-    $("[data-plate]").innerHTML = plate(n, d);
+    $("[data-thread]").innerHTML = SETS.map((_, i) => `<i class="${i < d ? "done" : i === d ? "now" : ""}"></i>`).join("");
     $("[data-sets]").innerHTML = SETS.map(([w, r], i) => {
       const state = i < d ? "done" : i === d ? "now" : "next";
-      const vals = `<span class="v">${kg(w)}</span><span class="v">${r}</span>`;
-      return `<div class="set ${state}"><span class="n">${i + 1}</span><span class="prev">${x(w, r)}</span>${vals}${i < d ? `<span class="ok">${I.check}</span>` : `<span class="ring"></span>`}</div>`;
+      const cup = (k) => (i < d && RECORD[i] === k ? `<span class="cup">${I.trophy}</span>` : "");
+      // La coppa appesa accanto al numero: il numero resta allineato a quelli delle altre righe.
+      const vals = `<span class="v"><span class="num">${kg(w)}${cup(0)}</span></span><span class="v"><span class="num">${r}${cup(1)}</span></span>`;
+      return `<div class="set ${state}"><span class="n">${i + 1}</span><span class="prev">${x(PREV[i][0], PREV[i][1])}</span>${vals}${i < d ? `<span class="ok">${I.check}</span>` : `<span class="ring"></span>`}</div>`;
     }).join("");
-    const g = SETS[Math.min(d, n - 1)];
-    $("[data-goal]").textContent = x(g[0], g[1] + 1);
-    $("[data-gbar]").style.width = `${(d / n) * 100}%`;
     const end = d >= n;
-    $("[data-dock-plate]").innerHTML = end ? plate(NEXT_EX[3], 0) : plate(n, d);
+    // Il segno accanto al nome: il mirino con la serie che serve, a esercizio finito a parole.
+    $("[data-goal]").innerHTML = end ? `<b class="red">${L("2,5 kg", "2.5 kg")}</b><span class="sub">${L("più della volta scorsa", "more than last time")}</span>`
+      : `${I.scope}<b>${x(SETS[d][0], SETS[d][1])}</b>`;
+    $("[data-dock-n]").textContent = end ? "1" : `${d + 1}`;
     $("[data-dock-val]").textContent = end ? xkg(NEXT_EX[1], NEXT_EX[2]) : xkg(SETS[d][0], SETS[d][1]);
-    $("[data-dock-sub]").textContent = end ? L(`${NEXT_EX[0]}, serie 1 di ${NEXT_EX[3]}`, `${NEXT_EX[0]}, set 1 of ${NEXT_EX[3]}`)
-      : L(`${SQUAT}, serie ${d + 1} di ${n}`, `${SQUAT}, set ${d + 1} of ${n}`);
-    // Il foglio del riposo: la serie che viene dopo e la stessa la volta scorsa.
-    const [name, w, r, tot, k] = end ? [NEXT_EX[0], NEXT_EX[1], NEXT_EX[2], NEXT_EX[3], 0] : [SQUAT, SETS[d][0], SETS[d][1], n, d];
-    $("[data-rest-plate]").innerHTML = plate(tot, k);
-    $("[data-rest-sub]").textContent = L(`Poi ${name}, serie ${k + 1} di ${tot}`, `Then ${name}, set ${k + 1} of ${tot}`);
+    $("[data-dock-sub]").textContent = end ? NEXT_EX[0] : SQUAT;
+    // Il foglio del riposo: la serie che viene dopo, com'era la volta scorsa e il mirino.
+    const [name, w, r, k, pw, pr] = end ? [NEXT_EX[0], NEXT_EX[1], NEXT_EX[2], 0, NEXT_EX[1], NEXT_EX[2]]
+      : [SQUAT, SETS[d][0], SETS[d][1], d, PREV[d][0], PREV[d][1]];
+    $("[data-rest-n]").textContent = `${k + 1}`;
+    $("[data-rest-sub]").textContent = name;
     $("[data-rest-val]").textContent = xkg(w, r);
-    $("[data-rest-last]").textContent = L(`Volta scorsa ${xkg(w, r)}`, `Last time ${xkg(w, r)}`);
+    $("[data-rest-last]").textContent = L(`Scorsa ${x(pw, pr)}`, `Last ${x(pw, pr)}`);
+    $("[data-rest-goal]").innerHTML = `${I.scope}<b>${x(w, r)}</b>`;
   }
-  setDone(1);
+  // Due serie fatte: la coppa del record di ripetizioni si vede anche da ferma.
+  setDone(2);
 
   // Conti alla rovescia del riposo: tutti insieme, e ricominciano da 2:00.
   const counts = document.querySelectorAll("[data-count]");
@@ -216,7 +238,7 @@
   setInterval(() => { tick++; showCount(); }, 1000);
 
   // Il giro della serie: spunta, foglio del riposo su, poi giù con la serie dopo nella barra.
-  let d = 1;
+  let d = 2;
   const rest = $("[data-rest]");
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   (async function loop() {

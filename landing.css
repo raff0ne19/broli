@@ -124,18 +124,18 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .ring { box-shadow: inset 0 0 0 2px var(--ink3); }
 .set.now .n { color: var(--heat-text); }
 .set.now .ring { box-shadow: inset 0 0 0 2px var(--ink); }
-.set.done { background: var(--raised2); margin: 4px -6px; padding: 0 6px; }
-.set.done .n { background: none; color: var(--ink); }
+.set.done { background: none; }
+.set.done .n { background: none; color: var(--ink2); }
 .set.done .v { background: none; color: var(--ink); }
 .set .ok { background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; }
 .set .ok .i { width: 14px; height: 14px; }
-.addset { display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; margin-top: 8px; border-radius: 12px; background: var(--raised2); font-size: 15px; font-weight: 500; }
+.addset { display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; margin-top: 4px; color: var(--ink2); font-size: 14px; font-weight: 600; }
 .addset .i { width: 15px; height: 15px; }
 .pad > .li { padding-right: 0; font-size: 17px; }
 .pad > .li .nm { font-weight: 500; }
 .pad > .li .sub { margin: 0; gap: 8px; }
 .pad > .li .sub .i { width: 16px; height: 16px; color: var(--ink3); }
-.dock { position: absolute; left: 14px; right: 14px; bottom: 22px; height: 76px; border-radius: 38px; background: var(--raised); box-shadow: 0 -1px 0 var(--line), 0 8px 30px var(--shade); display: flex; align-items: center; gap: 12px; padding: 0 10px 0 16px; z-index: 1; }
+.dock { position: absolute; left: 14px; right: 14px; bottom: 22px; height: 76px; border-radius: 38px; background: var(--pill); box-shadow: inset 0 0 0 1px var(--pill-edge), 0 8px 30px var(--shade); display: flex; align-items: center; gap: 12px; padding: 0 10px 0 16px; z-index: 1; }
 .dock .d30 { font-size: 30px; }
 .dock .sub { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tick { width: 56px; height: 56px; border-radius: 50%; background: var(--heat); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; transition: scale .15s, filter .15s; }
@@ -155,6 +155,35 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .three { gap: 8px; margin-top: 16px; }
 .three span { flex: 1; height: 48px; border-radius: 16px; background: var(--raised2); display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; font-size: 15px; }
 .three .i { width: 16px; height: 16px; }
+
+/* La Lista di oggi (2026-11): l'esercizio in corso sul tappeto, il filo (un pezzo per serie), il
+   riposo e il mirino accanto al nome; gli esercizi dopo aperti, senza card. */
+.nmc { gap: 4px; }
+.nmc .i { width: 14px; height: 14px; color: var(--ink2); }
+.mat { background: var(--mat); box-shadow: inset 0 0 0 1px var(--mat-edge), 0 5px 14px var(--mat-shadow); border-radius: 20px; padding: 12px 14px 10px; margin: 6px -10px 0; }
+/* Sul tappeto i campi da fare hanno il colore della pagina, come nell'app (fuori, il primo gradino). */
+.mat .set:not(.done) .v, .mat .set:not(.done) .n { background: var(--bg); }
+/* Dal tappeto all'esercizio dopo 12 punti, come nell'app (2026-11-03). */
+.later { margin-top: 12px; }
+.later .set .v { background: var(--raised); }
+.thread { display: flex; gap: 4px; margin-bottom: 10px; }
+.thread i { flex: 1; height: 3px; border-radius: 2px; background: var(--raised2); transition: background .3s; }
+.later .thread i { background: color-mix(in srgb, var(--ink3) 45%, transparent); }
+.thread i.done { background: var(--heat); }
+.thread i.now { background: color-mix(in srgb, var(--heat) 32%, transparent); }
+.meta { gap: 16px; margin-top: 4px; align-items: center; }
+.meta > .sub { gap: 5px; align-items: center; }
+.meta > .sub .i { width: 16px; height: 16px; }
+.mark { display: inline-flex; align-items: baseline; gap: 5px; }
+.mark .i { width: 17px; height: 17px; color: var(--ink2); align-self: center; }
+.mark b { font-family: "Barlow SC"; font-weight: 700; font-size: 20px; }
+.mark .sub { font-size: 14px; font-weight: 600; }
+.set .num { position: relative; }
+.set .cup { position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 3px; color: var(--heat-text); display: flex; }
+.set .cup .i { width: 13px; height: 13px; }
+/* Il numero della serie nella pillola e nel riposo, come nell'app (`pillMarkerBox`). */
+.mk { width: 34px; height: 40px; border-radius: 10px; background: var(--bg); color: var(--heat-text); font-family: "Barlow SC"; font-weight: 700; font-size: 24px; display: flex; align-items: center; justify-content: center; flex: none; }
+.rest .nx .mark b { font-size: 18px; }
 
 /* Schermata di blocco: la Live Activity del riposo. */
 .lock { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, #2B2F36, #15171B 70%); }
@@ -184,6 +213,28 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .legend i { width: 16px; height: 4px; border-radius: 2px; background: var(--ink3); }
 .legend i.now { background: var(--heat); }
 .card .foot { font-size: 13px; margin-top: 6px; }
+/* Le storie da condividere (2026-11), due anteprime affiancate e i puntini; il Confronto. */
+.stories { display: flex; gap: 12px; margin: 4px -24px 0 0; overflow: hidden; }
+.story-card { flex: none; width: 150px; height: 266px; border-radius: 16px; background: #0D0D0E; color: #F1F0EC; padding: 14px 12px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+.story-card .wm { font-family: "Bricolage", sans-serif; font-weight: 800; font-size: 20px; }
+.story-card .sn { font-family: "Barlow SC"; font-weight: 700; font-size: 20px; margin-top: 18px; }
+.story-card .ss { display: flex; justify-content: space-between; font-size: 9px; color: #8D8D93; }
+.story-card .ss span { display: flex; flex-direction: column; }
+.story-card .ss b { font-family: "Barlow SC"; font-size: 15px; color: #F1F0EC; }
+.story-card .sl { margin-top: 8px; font-size: 10px; display: flex; flex-direction: column; gap: 4px; }
+.story-card .sl b { font-family: "Barlow SC"; font-size: 11px; }
+.story-card.two .big2 { font-family: "Barlow SC"; font-weight: 700; font-size: 34px; line-height: 1; margin-top: 30px; }
+.story-card.two .sn { margin-top: 0; font-size: 26px; }
+.sdots { display: flex; justify-content: center; gap: 6px; margin: 10px 0 12px; }
+.sdots i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink3); }
+.sdots i.on { background: var(--ink); }
+.cmp { padding: 9px 0; border-top: 1px solid var(--line); }
+.cmp:first-of-type { margin-top: 8px; }
+.cmp .row { gap: 8px; align-items: center; }
+.cmp .nm { font-size: 15px; font-weight: 600; }
+.cmp .sub { font-size: 14px; }
+.ci { display: flex; color: var(--ink); }
+.ci .i { width: 15px; height: 15px; }
 /* I comandi stanno sopra il contenuto, su un velo del colore di fondo: niente card tagliata sotto. */
 .acts { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 10px; padding: 28px 20px 30px; background: linear-gradient(to bottom, transparent, var(--bg) 26px); }
 .acts .btn { flex: 1; }

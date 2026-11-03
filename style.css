@@ -7,6 +7,11 @@
   --line: rgba(255,255,255,.08); --heat: #E2231A; --heat-text: #FF2D24; --shade: rgba(0,0,0,.6);
   /* Il disco della seduta (PlatePalette): i pezzi vuoti, un gradino sopra la gomma. */
   --pl-empty: #323238;
+  /* La pillola in basso (Color.surfacePill e pillEdge, 2026-11): nello scuro un gradino sopra il rialzato. */
+  --pill: #2E2E33; --pill-edge: rgba(255,255,255,.14);
+  /* Il tappeto sotto l'esercizio in corso (Color.workoutMat, 2026-11-03): nello scuro il secondo gradino,
+     senza bordo né ombra; nel chiaro bianco, col filo e l'ombra (matShadow). */
+  --mat: #222226; --mat-edge: transparent; --mat-shadow: transparent;
   /* Il marchio: il pezzo in corso è il rosso al 32% sul fondo del tema, già mescolato. */
   --mark-arr-a: #561B19; --mark-arr-b: #46110F;
   color-scheme: dark;
@@ -16,6 +21,8 @@
   --bg: #EEEDE8; --raised: #F9F8F5; --raised2: #E2E1DB; --ink: #15171A; --ink2: #55595F; --ink3: #9C9DA2;
   --line: rgba(21,23,26,.08); --heat-text: #C41E16; --shade: rgba(21,23,26,.22);
   --pl-empty: #C6C5BF;
+  --pill: #F9F8F5; --pill-edge: rgba(21,23,26,.14);
+  --mat: #FFFFFF; --mat-edge: rgba(21,23,26,.08); --mat-shadow: rgba(0,0,0,.09);
   --mark-arr-a: #EFB4AD; --mark-arr-b: #DFA9A4;
   color-scheme: light;
 }
