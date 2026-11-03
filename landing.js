@@ -83,7 +83,7 @@
 
   const screens = {
     schede: () => `${status()}<div class="pad">
-      <div class="row between"><h4 class="t34">${L("Schede", "Routines")}</h4><span class="round">${I.plus}</span></div>
+      <div class="row between"><div class="t34">${L("Schede", "Routines")}</div><span class="round">${I.plus}</span></div>
       <div class="search">${I.search}${L("Cerca tra 5 schede", "Search 5 routines")}</div>
       <div class="lbl">${L("Questa settimana", "This week")}</div>
       <div class="card row"><span class="pl" style="width:46px">${settled(plate(4, 2))}</span><span class="d22">${L("2 allenamenti di 4", "2 of 4 workouts")}</span></div>
@@ -102,13 +102,13 @@
       <div class="row wk"><span class="round">${I.shrink}</span><span class="pl" style="width:34px">${plate(5, 0)}</span>
         <div class="grow"><div class="nm row nmc">${L("Gambe A", "Legs A")}${I.down}</div><div class="sub">24:10</div></div><span class="pill">${L("Termina", "End")}</span></div>
       <div class="mat"><div class="thread" data-thread></div>
-        <div class="row between"><h4 class="d30">${SQUAT}</h4><span class="more">${I.more}</span></div>
+        <div class="row between"><div class="d30">${SQUAT}</div><span class="more">${I.more}</span></div>
         <div class="row meta"><span class="sub row">${I.timer}2:00</span><span class="mark" data-goal></span></div>
         <div class="thead"><span>${L("Serie", "Set")}</span><span>${L("Scorsa", "Last")}</span><span>kg</span><span>reps</span><span></span></div>
         <div class="sets" data-sets></div>
         <div class="addset">${I.plus}${L("Aggiungi serie", "Add set")}</div></div>
       <div class="later"><div class="thread">${"<i></i>".repeat(NEXT_EX[3])}</div>
-        <div class="row between"><h4 class="d30">${NEXT_EX[0]}</h4><span class="more">${I.more}</span></div>
+        <div class="row between"><div class="d30">${NEXT_EX[0]}</div><span class="more">${I.more}</span></div>
         <div class="row meta"><span class="sub row">${I.timer}1:30</span><span class="mark">${I.scope}<b>${x(NEXT_EX[1], NEXT_EX[2])}</b></span></div>
         <div class="thead"><span>${L("Serie", "Set")}</span><span>${L("Scorsa", "Last")}</span><span>kg</span><span>reps</span><span></span></div>
         ${[1, 2].map((i) => `<div class="set next"><span class="n">${i}</span><span class="prev">${x(NEXT_EX[1], NEXT_EX[2])}</span><span class="v">${kg(NEXT_EX[1])}</span><span class="v">${NEXT_EX[2]}</span><span class="chk"><i class="ring"></i></span></div>`).join("")}</div>
@@ -130,13 +130,13 @@
     // il confronto con la volta scorsa, esercizio per esercizio (la card Confronto).
     fine: () => `${status()}<div class="pad">
       <div class="row hero"><span class="pl" style="width:64px">${closed()}</span>
-        <div><h4 class="d30">${L("Disco chiuso", "Plate closed")}</h4><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div></div></div>
+        <div><div class="d30">${L("Disco chiuso", "Plate closed")}</div><div class="sub">${L("Gambe A, 58 minuti, 5 esercizi su 5", "Legs A, 58 minutes, 5 of 5 exercises")}</div></div></div>
       <div class="stories"><div class="story-card"><b class="wm">broli</b><div class="sn">${L("Gambe A", "Legs A")}</div>
           <div class="ss"><span><b>${L("8.420", "8,420")}</b>kg</span><span><b>19</b>${L("serie", "sets")}</span><span><b>2</b>record</span></div>
           <div class="sl">${[[SQUAT, x(90, 5)], [NEXT_EX[0], x(70, 10)], ["Leg press", x(95, 12)]].map(([n, v]) => `<div class="row between"><span>${n}</span><b>${v}</b></div>`).join("")}</div></div>
         <div class="story-card two"><b class="wm">broli</b><div class="big2">${L("Più di 4", "Over 4")}</div><div class="sn">${L("utilitarie", "small cars")}</div></div></div>
       <div class="sdots"><i class="on"></i><i></i><i></i></div>
-      <div class="card"><div class="lbl in">${L("Riepilogo", "Summary")}</div><div class="stats"><div><span class="d26">19</span><span class="sub">${L("serie", "sets")}</span></div><div><span class="d26">${L("8.420", "8,420")}</span><span class="sub">${L("kg sollevati", "kg lifted")}</span></div><div><span class="d26 red">2</span><span class="sub">${L("record", "PR")}</span></div></div></div>
+      <div class="card"><div class="lbl in">${L("Riepilogo", "Summary")}</div><div class="stats"><div><span class="d26">19</span><span class="sub">${L("serie", "sets")}</span></div><div><span class="d26">${L("8.420", "8,420")}</span><span class="sub">${L("kg sollevati", "kg lifted")}</span></div><div><span class="d26 red">2</span><span class="sub">${L("record", "PRs")}</span></div></div></div>
       <div class="card"><div class="nm">${L("Confronto", "Compare")}</div>
         <div class="row head"><span class="d30">${L("4 su 5", "4 of 5")}</span><span class="sub">${L("esercizi meglio della volta scorsa", "exercises better than last time")}</span></div>
         ${[[I.arrowUp, SQUAT, L("2,5 kg in più", "2.5 kg more"), true], [I.arrowUp, NEXT_EX[0], L("1 rep in più", "1 rep more"), true], [I.equal, "Leg curl", L("come la volta scorsa", "same as last time"), false]]
@@ -173,10 +173,13 @@
   };
   document.querySelectorAll("[data-art]").forEach((el) => (el.innerHTML = arts[el.dataset.art]()));
 
-  document.querySelectorAll("[data-mark]").forEach((el) => {
-    el.innerHTML = markSVG();
-    drawMark(el, still ? 1 : 0, still ? 0.12 : 0);
+  // La copertina: il nome col disco al posto della o, che si riempie come nel benvenuto dell'app. È
+  // l'unico momento di marchio in cima (prima c'erano anche un disco grande e il nome in testo).
+  document.querySelectorAll("[data-logo]").forEach((el) => {
+    el.setAttribute("aria-label", "Broli");
+    el.innerHTML = `<span aria-hidden="true">br<span class="o" data-mark>${markSVG()}</span>li</span>`;
   });
+  document.querySelectorAll("[data-mark]").forEach((el) => drawMark(el, still ? 1 : 0, still ? 0.12 : 0));
 
   // Il telefono del racconto, a misura vera dentro `.dev` e rimpicciolito dal CSS: Schede, la serie, la
   // schermata di blocco, il velo e il disco grande di Grow, il riassunto. Accanto il watch, col riposo e
@@ -223,6 +226,145 @@
     $("[data-rest-val]").textContent = xkg(w, r);
     $("[data-rest-last]").textContent = L(`Scorsa ${x(pw, pr)}`, `Last ${x(pw, pr)}`);
     $("[data-rest-goal]").innerHTML = `${I.scope}<b>${x(w, r)}</b>`;
+  }
+
+  // Al polso: la sezione del watch, col meccanismo del racconto (l'utente, 2026-11-03: "una sezione dedicata
+  // al watch, con meccanismi simili a quelli delle animazioni del phone"). Le schermate sono quelle dell'app
+  // (BroliWatch): "Tocca a" con Inizia, la serie con Fatta, il peso con la corona, il riposo, "Riposo
+  // finito", "Allenamento finito" con calorie e battito medio.
+  const flame = `<svg viewBox="0 0 24 24" class="i"><path d="M12.6 2.5c.4 3-1.6 4.6-3 6.3C8.3 10.4 7 12 7 14.6A5 5 0 0 0 12 19.5a5 5 0 0 0 5-4.9c0-2.4-1.3-3.6-2.2-4.9-.3 1.6-1 2.6-2 3 .7-3.1-.1-6.9-.2-10.2z" fill="currentColor"/></svg>`;
+  const heart = `<svg viewBox="0 0 24 24" class="i"><path d="M12 20.2s-7.6-4.6-8.9-9.3C2.2 7.5 4.4 4.6 7.6 4.6c1.9 0 3.4 1.1 4.4 2.6 1-1.5 2.5-2.6 4.4-2.6 3.2 0 5.4 2.9 4.5 6.3-1.3 4.7-8.9 9.3-8.9 9.3z" fill="currentColor"/></svg>`;
+  const bell = `<svg viewBox="0 0 24 24" class="i"><path d="M12 3a6 6 0 0 0-6 6v4.2L4.3 16.5a.9.9 0 0 0 .8 1.3h13.8a.9.9 0 0 0 .8-1.3L18 13.2V9a6 6 0 0 0-6-6zM9.8 19.5a2.3 2.3 0 0 0 4.4 0z" fill="currentColor"/></svg>`;
+  const wscreens = {
+    list: () => `<div class="w-time">18:40</div><div class="w-pad"><div class="w-card"><div class="sub">${L("Tocca a", "Up next")}</div>
+      <b class="w-name">${L("Gambe A", "Legs A")}</b><div class="sub">${L("5 esercizi", "5 exercises")}</div>
+      <div class="btn w" data-w-start>${I.play}${L("Inizia", "Start")}</div></div>
+      <div class="w-row"><b>Push A</b><span class="sub">${L("6 esercizi", "6 exercises")}</span></div></div>`,
+    set: () => `<div class="w-time">${I.run}18:42</div><div class="w-pad set-w"><div class="row between w-top"><div><b>${SQUAT}</b><div class="sub">${L("Serie 1 di 4", "Set 1 of 4")}</div></div><span class="round w-more">${I.more}</span></div>
+      <div class="row"><span class="pl" style="width:62px" data-w-plate></span><div class="w-num"><span class="d40" data-w-kg>${kg(80)}</span><span class="u">×</span><span class="d30">8</span></div></div>
+      <div class="btn w" data-w-done>${I.check}${L("Fatta", "Done")}</div></div><div class="dots"><i></i><i class="on"></i><i></i></div>`,
+    crown: () => `<div class="w-time">${I.run}18:42</div><div class="w-pad w-edit"><div class="sub">${L("kg, ruota la corona", "kg, turn the crown")}</div>
+      <div class="w-big" data-w-crownval>${kg(80)}</div><div class="sub">${L("Scorsa", "Last")} ${x(80, 8)}</div></div>`,
+    rest: () => `<div class="w-time">${I.run}18:43</div><div class="w-pad"><span class="sub">${L("Riposo", "Rest")}</span>
+      <div class="d54" data-w-rc>2:00</div><div class="bar"><i data-w-rbar></i></div>
+      <div class="row small"><span class="pl" style="width:22px">${plate(4, 1)}</span><span class="sub">${L("Poi", "Next")}</span><b class="d20">${x(85, 8)}</b></div>
+      <div class="row between"><span class="round w">${I.back30}</span><span class="round w">${I.skip}</span></div></div>`,
+    bell: () => `<div class="w-time">${I.run}18:45</div><div class="w-pad w-center"><span class="w-bell">${bell}</span><b>${L("Riposo finito", "Rest over")}</b>
+      <div class="sub">${L("Serie 2", "Set 2")}: ${x(85, 8)}</div></div>`,
+    // La fine: il disco chiuso grande al centro (il premio), il nome, poi calorie e battito medio con le
+    // loro icone; i numeri salgono da zero quando la schermata arriva.
+    end: () => `<div class="w-time">19:38</div><div class="w-pad w-end"><span class="pl w-endplate" data-w-closed>${closed()}</span>
+      <b>${L("Allenamento finito", "Workout done")}</b><div class="sub">${L("Gambe A, 58 min", "Legs A, 58 min")}</div>
+      <div class="w-endstats"><span><span class="w-ic">${flame}</span><b class="d26" data-w-count="412">412</b><small>kcal</small></span>
+      <span><span class="w-ic">${heart}</span><b class="d26" data-w-count="128">128</b><small>bpm</small></span></div></div>`,
+  };
+
+  function polso() {
+    const sec = document.querySelector("[data-wrist]");
+    if (!sec) return;
+    const stage = sec.querySelector(".stage"), steps = [...sec.querySelectorAll(".step")];
+    const go = [...sec.querySelectorAll("[data-go]")], devices = sec.querySelector(".devices");
+    const w = sec.querySelector("[data-wrist-watch]");
+    w.innerHTML = `<div class="dev">${Object.keys(wscreens).map((k) => `<div class="wl" data-wl="${k}">${wscreens[k]()}</div>`).join("")}</div>` +
+      `<span class="crown" aria-hidden="true"></span><span class="side" aria-hidden="true"></span>`;
+    const lay = (k) => w.querySelector(`[data-wl="${k}"]`);
+    const startBtn = w.querySelector("[data-w-start]"), doneBtn = w.querySelector("[data-w-done]");
+    const plateEl = w.querySelector("[data-w-plate]"), kgEl = w.querySelector("[data-w-kg]"), crownVal = w.querySelector("[data-w-crownval]");
+    const rc = w.querySelector("[data-w-rc]"), rbar = w.querySelector("[data-w-rbar]"), crown = w.querySelector(".crown");
+    const closedPlate = w.querySelector("[data-w-closed]");
+    // I momenti: 0 la scheda · 1 Inizia, si apre la serie · 2 la corona (il peso segue lo scorrimento) ·
+    // 3 Fatta, il pezzo diventa rosso · 4 il riposo (il conto segue lo scorrimento) · 5 Riposo finito, il
+    // watch vibra · 6 Allenamento finito.
+    const T = [0, 0.1, 0.22, 0.38, 0.47, 0.66, 0.8];
+    const CROWN = [0.24, 0.34], REST = [0.48, 0.64], GO = [0, T[2] + 0.01, T[4] + 0.01, T[6] + 0.01];
+    const NARROW = "(max-width: 860px) and (orientation: portrait)";
+    const clamp = (v) => Math.min(1, Math.max(0, v));
+    const screenOf = (k) => ["list", "set", "crown", "set", "rest", "bell", "end"][k];
+    const stepOf = (k) => (k <= 1 ? 0 : k <= 3 ? 1 : k <= 5 ? 2 : 3);
+    sec.classList.add("live");
+    let s = -1, queued = false, top = 0, total = 1, fitW = 0, fitH = 0, shownKg = -1, shownLeft = -1, timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const tap = (el, ms = 200) => { el.classList.add("pressed"); later(() => el.classList.remove("pressed"), ms); };
+    const jump = () => { devices.classList.add("jump"); requestAnimationFrame(() => requestAnimationFrame(() => devices.classList.remove("jump"))); };
+
+    // Il watch grande quanto lo schermo lascia, in altezza e in larghezza (la corona sporge a destra).
+    function fit() {
+      const vw = innerWidth, h = stage.clientHeight;
+      if (vw !== fitW || h !== fitH) {
+        fitW = vw; fitH = h;
+        const narrow = matchMedia(NARROW).matches;
+        const roomH = h - (narrow ? sec.querySelector(".steps").offsetHeight + 56 : 80);
+        const roomW = narrow ? vw - 96 : 520;
+        w.style.setProperty("--z", Math.max(0.9, Math.min(2.1, roomH / 262, roomW / 218)).toFixed(3));
+        const d = w.querySelector(".dev").getBoundingClientRect(), b = startBtn.getBoundingClientRect();
+        lay("set").style.transformOrigin = `${((b.left + b.width / 2 - d.left) / d.width) * 100}% ${((b.top + b.height / 2 - d.top) / d.height) * 100}%`;
+      }
+      top = sec.getBoundingClientRect().top + scrollY;
+      total = Math.max(1, sec.offsetHeight - stage.offsetHeight);
+    }
+
+    function apply(next, prev) {
+      const instant = still || prev < 0 || Math.abs(next - prev) > 1;
+      timers.forEach(clearTimeout); timers = [];
+      if (instant) jump();
+      const show = (k) => w.querySelectorAll(".wl").forEach((el) => el.classList.toggle("on", el.dataset.wl === k));
+      // Inizia: prima il tocco, poi la serie si apre dal bottone.
+      if (!instant && next === 1 && prev === 0) { tap(startBtn); later(() => show("set"), 160); }
+      else show(screenOf(next));
+      // Il disco della serie: un pezzo rosso dopo Fatta. Il peso: 85 dopo la corona.
+      plateEl.innerHTML = plate(4, next >= 3 ? 1 : 0, "1");
+      if (next !== 2) { const v = next >= 3 ? 85 : 80; kgEl.textContent = kg(v); }
+      if (!instant && next === 3 && prev === 2) { tap(doneBtn, 240); }
+      if (!instant && next === 5 && prev === 4) { devices.classList.add("bell"); later(() => devices.classList.remove("bell"), 1400); }
+      closedPlate.classList.toggle("closing", next === 6 && !instant);
+      if (next === 6 && !instant) countUp();
+      const step = stepOf(next);
+      steps.forEach((el, i) => { el.classList.toggle("on", i === step); el.classList.toggle("past", i < step); });
+      go.forEach((g, i) => { g.classList.toggle("done", i < step); g.classList.toggle("now", i === step); });
+    }
+
+    // Calorie e battito salgono da zero in 0,9 s, frenando alla fine.
+    function countUp() {
+      const els = [...w.querySelectorAll("[data-w-count]")], t0 = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - t, 3);
+        els.forEach((el) => (el.textContent = Math.round(+el.dataset.wCount * e)));
+        if (t < 1 && s === 6) requestAnimationFrame(step);
+        else els.forEach((el) => (el.textContent = el.dataset.wCount));
+      };
+      requestAnimationFrame(step);
+    }
+
+    function render() {
+      queued = false;
+      const p = clamp((scrollY - top) / total);
+      let n = Math.max(s, 0);
+      while (n + 1 < T.length && p >= T[n + 1]) n++;
+      while (n > 0 && p < T[n] - 0.012) n--;
+      if (n !== s) { const prev = s; s = n; apply(n, prev); }
+      // La corona gira con lo scorrimento e il peso sale da 80 a 85, a passi di 2,5.
+      const c = clamp((p - CROWN[0]) / (CROWN[1] - CROWN[0])), v = 80 + Math.round(c * 2) * 2.5;
+      crown.style.backgroundPositionY = `${(p * 900).toFixed(1)}px`;
+      if (v !== shownKg) { shownKg = v; crownVal.textContent = kg(v); if (s === 2) kgEl.textContent = kg(v); }
+      const left = Math.round(120 * (1 - clamp((p - REST[0]) / (REST[1] - REST[0]))));
+      if (left !== shownLeft) {
+        shownLeft = left;
+        rc.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`;
+        rbar.style.transform = `scaleX(${(left / 120).toFixed(3)})`;
+      }
+    }
+    const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(render); } };
+    go.forEach((g, i) => g.addEventListener("click", (e) => {
+      e.preventDefault();
+      scrollTo({ top: top + total * GO[i], behavior: still ? "auto" : "smooth" });
+    }));
+    fit();
+    render();
+    requestAnimationFrame(() => requestAnimationFrame(() => sec.classList.add("ready")));
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", () => { fit(); onScroll(); });
+    document.fonts?.ready.then(() => { fit(); onScroll(); });
+    addEventListener("load", () => { fit(); onScroll(); });
   }
 
   // Il racconto Lift, Log, Grow. Lo scorrimento della sezione (0 in cima, 1 in fondo) decide in che
@@ -373,6 +515,7 @@
   }
 
   racconto();
+  polso();
 
   // Il disco della copertina si disegna quando arriva a vista.
   if (still) return;

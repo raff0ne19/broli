@@ -47,10 +47,11 @@
   }
   buttons.forEach(function (b) {
     b.addEventListener("click", function () {
-      var k = b.dataset.themeSet;
-      try { if (k === "system") localStorage.removeItem("theme"); else localStorage.setItem("theme", k); } catch (e) {}
-      root.dataset.theme = k === "system" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : k;
-      document.dispatchEvent(new CustomEvent("broli:theme"));
+      var k = b.dataset.themeSet, c = window.BroliTheme.centre(b);
+      var next = k === "system" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : k;
+      // Lo stesso passaggio animato dell'intestazione, che parte dal bottone toccato.
+      window.BroliTheme.set(next, c[0], c[1], k !== "system");
+      mark();
     });
   });
   document.addEventListener("broli:theme", mark);

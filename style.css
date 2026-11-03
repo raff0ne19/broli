@@ -52,20 +52,27 @@ html[data-lang="it"] .en, html[data-lang="en"] .it { display: none; }
 .site-header nav a:hover, .site-header nav a[aria-current] { color: var(--ink); }
 .site-header nav .lang { font-weight: 600; letter-spacing: .02em; }
 .theme { width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--raised2); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
-.theme svg { width: 18px; height: 18px; }
-[data-theme="dark"] .theme .sun, [data-theme="light"] .theme .moon { display: none; }
+/* L'icona è "Classic" di theme-toggles (vendor/): il sole che la luna copre, animato dalla libreria. */
+.theme svg { width: 22px; height: 22px; }
+/* Il cambio di tema si apre a cerchio dal bottone (header.js, View Transitions): niente dissolvenza
+   del browser sotto il cerchio. */
+::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { mix-blend-mode: normal; animation: theme-reveal .56s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes theme-reveal {
+  from { clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0)); }
+  to { clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 100%) var(--vt-y, 0)); }
+}
 .site-header nav a.try { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 20px; background: var(--heat); color: #fff; font-weight: 600; }
 .site-header nav a.try:hover { filter: brightness(1.08); color: #fff; }
-/* Il filo della pagina: solo quando l'intestazione ricompare sulla landing. */
-.pfilo { position: absolute; left: 0; right: 0; bottom: -1px; max-width: 1080px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; opacity: 0; transition: opacity .2s; pointer-events: none; }
-.site-header.float .pfilo { opacity: 1; }
-.pfilo i { flex: 1; height: 3px; border-radius: 2px; background: var(--pl-empty); transition: background .3s; }
-.pfilo i.d { background: var(--heat); }
-.pfilo i.n { background: color-mix(in srgb, var(--heat) 32%, var(--bg)); }
+/* Sulla landing una linea rossa sotto l'intestazione, lunga quanto hai scorso la pagina (header.js). Niente
+   fondo grigio né transizioni di colore: cambiando tema non c'è niente che lampeggi. */
+.pfilo { position: absolute; left: 0; right: 0; bottom: -1px; max-width: 1080px; margin: 0 auto; padding: 0 20px; display: none; pointer-events: none; }
+.has-filo .pfilo { display: block; }
+.pfilo b { display: block; height: 3px; border-radius: 2px; background: var(--heat); transform: scaleX(0); transform-origin: left; }
 /* Su telefono restano il nome, il tema e Provala: Storia, Supporto e la lingua sono nel piè di pagina. */
 @media (max-width: 640px) { .site-header nav .wide { display: none; } .site-header nav { gap: 10px; } }
 .site-header .wordmark { flex-shrink: 0; white-space: nowrap; }
-@media (prefers-reduced-motion: reduce) { .site-header, .pfilo, .pfilo i { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .site-header { transition: none; } }
 
 /* Il contorno di selezione, nel colore del testo e staccato dal bordo, invece di quello del browser. */
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }

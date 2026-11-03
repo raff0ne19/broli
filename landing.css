@@ -12,9 +12,8 @@
 .landing main { overflow-x: clip; }
 
 /* Copertina: come il benvenuto dell'app. */
-.cover { text-align: center; padding: 72px 0 40px; }
-.cover .mark { width: 220px; margin: 0 auto; }
-.cover h1.wordmark { font-size: clamp(88px, 16vw, 152px); margin: 18px 0 0; }
+.cover { text-align: center; padding: 56px 0 40px; }
+.cover h1.wordmark { font-size: clamp(88px, 16vw, 152px); margin: 0; }
 .motto { font-family: "Bricolage", sans-serif; font-weight: 800; font-size: clamp(26px, 4vw, 36px); letter-spacing: -.01em; margin: 6px 0 0; }
 .lede { max-width: 30em; margin: 28px auto 0; font-size: 20px; color: var(--ink2); }
 a.cta:hover { filter: brightness(1.08); }
@@ -97,11 +96,43 @@ a.cta:hover { filter: brightness(1.08); }
 .story-watch .wl { position: absolute; inset: 0; transition: opacity .3s; }
 .story-watch .wl[data-wl="serie"], .s-wserie .story-watch .wl[data-wl="riposo"] { opacity: 0; }
 .s-wserie .story-watch .wl[data-wl="serie"] { opacity: 1; }
-.story-watch::after { content: ""; position: absolute; inset: 0; border-radius: calc(var(--r) * var(--z)); box-shadow: 0 0 0 3px var(--heat); opacity: 0; pointer-events: none; }
-.bell .story-watch::after { animation: bell-ring 1.2s cubic-bezier(.2, .7, .2, 1); }
-.bell .story-watch .dev { animation: bell-buzz .6s ease-out; }
+.story-watch::after, .big-watch::after { content: ""; position: absolute; inset: 0; border-radius: calc(var(--r) * var(--z)); box-shadow: 0 0 0 3px var(--heat); opacity: 0; pointer-events: none; }
+.bell .story-watch::after, .bell .big-watch::after { animation: bell-ring 1.2s cubic-bezier(.2, .7, .2, 1); }
+.bell .story-watch .dev, .bell .big-watch .dev { animation: bell-buzz .6s ease-out; }
 @keyframes bell-ring { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(1.35); } }
 @keyframes bell-buzz { 0%, 100% { rotate: 0deg; } 15% { rotate: -3deg; } 30% { rotate: 3deg; } 45% { rotate: -2deg; } 60% { rotate: 2deg; } 75% { rotate: -1deg; } }
+/* Al polso: la sezione del watch (landing.js, "polso"). Il titolo resta fermo sopra i paragrafi che
+   cambiano; il watch grande, con la corona che gira (le sue righe scorrono) e il tasto laterale. */
+.scrolly.wrist.live { height: 420svh; }
+.wrist .wrist-head { margin-bottom: 16px; }
+.wrist.live .wrist-head { grid-area: 2 / 1; }
+.wrist.live .step { grid-area: 3 / 1; }
+.big-watch .wl { position: absolute; inset: 0; opacity: 0; transform: scale(.94); transition: opacity .28s, transform .45s cubic-bezier(.2, .8, .2, 1); }
+.big-watch .wl.on { opacity: 1; transform: none; }
+.big-watch .crown { position: absolute; top: 22%; right: calc(var(--z) * -15px); width: calc(var(--z) * 9px); height: calc(var(--z) * 32px); border-radius: calc(var(--z) * 3px);
+  background: repeating-linear-gradient(180deg, #55555C 0 2px, #26262B 2px 5px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 0 0 1px #111; }
+.big-watch .side { position: absolute; top: 48%; right: calc(var(--z) * -12px); width: calc(var(--z) * 5px); height: calc(var(--z) * 30px); border-radius: calc(var(--z) * 3px); background: #2A2A2F; box-shadow: 0 0 0 1px #111; }
+.w-card { background: #222226; border-radius: 16px; padding: 9px 12px 12px; margin-top: 2px; }
+.w-card .w-name { display: block; font-family: "Barlow SC", sans-serif; font-size: 22px; line-height: 1.1; }
+.w-card .btn.w { margin-top: 8px; height: 36px; font-size: 16px; }
+.w-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 4px 0; }
+.w-edit { text-align: center; padding-top: 4px; }
+.w-big { font-family: "Barlow SC", sans-serif; font-weight: 700; font-size: 74px; line-height: 1; margin: 6px 0; font-variant-numeric: tabular-nums; }
+.w-center { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding-top: 16px; }
+.w-bell { width: 56px; height: 56px; border-radius: 50%; background: var(--heat); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+.w-bell .i { width: 28px; height: 28px; }
+/* La fine sul watch: il disco chiuso grande, il nome, calorie e battito con le icone rosse. */
+.w-end { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 2px; }
+.w-endplate { display: block; width: 78px; margin-bottom: 8px; }
+.w-end > b { font-size: 16px; line-height: 1.2; }
+.w-end > .sub { font-size: 13px; }
+.w-endstats { display: flex; justify-content: center; gap: 18px; margin-top: 10px; }
+.w-endstats > span { display: flex; align-items: baseline; gap: 4px; }
+.w-endstats .w-ic { align-self: center; display: flex; color: var(--heat); }
+.w-endstats .w-ic .i { width: 16px; height: 16px; }
+.w-endstats .d26 { font-size: 26px; min-width: 2ch; text-align: right; }
+.w-endstats small { font-size: 12px; color: var(--ink2); }
+[data-w-closed].closing svg { animation: plate-close .5s cubic-bezier(.2, .7, .2, 1.2); }
 /* Saltando più momenti insieme la scena va lì senza animazioni (un fotogramma). */
 .devices.jump, .devices.jump * { transition: none !important; animation: none !important; }
 @media (prefers-reduced-motion: reduce) {
@@ -179,7 +210,7 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .li:last-child { border-bottom: 0; }
 .li .sub { font-size: 14px; margin-top: 2px; }
 /* La barra in basso di iOS 26: vetro sospeso sopra il contenuto, la scheda aperta in una pillola. */
-.tabs { position: absolute; left: 20px; right: 20px; bottom: 26px; height: 64px; border-radius: 32px; background: color-mix(in srgb, var(--raised) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px var(--line), 0 6px 24px var(--shade); display: flex; padding: 5px; }
+.tabs { position: absolute; left: 20px; right: 20px; bottom: 26px; height: 64px; border-radius: 32px; background: color-mix(in srgb, var(--raised) 82%, transparent); box-shadow: inset 0 0 0 1px var(--line), 0 6px 24px var(--shade); display: flex; padding: 5px; }
 .tabs span { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--ink); border-radius: 27px; }
 .tabs span svg { width: 26px; height: 22px; fill: currentColor; }
 .tabs .on { background: var(--raised2); color: var(--heat-text); }
@@ -343,13 +374,34 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 
 /* Punti forti: tre riquadri coi pezzi dell'app. */
 /* Una riga per punto, disegno e testo affiancati, una sotto l'altra (prima tre tessere in griglia). */
-.tiles { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
-.tile { background: var(--raised); border-radius: 24px; padding: 28px; display: grid; grid-template-columns: minmax(260px, 340px) 1fr; gap: 8px 36px; align-items: center; }
-.tile .art { grid-row: span 2; margin-bottom: 0; }
-.tile b { align-self: end; }
-.tile p { align-self: start; }
-.tile b { font-size: 19px; display: block; }
-.tile p { color: var(--ink2); font-size: 17px; margin: 6px 0 0; }
+/* Le funzioni: una tessera grande su gomma (lo Storico) e due piccole affiancate. Prima il titolo, nel
+   carattere dei numeri e più grande dei numeri delle anteprime, poi la frase; sotto l'anteprima, staccata
+   dalla tessera come una schermata (fondo suo e ombra), che nelle piccole esce dal bordo in basso. */
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+.tile { background: var(--raised); border-radius: 28px; padding: 32px 32px 0; display: flex; flex-direction: column; gap: 28px; overflow: hidden; }
+.tile h3 { font-family: "Barlow SC", sans-serif; font-weight: 700; font-size: clamp(26px, 2.6vw, 32px); line-height: 1.05; margin: 0 0 10px; }
+.tile .tx p { color: var(--ink2); font-size: 16px; margin: 0; max-width: 30em; }
+.tile .art { margin: auto 0 0; height: auto; }
+.tile .mini, .tile .duo { box-shadow: 0 20px 44px -16px rgba(0, 0, 0, .28), 0 2px 6px rgba(0, 0, 0, .05); border-radius: 22px; transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
+.tile .mini { background: #FFFFFF; font-size: 14px; padding: 18px; margin-bottom: -28px; padding-bottom: 46px; }
+.tile .duo { align-self: stretch; background: #FFFFFF; padding: 26px 28px 54px; margin-bottom: -28px; justify-content: center; align-items: center; }
+/* Il pannello dei dischi riempie la tessera fino in fondo, come l'anteprima della tessera accanto. */
+.tile .art:has(.duo) { flex: 1; justify-content: stretch; }
+.tile .art:has(.duo) .duo { flex: 1; }
+[data-theme="dark"] .tile .mini, [data-theme="dark"] .tile .duo { background: #222226; box-shadow: 0 20px 44px -16px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .06); }
+@media (hover: hover) { .tile:hover .mini, .tile:hover .duo { transform: translateY(-6px); } }
+.tile .mini .d30 { font-size: 26px; }
+.tile .mini .d26 { font-size: 22px; }
+/* La grande: su gomma anche nel tema chiaro (come il piè di pagina), testo a sinistra e anteprima a destra. */
+.tile.big { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 48px; padding: 48px 48px 0 56px;
+  background: #0D0D0E; color: #F1F0EC; --ink: #F1F0EC; --ink2: #8D8D93; --ink3: #55555B; --line: rgba(255, 255, 255, .1); --raised: #17171A; --raised2: #222226; --bg: #0D0D0E; --heat-text: #FF2D24; --pl-empty: #323238; }
+[data-theme="dark"] .tile.big { background: #17171A; --bg: #17171A; --raised: #222226; --raised2: #2E2E33; }
+.tile.big .tx { flex: 1; padding-bottom: 48px; }
+.tile.big h3 { font-size: clamp(32px, 4vw, 46px); }
+.tile.big .tx p { font-size: 17px; }
+.tile.big .art { flex: none; width: 380px; align-self: flex-end; }
+.tile.big .mini { background: #17171A; box-shadow: 0 24px 60px -18px rgba(0, 0, 0, .8), inset 0 0 0 1px rgba(255, 255, 255, .07); }
+[data-theme="dark"] .tile.big .mini { background: #222226; }
 .art { height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 20px; }
 .art figure { margin: 0; text-align: center; }
 .art figcaption { color: var(--ink2); font-size: 14px; margin-top: 10px; }
@@ -358,6 +410,8 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
    prende la loro altezza (con i 220 px fissi sbordavano sul titolo). */
 .art:has(.mini) { height: auto; align-items: stretch; }
 .mini { width: 100%; text-align: left; background: var(--raised2); border-radius: 16px; padding: 16px; font-size: 15px; }
+/* In scuro le anteprime stanno sulla gomma: il rosso del testo sul secondo gradino era a 4,3:1, qui a 5,2:1. */
+[data-theme="dark"] .mini { background: var(--bg); }
 .mini .ok { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; }
 .mini .d26 { margin-top: 10px; }
 .mini .sub { font-size: 13px; }
@@ -366,7 +420,7 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .mini .ses .nm { font-size: 15px; }
 .mini > .sub:last-of-type { margin-top: 8px; }
 .mini .btn.in { height: 44px; margin-top: 12px; font-size: 15px; }
-.hist .hseg { display: flex; background: var(--raised); border-radius: 10px; padding: 3px; font-size: 13px; color: var(--ink2); margin-bottom: 12px; }
+.hist .hseg { display: flex; background: var(--raised2); border-radius: 10px; padding: 3px; font-size: 13px; color: var(--ink2); margin-bottom: 12px; }
 .hist .hseg span { flex: 1; text-align: center; padding: 5px 0; border-radius: 8px; }
 .hist .hseg .on { background: var(--bg); color: var(--ink); font-weight: 600; }
 .hist .ok .i { width: 16px; height: 16px; }
@@ -414,8 +468,11 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
   .scrolly { padding: 56px 0; }
   .phone { --z: .74; }
   .yours .cols { grid-template-columns: 1fr; gap: 20px; }
-  .tile { grid-template-columns: 1fr; }
-  .tile .art { grid-row: auto; margin-bottom: 20px; }
+  .tiles { grid-template-columns: 1fr; }
+  .tile, .tile.big { padding: 28px 24px 0; gap: 24px; }
+  .tile.big { flex-direction: column; align-items: stretch; }
+  .tile.big .tx { padding-bottom: 0; }
+  .tile.big .art { width: auto; align-self: stretch; }
 }
 /* Sul telefono in verticale il telefono sopra e il testo sotto; la misura del telefono la calcola
    landing.js (la stessa condizione, NARROW). Di traverso resta affiancato, come su desktop. */
@@ -435,7 +492,6 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 }
 @media (max-width: 480px) {
   .lede, .step p { font-size: 18px; }
-  .cover .mark { width: 168px; }
   .phone { --z: .7; }
 }
 
