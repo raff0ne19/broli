@@ -3,5 +3,8 @@
 # all'uscita sullo store si cambia qui sotto per far puntare all'App Store i link già condivisi.
 # 302 e non 301: un redirect permanente i browser lo ricordano e non vedrebbero il cambio.
 /beta  https://testflight.apple.com/join/TQ2yYNd8  302
+# /ig: la stessa beta dal gruppo TestFlight "Instagram", per contare in App Store Connect chi arriva da lì
+# (link in bio e sticker delle storie). Il codice ha maiuscole: Instagram lo rompeva, da qui il redirect.
+/ig  https://testflight.apple.com/join/8Ssxt8Rn  302
 # /story: il nome inglese porta alla stessa pagina, che sceglie la lingua da sé.
 /story  /storia  301
