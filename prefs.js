@@ -11,5 +11,11 @@
   var lang = q === "it" || q === "en" ? q : saved || ((navigator.language || "").slice(0, 2) === "it" ? "it" : "en");
   root.dataset.lang = lang;
   root.lang = lang;
+  // Titolo e descrizione in italiano nell'HTML, l'inglese in data-en: Google legge quelli della pagina disegnata.
+  if (lang === "en") {
+    var t = document.querySelector("title[data-en]"), d = document.querySelector('meta[name="description"][data-en]');
+    if (t) document.title = t.getAttribute("data-en");
+    if (d) d.setAttribute("content", d.getAttribute("data-en"));
+  }
   root.dataset.theme = theme === "light" || theme === "dark" ? theme : matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 })();

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Le pagine del sito, ognuna anche nelle due lingue (?lang=): le lingue le collegano gli hreflang nelle pagine. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://broli.app/</loc></url>
+  <url><loc>https://broli.app/?lang=it</loc></url>
+  <url><loc>https://broli.app/?lang=en</loc></url>
+  <url><loc>https://broli.app/storia</loc></url>
+  <url><loc>https://broli.app/storia?lang=it</loc></url>
+  <url><loc>https://broli.app/storia?lang=en</loc></url>
+  <url><loc>https://broli.app/support</loc></url>
+  <url><loc>https://broli.app/support?lang=it</loc></url>
+  <url><loc>https://broli.app/support?lang=en</loc></url>
+  <url><loc>https://broli.app/privacy</loc></url>
+  <url><loc>https://broli.app/privacy?lang=it</loc></url>
+  <url><loc>https://broli.app/privacy?lang=en</loc></url>
+  <url><loc>https://broli.app/terms</loc></url>
+  <url><loc>https://broli.app/terms?lang=it</loc></url>
+  <url><loc>https://broli.app/terms?lang=en</loc></url>
+</urlset>
