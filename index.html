@@ -20,7 +20,7 @@
      senza la versione una pagina nuova poteva prendere lo script vecchio (intestazione sballata, 2026-11-03). -->
 <link rel="stylesheet" href="vendor/theme-toggles/classic.min.css?v=20261103">
 <link rel="stylesheet" href="style.css?v=20261103">
-<link rel="stylesheet" href="landing.css?v=20261103">
+<link rel="stylesheet" href="landing.css?v=20261105">
 <script src="prefs.js?v=20261103"></script>
 <script src="plate.js?v=20261103"></script>
 </head>
@@ -139,6 +139,68 @@
     </div>
   </section>
 
+  <!-- Gratis e Pro: due riquadri, quello Pro col bordo rosso e la corona (mock B scelto il 2026-11-05).
+       Le voci vengono da BUSINESS_MODEL.md ("gratis tutto ciò che serve per allenarsi") e da ProFeature.swift:
+       se cambia una funzione Pro, va cambiata anche qui. -->
+  <section id="pro" class="plans">
+    <h2 class="say it">Gratis e Pro</h2>
+    <h2 class="say en">Free and Pro</h2>
+    <p class="lede2 it">Per allenarti è tutto gratis, e lo resta: niente limiti alle schede, niente pubblicità. Pro aggiunge la profondità, per chi vuole guardare a fondo i propri progressi.</p>
+    <p class="lede2 en">Everything you need to train is free, and stays free: no limit on routines, no ads. Pro adds depth, for those who want to dig into their progress.</p>
+    <div class="pl2">
+      <article class="plan">
+        <h3 class="it">Gratis</h3><h3 class="en">Free</h3>
+        <p class="sub it">Per sempre, per tutti.</p><p class="sub en">Forever, for everyone.</p>
+        <ul class="it">
+          <li>Schede, programmi ed esercizi<small>Senza limiti</small></li>
+          <li>Apple Watch<small>Dall'inizio alla fine, con l'allenamento in Salute</small></li>
+          <li>Il riposo ovunque<small>Dynamic Island, schermata di blocco e polso</small></li>
+          <li>Oggi contro la volta scorsa<small>Il grafico nel riposo, serie dopo serie</small></li>
+          <li>Storico e record<small>Tutto, da sempre</small></li>
+          <li>Superset e AMRAP</li>
+          <li>Schede condivise<small>Con un link o un QR</small></li>
+          <li>I tuoi dati<small>iCloud, backup su file, CSV, storico da Hevy</small></li>
+        </ul>
+        <ul class="en">
+          <li>Routines, programs and exercises<small>Unlimited</small></li>
+          <li>Apple Watch<small>From start to finish, with the workout saved to Health</small></li>
+          <li>Rest everywhere<small>Dynamic Island, Lock Screen and wrist</small></li>
+          <li>Today against last time<small>The chart during rest, set after set</small></li>
+          <li>History and records<small>All of it, from day one</small></li>
+          <li>Supersets and AMRAPs</li>
+          <li>Shared routines<small>With a link or a QR code</small></li>
+          <li>Your data<small>iCloud, file backup, CSV, history from Hevy</small></li>
+        </ul>
+      </article>
+      <article class="plan pro">
+        <h3><span class="crown" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M4.2 17 2.9 8.3c-.1-.6.6-1 1.1-.6l4 3.6 3.3-6.2c.3-.6 1.1-.6 1.4 0l3.3 6.2 4-3.6c.5-.4 1.2 0 1.1.6L19.8 17z"/><rect fill="currentColor" x="4.2" y="18.6" width="15.6" height="2.4" rx="1.2"/></svg></span>Pro</h3>
+        <p class="sub it">Tutto il gratis, e in più:</p><p class="sub en">Everything in Free, plus:</p>
+        <ul class="it">
+          <li>Statistiche per muscolo<small>Quanto cresce ogni gruppo, quale stai trascurando</small></li>
+          <li>Massimale stimato<small>La curva di ogni esercizio, con gli obiettivi</small></li>
+          <li>Giro contro giro<small>Ogni esercizio contro il giro prima</small></li>
+          <li>Il mese in breve<small>Volume, record e muscoli del mese</small></li>
+          <li>Allenamenti a mano<small>Le sedute fatte senza l'app</small></li>
+          <li>Una serie<small>In allenamento una serie alla volta</small></li>
+          <li>Backup automatico<small>Ogni settimana su iCloud Drive</small></li>
+          <li>Temi, icone e colori<small>Sempre chiaro o sempre scuro, diciassette icone</small></li>
+        </ul>
+        <ul class="en">
+          <li>Stats by muscle<small>How each group grows, which one you're neglecting</small></li>
+          <li>Estimated max<small>Every exercise's curve, with goals</small></li>
+          <li>Round vs round<small>Every exercise against the previous round</small></li>
+          <li>Month in brief<small>Volume, records and muscles of the month</small></li>
+          <li>Manual workouts<small>Sessions done without the app</small></li>
+          <li>One set<small>One set at a time while you train</small></li>
+          <li>Automatic backup<small>Every week to iCloud Drive</small></li>
+          <li>Themes, icons and colours<small>Always light or always dark, seventeen icons</small></li>
+        </ul>
+        <p class="price it">Il prezzo lo diremo all'uscita, a gennaio 2027.</p>
+        <p class="price en">We'll share the price at launch, in January 2027.</p>
+      </article>
+    </div>
+  </section>
+
   <!-- Le domande di chi arriva per la prima volta, prima di installare. Un elenco che si apre a tocchi
        (<details>): niente JavaScript, si usa anche da tastiera e con VoiceOver. -->
   <section id="domande" class="faq">
@@ -146,14 +208,14 @@
     <h2 class="say en">Questions</h2>
     <div class="it">
       <details><summary>Quando esce?</summary><p>È in beta su TestFlight, l'app di Apple per le beta: la installi <a href="beta">da qui</a>. Sull'App Store arriva a gennaio 2027.</p></details>
-      <details><summary>Quanto costa?</summary><p>Broli è gratis. Broli Pro è facoltativo e aggiunge le statistiche per muscolo, il massimale stimato con gli obiettivi, giro contro giro, il mese in breve, gli allenamenti fatti senza l'app, la vista Una serie, il backup automatico su iCloud Drive, e temi, icone e colori dell'app. Il prezzo lo diremo all'uscita.</p></details>
+      <details><summary>Quanto costa?</summary><p>Broli è gratis. Broli Pro è facoltativo: cosa aggiunge lo trovi in <a href="#pro">Gratis e Pro</a>. Il prezzo lo diremo all'uscita.</p></details>
       <details><summary>Cosa serve?</summary><p>Un iPhone con iOS 26.5 o successivo. Apple Watch è facoltativo, con watchOS 26.5 o successivo.</p></details>
       <details><summary>C'è anche per Android?</summary><p>No: Broli è fatta per iPhone e Apple Watch.</p></details>
       <details><summary>Posso portare lo storico da Hevy?</summary><p>Sì, gratis: esporti i dati da Hevy e li apri con Broli, che li aggiunge al tuo storico.</p></details>
     </div>
     <div class="en">
       <details><summary>When is it out?</summary><p>It's in beta on TestFlight, Apple's app for betas: install it <a href="beta">from here</a>. It comes to the App Store in January 2027.</p></details>
-      <details><summary>How much does it cost?</summary><p>Broli is free. Broli Pro is optional and adds stats by muscle, estimated max with goals, cycle against cycle, the month at a glance, workouts logged without the app, the One set view, automatic backup to iCloud Drive, and app themes, icons and colours. We'll share the price at launch.</p></details>
+      <details><summary>How much does it cost?</summary><p>Broli is free. Broli Pro is optional: see what it adds in <a href="#pro">Free and Pro</a>. We'll share the price at launch.</p></details>
       <details><summary>What do I need?</summary><p>An iPhone with iOS 26.5 or later. Apple Watch is optional, with watchOS 26.5 or later.</p></details>
       <details><summary>Is there an Android version?</summary><p>No: Broli is made for iPhone and Apple Watch.</p></details>
       <details><summary>Can I bring my history from Hevy?</summary><p>Yes, for free: export your data from Hevy and open it with Broli, which adds it to your history.</p></details>
