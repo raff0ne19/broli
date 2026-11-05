@@ -8,3 +8,10 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Gli stessi file rispondono anche su broli.pages.dev e su www.broli.app: per Google sarebbero copie del
+# sito. Si indicizza solo broli.app (www va anche rediretto con una Redirect Rule di Cloudflare).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+https://www.broli.app/*
+  X-Robots-Tag: noindex
