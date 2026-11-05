@@ -290,7 +290,7 @@
     // Il watch grande quanto lo schermo lascia, in altezza e in larghezza (la corona sporge a destra).
     function fit() {
       const vw = innerWidth, h = stage.clientHeight;
-      if (vw !== fitW || h !== fitH) {
+      if (vw !== fitW || h < fitH) {   // come nel racconto: non cresce quando Instagram allunga la pagina
         fitW = vw; fitH = h;
         const narrow = matchMedia(NARROW).matches;
         const roomH = h - (narrow ? sec.querySelector(".steps").offsetHeight + 56 : 80);
@@ -392,16 +392,20 @@
     let s = -1, queued = false, top = 0, total = 1, fitW = 0, fitH = 0, shownLeft = -1, timers = [];
 
     // La misura del telefono (alto quanto lo schermo lascia, mai più di 0,8) e la posizione della sezione:
-    // si calcolano qui, non a ogni fotogramma. Solo se cambiano larghezza o altezza del palco: su iPhone la
-    // barra di Safari che si stringe manda `resize` di continuo. Sugli schermi bassi (il browser di
-    // Instagram, il telefono di traverso) il testo si accorcia alle prime righe invece di tagliare il palco.
+    // si calcolano qui, non a ogni fotogramma. Solo se cambia la larghezza o se il palco si abbassa: il
+    // browser di Instagram allunga la pagina quando scorrendo nasconde le sue barre, e ricalcolando a ogni
+    // allungamento telefono e watch crescevano sotto il dito (2026-11-05). Sugli schermi bassi (il browser
+    // di Instagram, il telefono di traverso) il testo si accorcia alle prime righe invece di tagliare il palco.
+    // shortcut: su desktop una finestra solo più alta non ingrandisce il telefono; se serve, ricalcolare a scorrimento fermo.
     function fit() {
       const w = innerWidth, h = stage.clientHeight;
-      if (w !== fitW || h !== fitH) {
+      if (w !== fitW || h < fitH) {
         fitW = w; fitH = h;
         const narrow = matchMedia(NARROW).matches, stepsH = () => sec.querySelector(".steps").offsetHeight;
         sec.classList.remove("compact");
-        story.style.setProperty("--z", 1);
+        // Il testo si misura col telefono al minimo: a misura piena il telefono allargava la colonna, il testo
+        // andava meno a capo e il telefono usciva più grande dello spazio che resta.
+        story.style.setProperty("--z", 0.34);
         let room = h - (narrow ? stepsH() + 48 : 64);
         if (narrow && room / 868 < 0.5) { sec.classList.add("compact"); room = h - (stepsH() + 40); }
         const z = Math.max(0.34, Math.min(0.8, room / 868));
