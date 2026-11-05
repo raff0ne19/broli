@@ -108,7 +108,7 @@
     const t = document.createElement("div");
     t.innerHTML = markSVG();
     drawMark(t, 1, 0);
-    return `br<span class="o">${t.innerHTML}</span>li`;
+    return `br<span class="o">${t.innerHTML}<i class="vh">o</i></span>li`;   // la o vera, nascosta: il testo è "broli", non "brli"
   }
 
   window.Plate = { arc, plate, superset, timed, closed, markSVG, drawMark, logotype };
