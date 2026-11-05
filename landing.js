@@ -177,7 +177,7 @@
   // l'unico momento di marchio in cima (prima c'erano anche un disco grande e il nome in testo).
   document.querySelectorAll("[data-logo]").forEach((el) => {
     el.setAttribute("aria-label", "Broli");
-    el.innerHTML = `<span aria-hidden="true">br<span class="o" data-mark>${markSVG()}</span>li</span>`;
+    el.innerHTML = `<span aria-hidden="true">br<span class="o" data-mark>${markSVG()}<i class="vh">o</i></span>li</span>`;
   });
   document.querySelectorAll("[data-mark]").forEach((el) => drawMark(el, still ? 1 : 0, still ? 0.12 : 0));
 
