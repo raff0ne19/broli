@@ -17,5 +17,13 @@
     if (t) document.title = t.getAttribute("data-en");
     if (d) d.setAttribute("content", d.getAttribute("data-en"));
   }
+  // Canonical scritto qui e non nell'HTML: uno fisso fonderebbe le due lingue. Sempre su broli.app (anche da
+  // www e pages.dev) e senza parametri tranne ?lang (via fbclid e utm dei link di Instagram). Non sulle noindex.
+  if (!document.querySelector('meta[name="robots"][content*="noindex"]')) {
+    var c = document.createElement("link");
+    c.rel = "canonical";
+    c.href = "https://broli.app" + location.pathname.replace(/\.html$/, "").replace(/\/index$/, "/") + (q === "it" || q === "en" ? "?lang=" + q : "");
+    document.head.appendChild(c);
+  }
   root.dataset.theme = theme === "light" || theme === "dark" ? theme : matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 })();

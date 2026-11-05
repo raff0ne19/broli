@@ -159,7 +159,8 @@ a.cta:hover { filter: brightness(1.08); }
 .yours p { font-size: 17px; margin: 6px 0 0; }
 html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; }
 /* Gratis e Pro: due riquadri affiancati (uno sotto l'altro sul telefono), Pro col bordo rosso e la corona.
-   La spunta è una maschera colorata da `background`: grigia nel gratis, rossa nel Pro. */
+   La spunta è una maschera colorata da `background`: grigia nel gratis, rossa nel Pro. È un file: la CSP
+   (img-src 'self') blocca le immagini data:, e online le spunte non si vedevano. */
 .plans { padding: 72px 0; border-top: 1px solid var(--line); }
 .plans .lede2 { font-size: 19px; color: var(--ink2); max-width: 34em; margin: 0 0 32px; }
 .pl2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -172,8 +173,8 @@ html[data-lang="it"] .cols .en, html[data-lang="en"] .cols .it { display: none; 
 .plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .plan li { position: relative; padding-left: 32px; font-size: 17px; line-height: 1.35; }
 .plan li::before { content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background: var(--ink2);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 12.5l5 5 10-11' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 12.5l5 5 10-11' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+  -webkit-mask: url("assets/check.svg") center / contain no-repeat;
+  mask: url("assets/check.svg") center / contain no-repeat; }
 .plan.pro li::before { background: var(--heat-text); }
 .plan li small { display: block; font-size: 15px; color: var(--ink2); }
 .plan .price { font-size: 15px; color: var(--ink2); margin: 24px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
