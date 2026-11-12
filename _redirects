@@ -8,3 +8,6 @@
 /ig  https://testflight.apple.com/join/8Ssxt8Rn  302
 # /story: il nome inglese porta alla stessa pagina, che sceglie la lingua da sé.
 /story  /storia  301
+# /chatgpt: la pagina del plugin di Broli nel catalogo di ChatGPT (approvato il 2026-11-11). Da lì si installa,
+# e chi l'ha già passa alla chat. Se OpenAI cambia l'indirizzo, si cambia qui.
+/chatgpt  https://chatgpt.com/plugins/plugin_asdk_app_6ae1ce375ec08191b2290157fd158baf  302
